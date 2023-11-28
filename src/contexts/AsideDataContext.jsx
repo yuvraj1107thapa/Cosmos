@@ -29,7 +29,7 @@ export const AsideDataContextProvider = ({ children }) => {
       });
       //   const data = await response.json();
       console.log(response);
-      //   dispatch({ type: "GET_POSTS", payload: data.posts });
+      dispatch({ type: "GET_POSTS", payload: response.data.posts });
       toastNotify("success", "Post Deleted successfully!");
     } catch (e) {
       console.log(e);
@@ -62,6 +62,28 @@ export const AsideDataContextProvider = ({ children }) => {
       dispatch({ type: "USER_TO_FOLLOW" });
       const res = await axios.get("/api/users");
       dispatch({ type: "GET_USERS", payload: res.data.users });
+      console.log("follow", response);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const unfollowUser = async (Id) => {
+    try {
+      const response = await axios.post(
+        `/api/users/unfollow/${Id}`,
+        {},
+        {
+          headers: {
+            authorization: encodedToken,
+          },
+        }
+      );
+      setUserLoginData(response.data.user);
+      dispatch({ type: "GET_FOLLOWING", payload: response.data.followUser });
+      dispatch({ type: "USER_TO_FOLLOW" });
+      console.log("unfollow", response);
+      console.log("fo/uf", state);
     } catch (e) {
       console.log(e);
     }
@@ -77,6 +99,7 @@ export const AsideDataContextProvider = ({ children }) => {
         setEditPost,
         deletePost,
         followUser,
+        unfollowUser,
       }}
     >
       {children}

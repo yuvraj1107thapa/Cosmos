@@ -11,25 +11,24 @@ import WhatshotIcon from "@mui/icons-material/Whatshot";
 import { DataContext } from "../../contexts/DataContext";
 import { AsideDataContext } from "../../contexts/AsideDataContext";
 
-
-
 const Landing = () => {
-  const {
-    state,
-    dispatch,
-    getUserLoggedInData,
-    setFilter,
-    setOpenModal,
-  } = useContext(DataContext);
+  const { state, dispatch, getUserLoggedInData, setFilter } =
+    useContext(DataContext);
+
+  const landingPost = state?.posts?.filter(
+      ({ username }) =>
+        username === state.userLoggedIn ||
+        state?.following?.find((user) => user.username === username)
+    );
 
   // const { editPost, setEditPost } = useContext(AsideDataContext);
   const data = state.filter
-    ? [...state?.posts].sort((a, b) =>
+    ? [...landingPost].sort((a, b) =>
         state.filter === "latest"
           ? new Date(b.createdAt) - new Date(a.createdAt)
           : b.likes.likeCount - a.likes.likeCount
       )
-    : [...state.posts];
+    : [...landingPost];
 
   // console.log(data);
 
@@ -64,11 +63,15 @@ const Landing = () => {
     dispatch({ type: "USER_TO_FOLLOW" });
   }, []);
 
+  //all posts of user and following
+
+  
+
+  console.log("landingPost", landingPost);
   return (
     <div className="landing-container">
       <Navbar />
-     
-      
+      {/* filter section in landing page */}
       <div className="feed">
         <div className="filter-container">
           <div className="filter-post">
@@ -92,9 +95,10 @@ const Landing = () => {
               </div>
             </div>
           </div>
+          {/* user to create post */}
           <CreatePost />
         </div>
-        {/* <PostCard /> */}
+        {/* Display all the posts of user logged in and whom user is following*/}
         {state.filter
           ? data?.map((data) => (
               <div key={data._id}>
@@ -115,9 +119,7 @@ const Landing = () => {
           <SearchBar />
           <div className="user-container">
             <h2>You might Like</h2>
-            {/* <UserList />
-          <UserList /> */}
-
+            {/* Displaying suggestions to whom user can follow*/}
             {state?.userToFollow?.map((user) => (
               <UserList user={user} />
             ))}

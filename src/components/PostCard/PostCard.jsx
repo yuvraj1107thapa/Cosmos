@@ -48,7 +48,7 @@ const PostCard = ({ data }) => {
 
   //get the date in format
   const d = new Date(data.createdAt);
-
+console.log("photo",userData)
   return (
     <div>
       <div className="post-container">
@@ -57,7 +57,7 @@ const PostCard = ({ data }) => {
 
           <div className="post-date">
             <p>
-              <b>{data?.username}</b> {d.toDateString()}
+              <b>{userData?.firstName} {userData?.lastName}</b> {d.toDateString()}
             </p>
             <p>@{data?.username}</p>
           </div>

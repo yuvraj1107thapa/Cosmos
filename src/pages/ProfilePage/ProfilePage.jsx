@@ -53,7 +53,8 @@ const ProfilePage = () => {
           {[...postOfUser]
             .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
             ?.map((data) => (
-              <PostCard data={data} />
+              <div key={data._id}>
+              <PostCard data={data} /></div>
             ))}
         </div>
       </div>

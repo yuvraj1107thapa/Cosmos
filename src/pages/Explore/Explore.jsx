@@ -14,6 +14,13 @@ const Explore = () => {
     dispatch({ type: "USER_TO_FOLLOW" });
   }, []);
 
+  const posts = [...(state?.posts)].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+  console.log("sorted",posts)
+
+  // const posts = state.posts;
+  // console.log("dekho",
+  //   [...posts].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+  // );
   return (
     <div className="landing-container">
       <div>
@@ -21,9 +28,11 @@ const Explore = () => {
       </div>
       <div>
         {/* <PostCard /> */}
-        {state?.posts?.map((data) => (
-          <PostCard data={data} />
-        ))}
+        {[...state?.posts]
+          .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+          ?.map((data) => (
+            <PostCard data={data} />
+          ))}
       </div>
       <div>
         <div className="side-search-bar">

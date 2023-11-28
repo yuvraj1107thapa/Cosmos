@@ -52,7 +52,19 @@ export const initialValue = {
       }
   
       case "GET_FOLLOWING": {
-        return { ...state, following: [...state.following, action.payload] };
+        const findUser = state?.following?.find(
+          ({ username }) => username === action.payload.username
+        );
+        if (findUser) {
+          return {
+            ...state,
+            following: state?.following?.filter(
+              ({ username }) => username !== action.payload.username
+            ),
+          };
+        } else {
+          return { ...state, following: [...state.following, action.payload] };
+        }
       }
   
       case "USER_TO_FOLLOW": {
@@ -73,4 +85,3 @@ export const initialValue = {
       }
     }
   };
-  
