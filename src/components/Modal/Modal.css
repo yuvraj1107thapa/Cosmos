@@ -6,6 +6,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 4;
 }
 
 .modal {
@@ -19,7 +20,7 @@
     padding: 1rem 0rem 0rem;
 }
 
-.cacelBtn {
+.cancelBtn {
     display: flex;
     justify-content: space-between;
     padding: 0.2rem 0.5rem;

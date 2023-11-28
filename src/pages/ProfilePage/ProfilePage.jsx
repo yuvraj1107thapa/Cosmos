@@ -9,16 +9,18 @@ import "./ProfilePage.css";
 import { useEffect } from "react";
 import { useState } from "react";
 import axios from "axios";
+import { useParams } from "react-router-dom";
 
 const ProfilePage = () => {
   //   const { userLoggedIn } = useContext(AuthContext);
   const { userLoginData } = useContext(DataContext);
-
   const { userPost, setUserPost, state } = useContext(DataContext);
+
+  const { username } = useParams();
 
   useEffect(() => {
     (async () => {
-      console.log(state.userLoggedIn);
+      // console.log(state.userLoggedIn);
       try {
         const response = await axios.get(
           `/api/posts/user/${state.userLoggedIn}`
@@ -30,15 +32,25 @@ const ProfilePage = () => {
     })();
   }, []);
 
+  //to get all the posts of specified user
+  const postOfUser = state?.posts?.filter(
+    (post) => post.username.toString() === username
+  );
+
+  //to get the user detail of specified user
+  const userDetail = state?.users.find(
+    (user) => user.username.toString() === username
+  );
+
   return (
     <div className="landing-container">
       <Navbar />
       <div className="profile-page-content">
         <div>
-          <Profile user={userLoginData} />
+          <Profile user={userDetail} />
         </div>
         <div>
-          {[...userPost]
+          {[...postOfUser]
             .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
             ?.map((data) => (
               <PostCard data={data} />

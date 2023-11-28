@@ -1,20 +1,28 @@
 import React from "react";
 import "./UserList.css";
+import { AsideDataContext } from "../../contexts/AsideDataContext";
+import { useContext } from "react";
+import { DataContext } from "../../contexts/DataContext";
+import { NavLink } from "react-router-dom";
 
 const UserList = ({ user }) => {
-  console.log(user);
+  const {followUser} = useContext(AsideDataContext)
+  const {state,userLoginData} = useContext(DataContext)
+
+  // const findFollower = state?.userLoginData.find(({following})=>following.find(({_id})=>_id === user._id))
+console.log("after",state)
   return (
     <div>
       <div>
         <div className="userlist">
           <img src={user.avatarUrl} alt="" className="nav-profile-pic" />
-          <div className="user-detail">
+         <NavLink className="user-detail" to={`/profilepage/${user.username}`}> <div  >
             <h4>
               {user.firstName} {user.lastName}
             </h4>
             <span>@{user.username}</span>
-          </div>
-          <button className="follow-btn">+ Follow</button>
+          </div></NavLink>
+          <button className="follow-btn" onClick={()=>followUser(user._id)}>+ Follow</button>
         </div>
       </div>
     </div>

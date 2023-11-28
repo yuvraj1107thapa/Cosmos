@@ -5,6 +5,8 @@ export const initialValue = {
     bookmarkedPosts: [],
     userLoggedIn: "",
     filter: "",
+    following: [],
+    userToFollow: [],
   };
   
   export const reducerFun = (state, action) => {
@@ -48,8 +50,27 @@ export const initialValue = {
       case "CLEAR_FILTER": {
         return { ...state, filter: "" };
       }
+  
+      case "GET_FOLLOWING": {
+        return { ...state, following: [...state.following, action.payload] };
+      }
+  
+      case "USER_TO_FOLLOW": {
+        const userList = state?.users?.filter(
+          ({ username }) => username !== localStorage.getItem("loggedUser")
+        );
+  
+        const suggestedUserToFollow =
+          state?.following.length !== 0
+            ? userList?.filter(
+                (data) => !state?.following?.find(({ _id }) => _id === data._id)
+              )
+            : userList;
+        return { ...state, userToFollow: suggestedUserToFollow };
+      }
       default: {
         return state;
       }
     }
   };
+  

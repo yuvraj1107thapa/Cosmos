@@ -59,7 +59,7 @@ const Bookmark = () => {
             {/* <UserList />
           <UserList /> */}
 
-            {state?.users?.map((user) => (
+            {state?.userToFollow.map((user) => (
               <UserList user={user} />
             ))}
           </div>

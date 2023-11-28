@@ -6,6 +6,7 @@
     padding: 1rem;
     border-radius: 0.5rem;
     box-shadow: 0 0 0.5rem 0.2rem hsla(260, 11%, 85%, 1);
+    position: relative;
 }
 
 .post-title {
@@ -24,9 +25,13 @@
     margin-left: auto
 }
 
+#three-dots:hover {
+    cursor: pointer
+}
+
 .post-img {
     margin-top: 0.5rem;
-    ;
+    
 }
 
 .post-actions {
@@ -39,8 +44,49 @@
     cursor: pointer;
 }
 
-.liked-counter-div{
+.liked-counter-div {
     display: flex;
-    gap:0.2rem;
+    gap: 0.2rem;
     align-items: center;
+}
+
+.post-date {
+    flex-grow: 1;
+}
+
+.post-popup {
+    display: flex;
+    flex-direction: column;
+    border: none;
+    background-color: white;
+    min-width: 8rem;
+    padding: auto;
+    box-shadow: 0 0 0.5rem 0.2rem hsla(260, 11%, 85%, 1);
+    border-radius: 0.5rem;
+    z-index: 2;
+    position: absolute;
+    margin: 1rem;
+}
+
+.post-popup div {
+    background-color: white;
+    padding: 0.5rem;
+    border: none;
+    font-size: 1rem;
+    align-self: flex-start;
+    border-top-left-radius: 0.2rem;
+    border-bottom-left-radius: 0.2rem;
+    width: 100%;
+}
+
+.hover:hover {
+    background-color: lightgray;
+    cursor: pointer;
+}
+
+.three-dots-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+
 }

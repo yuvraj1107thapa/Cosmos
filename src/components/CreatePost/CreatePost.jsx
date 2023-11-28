@@ -5,11 +5,19 @@ import { DataContext } from "../../contexts/DataContext";
 import { useContext } from "react";
 import { useState } from "react";
 import toastNotify from "../../utils/toastNotify";
+import { AsideDataContext } from "../../contexts/AsideDataContext";
+import { useEffect } from "react";
 
 const CreatePost = () => {
-  const { userLoginData, createPostHandler ,dispatch} = useContext(DataContext);
-  const [createPost, setCreatePost] = useState({ text: "", media: "" });
+  const {
+    userLoginData,
+    createPostHandler,
+    dispatch,
+    createPost,
+    setCreatePost,
+  } = useContext(DataContext);
   const { setOpenModal } = useContext(DataContext);
+
   return (
     <div>
       <div className="new-post-container">
@@ -36,7 +44,7 @@ const CreatePost = () => {
             <input
               type="file"
               id="image"
-              value={createPost.media}
+              value={createPost?.media}
               style={{ visibility: "hidden" }}
               name="avatar"
               accept="image/png, image/jpeg video/*"
@@ -55,7 +63,7 @@ const CreatePost = () => {
               createPostHandler(createPost);
               setCreatePost({ text: "", media: "" });
               setOpenModal(false);
-              dispatch({type:"CLEAR_FILTER"})
+              dispatch({ type: "CLEAR_FILTER" });
               toastNotify("success", "Posted successfully!");
             }}
           >

@@ -5,9 +5,14 @@ import SearchBar from "../../components/SearchBar/SearchBar";
 import UserList from "../../components/UserList/UserList";
 import { useContext } from "react";
 import { DataContext } from "../../contexts/DataContext";
+import { useEffect } from "react";
 
 const Explore = () => {
-  const { state } = useContext(DataContext);
+  const { state, dispatch } = useContext(DataContext);
+
+  useEffect(() => {
+    dispatch({ type: "USER_TO_FOLLOW" });
+  }, []);
 
   return (
     <div className="landing-container">
@@ -28,7 +33,7 @@ const Explore = () => {
             {/* <UserList />
           <UserList /> */}
 
-            {state?.users?.map((user) => (
+            {state?.userToFollow?.map((user) => (
               <UserList user={user} />
             ))}
           </div>

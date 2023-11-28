@@ -2,10 +2,36 @@ import React from "react";
 import "./Profile.css";
 import { useContext } from "react";
 import { DataContext } from "../../contexts/DataContext";
+import { AsideDataContext } from "../../contexts/AsideDataContext";
 
 const Profile = ({ user }) => {
   const { state } = useContext(DataContext);
+  const { followUser } = useContext(AsideDataContext);
 
+  const userFollow = state?.userToFollow?.find(
+    ({ username }) => username === user.username
+  );
+
+  const userFollowing = state?.following?.find(
+    ({ username }) => username === user.username
+  );
+
+  const btnText = () => {
+    if (userFollow) {
+      return "Follow";
+    } else if (userFollowing) {
+      return "Following";
+    } else {
+      return "Edit Profile";
+    }
+  };
+  const clickHandler = (event) => {
+    if (event.target.value === "Follow") {
+      followUser(user._id);
+    } else {
+      console.log("Edit Profile");
+    }
+  };
   return (
     <div className="profile-main">
       <div className="profile-container">
@@ -15,7 +41,9 @@ const Profile = ({ user }) => {
           {user?.lastName}
         </div>
         <span className="user-id">@{user?.username}</span>
-        <button className="profile-edit-btn">Edit Profile</button>
+        <button className="profile-edit-btn" onClick={clickHandler}>
+          {btnText()}
+        </button>
 
         <div className="profile-bio">{user?.bio}</div>
         <div>
@@ -27,7 +55,7 @@ const Profile = ({ user }) => {
           <div>
             {" "}
             {
-              state?.posts?.filter((post) => post.username === user.username)
+              state?.posts?.filter((post) => post?.username === user?.username)
                 .length
             }{" "}
             Post

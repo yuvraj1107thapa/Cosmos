@@ -10,14 +10,19 @@ import BookmarkIcon from "@mui/icons-material/Bookmark";
 import { DataContext } from "../../contexts/DataContext";
 import { useEffect } from "react";
 import axios from "axios";
+import OutsideClickHandler from "react-outside-click-handler";
+import { AsideDataContext } from "../../contexts/AsideDataContext";
+import Modal from "../../components/Modal/Modal";
 
 const PostCard = ({ data }) => {
   const { state, likePost, bookMarkPost } = useContext(DataContext);
+  const { deletePost, setEditPost,getPostData} = useContext(AsideDataContext);
   const [userData, setUserData] = useState([]); //to show the user details in individual post in landing page
+  const [modifyPost, setModifyPost] = useState(false); //to open the dropdow for edit option
 
   //get like count of a post
-  const likedCount = state.posts.find(({ _id }) => _id === data._id).likes
-    .likeCount;
+  const likedCount = state.posts.find(({ _id }) => _id === data._id)?.likes
+    ?.likeCount;
 
   //check if post is already liked and preent in likedPosts Array
   const postLiked = state?.likedPosts?.find((id) => id === data._id);
@@ -50,14 +55,36 @@ const PostCard = ({ data }) => {
         <div className="post-title">
           <img src={userData.avatarUrl} alt="" className="nav-profile-pic" />
 
-          <div>
+          <div className="post-date">
             <p>
               <b>{data?.username}</b> {d.toDateString()}
             </p>
             <p>@{data?.username}</p>
           </div>
-          <div id="three-dots">
-            <MoreVertIcon />{" "}
+          <div className="three-dots-container">
+            <div id="three-dots" onClick={() => setModifyPost(!modifyPost)}>
+              {data.username === state.userLoggedIn && <MoreVertIcon />}{" "}
+            </div>
+            {modifyPost && (
+              <div className="post-popup">
+                <OutsideClickHandler
+                  onOutsideClick={() => setModifyPost(false)}
+                >
+                  <div
+                    className="hover"
+                    onClick={() => {
+                      setEditPost(true);
+                      getPostData(data._id)
+                    }}
+                  >
+                    Edit
+                  </div>
+                  <div className="hover" onClick={() => deletePost(data._id)}>
+                    Delete
+                  </div>
+                </OutsideClickHandler>
+              </div>
+            )}
           </div>
         </div>
         <div className="post-content">

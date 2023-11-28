@@ -20,11 +20,20 @@ import LikePage from "./pages/LikePage/LikePage";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import { useContext } from "react";
 import { DataContext } from "./contexts/DataContext";
+import Modal from "./components/Modal/Modal";
 import axios from "axios";
+import { AsideDataContext } from "./contexts/AsideDataContext";
 
 function App() {
-  const { setEncodedToken, getUserLoggedInData, state, dispatch } =
-    useContext(DataContext);
+  const {
+    setEncodedToken,
+    getUserLoggedInData,
+    state,
+    dispatch,
+    openModal,
+    setOpenModal,
+  } = useContext(DataContext);
+  const { editPost, setEditPost } = useContext(AsideDataContext);
 
   useEffect(() => {
     const encodedToken = localStorage.getItem("token");
@@ -58,6 +67,9 @@ function App() {
 
   return (
     <div className="App">
+      {editPost && <Modal open={setEditPost} />}
+      {openModal && <Modal open={setOpenModal} />}
+
       <Routes>
         <Route path="/mockman" element={<Mockman />}></Route>
         <Route path="/signup" element={<SignUp />}></Route>
@@ -66,7 +78,7 @@ function App() {
         <Route path="/explore" element={<Explore />}></Route>
         <Route path="/bookmark" element={<Bookmark />}></Route>
         <Route path="/likepage" element={<LikePage />}></Route>
-        <Route path="/profilepage" element={<ProfilePage />}></Route>
+        <Route path="/profilepage/:username" element={<ProfilePage />}></Route>
       </Routes>
       <Footer />
       <ToastContainer />

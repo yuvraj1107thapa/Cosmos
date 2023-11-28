@@ -9,7 +9,9 @@ import UserList from "../../components/UserList/UserList";
 import FiberNewIcon from "@mui/icons-material/FiberNew";
 import WhatshotIcon from "@mui/icons-material/Whatshot";
 import { DataContext } from "../../contexts/DataContext";
-import Modal from "../../components/Modal/Modal";
+import { AsideDataContext } from "../../contexts/AsideDataContext";
+
+
 
 const Landing = () => {
   const {
@@ -17,10 +19,10 @@ const Landing = () => {
     dispatch,
     getUserLoggedInData,
     setFilter,
-    openModal,
     setOpenModal,
   } = useContext(DataContext);
 
+  // const { editPost, setEditPost } = useContext(AsideDataContext);
   const data = state.filter
     ? [...state?.posts].sort((a, b) =>
         state.filter === "latest"
@@ -58,10 +60,15 @@ const Landing = () => {
     getUserLoggedInData();
   }, []);
 
+  useEffect(() => {
+    dispatch({ type: "USER_TO_FOLLOW" });
+  }, []);
+
   return (
     <div className="landing-container">
       <Navbar />
-      {openModal && <Modal open={setOpenModal} />}
+     
+      
       <div className="feed">
         <div className="filter-container">
           <div className="filter-post">
@@ -111,7 +118,7 @@ const Landing = () => {
             {/* <UserList />
           <UserList /> */}
 
-            {state?.users?.map((user) => (
+            {state?.userToFollow?.map((user) => (
               <UserList user={user} />
             ))}
           </div>

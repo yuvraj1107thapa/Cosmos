@@ -1,20 +1,18 @@
 import { createContext, useReducer } from "react";
 import { initialValue, reducerFun } from "../reducers/dataReducer";
+import { useState } from "react";
 import axios from "axios";
 import { useEffect } from "react";
-import { useState } from "react";
-import { useContext } from "react";
-import { AuthContext } from "./AuthContext";
 
 export const DataContext = createContext();
 
 export const DataContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducerFun, initialValue);
-  const [encodedToken, setEncodedToken] = useState("");
+  const [encodedToken, setEncodedToken] = useState(""); //gloabally access the local storage token
   const [userPost, setUserPost] = useState([]);
   const [userLoginData, setUserLoginData] = useState({});
   const [openModal, setOpenModal] = useState(false); //create post modal
-
+  const [createPost, setCreatePost] = useState({ text: "", media: "" }); //to create ans post the data
   const likePost = async (postId, value) => {
     if (!value) {
       try {
@@ -51,8 +49,6 @@ export const DataContextProvider = ({ children }) => {
       }
     }
   };
-
-  console.log(state);
 
   const bookMarkPost = async (postId, value) => {
     if (!value) {
@@ -123,7 +119,7 @@ export const DataContextProvider = ({ children }) => {
 
   const getUserLoggedInData = async () => {
     try {
-      const valaue = state.users
+      const valaue = state.users;
       const user = state?.users?.find(
         (usr) => usr.username === state.userLoggedIn
       );
@@ -139,9 +135,13 @@ export const DataContextProvider = ({ children }) => {
       console.log(e);
     }
   };
-console.log("data",state)
+  console.log("data", state);
   console.log("dataContext", userLoginData);
 
+  useEffect(() => {
+    const user = localStorage.getItem("loggedUser");
+    dispatch({ type: "SET_USERNAME", payload: user });
+  }, []);
   return (
     <DataContext.Provider
       value={{
@@ -152,6 +152,7 @@ console.log("data",state)
         userPost,
         setUserPost,
         userLoginData,
+        setUserLoginData,
         getUserLoggedInData,
         createPostHandler,
         setFilter,
@@ -159,6 +160,8 @@ console.log("data",state)
         setOpenModal,
         encodedToken,
         setEncodedToken,
+        createPost,
+        setCreatePost,
       }}
     >
       {children}

@@ -23,6 +23,11 @@ const LikePage = () => {
     })();
   }, []);
 
+  useEffect(() => {
+    dispatch({ type: "USER_TO_FOLLOW" });
+  }, []);
+
+
   return (
     <div className="bookmark-main">
       <div className="bookmark-nav">
@@ -42,7 +47,7 @@ const LikePage = () => {
             {/* <UserList />
         <UserList /> */}
 
-            {state?.users?.map((user) => (
+            {state?.userToFollow?.map((user) => (
               <UserList user={user} />
             ))}
           </div>

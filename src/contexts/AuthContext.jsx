@@ -4,14 +4,11 @@ import { useNavigate } from "react-router-dom";
 import toastNotify from "../utils/toastNotify";
 import { useContext } from "react";
 import { DataContext } from "./DataContext";
-import { useEffect } from "react";
 
 export const AuthContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
-  const {setEncodedToken } = useContext(DataContext);
-
-  const { dispatch } = useContext(DataContext);
+  const {setEncodedToken,dispatch } = useContext(DataContext);
   const [loginInput, setLoginInput] = useState({
     username: "",
     password: "",

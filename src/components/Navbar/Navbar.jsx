@@ -13,7 +13,8 @@ import { useEffect } from "react";
 import axios from "axios";
 
 const Navbar = () => {
-  const { userLoginData, dispatch, setOpenModal } = useContext(DataContext);
+  const { userLoginData, dispatch, state, setOpenModal } =
+    useContext(DataContext);
   const navigate = useNavigate();
 
   return (
@@ -80,7 +81,7 @@ const Navbar = () => {
             Bookmarks
           </div>
         </NavLink>
-        <NavLink to="/profilepage">
+        <NavLink to={`/profilepage/${state.userLoggedIn}`}>
           <div className="nav-content">
             <div className="nav-icons">
               <PersonIcon />
