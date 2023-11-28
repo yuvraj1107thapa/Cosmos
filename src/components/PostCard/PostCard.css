@@ -1,0 +1,40 @@
+.post-container {
+    width: 30rem;
+    /* border:1px solid black; */
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 0.5rem 0.2rem hsla(260, 11%, 85%, 1);
+}
+
+.post-title {
+    width: 100%;
+    display: flex;
+    gap: 0.5rem;
+}
+
+.post-content {
+    border: none;
+    padding: 1rem;
+    margin: 0;
+}
+
+#three-dots {
+    margin-left: auto
+}
+
+.post-img {
+    margin-top: 0.5rem;
+    ;
+}
+
+.post-actions {
+    margin-top: 0.5rem;
+    display: flex;
+    justify-content: space-around;
+}
+
+.post-icons {
+    cursor: pointer;
+}

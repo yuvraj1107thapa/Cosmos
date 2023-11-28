@@ -1,17 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Combo&family=Courgette&family=Megrim&family=Montserrat+Alternates&family=Nunito+Sans:wght@500;700&family=Open+Sans:wght@400;700&family=Pacifico&family=Poor+Story&family=Prompt:ital,wght@0,400;1,300&family=Rampart+One&family=Roboto:ital,wght@0,400;0,900;1,400&family=Saira+Extra+Condensed:wght@300&family=Stick+No+Bills:wght@300;600&family=Work+Sans:wght@400;500&display=swap');
+
+
 .App {
-  text-align: center;
+  /* text-align: center; */
+  min-width: 100vw;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+html {
+  height: 0%;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+body {
+  font-family: 'Roboto', sans-serif;
+  overflow: hidden;
+  overflow-y: scroll;
+  margin: 0;
+  padding: 0;
+  height:100vh;
 }
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 
 .App-header {
   background-color: #282c34;
@@ -32,6 +48,7 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }

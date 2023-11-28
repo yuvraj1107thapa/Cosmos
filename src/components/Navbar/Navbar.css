@@ -1,0 +1,93 @@
+.navbar {
+    width: 100%;
+    /* max-height: 20%; */
+    /* border-: 1px solid black; */
+    display: flex;
+    justify-content: space-around;
+    box-shadow: 0rem 0rem 1rem 0.2rem lightsalmon;
+}
+
+.nav-icons svg {
+    font-size: 3rem;
+}
+
+.nav-desktop {
+    display: none;
+}
+
+@media screen and (min-width:768px) {
+    .navbar {
+        display: none;
+    }
+
+    .nav-desktop {
+        display: flex;
+        flex-direction: column;
+        margin-left: 10rem;
+        margin-top: 4rem;
+        max-width: 20%;
+        min-height: 100vh;
+        border-right: 1px solid lightskyblue;
+        gap: 1rem;
+        flex-wrap: wrap;
+        padding-right: 0.5rem;
+
+    }
+
+    .nav-content {
+        max-width: fit-content;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 1rem;
+        font-size: 1.2rem;
+        padding: .5rem;
+        padding-right: 1.5rem;
+        margin-right: 1rem;
+        border-radius: 1.5rem;
+    }
+
+    .nav-content:hover {
+        background-color: lightskyblue;
+        cursor: pointer;
+    }
+
+    .nav-icons svg {
+        font-size: 2rem;
+    }
+
+    .nav-desktop button {
+        background-color: lightskyblue;
+        width: 80%;
+        border-radius: 3rem;
+        border: none;
+        padding: 1rem;
+        justify-self: center;
+        font-size: 1.3rem;
+        cursor: pointer;
+    }
+
+    .nav-profile {
+        display: flex;
+        flex-wrap: wrap;
+        height: 100%;
+        gap: 0.5rem;
+        padding: 1rem;
+        justify-self: flex-end;
+    }
+
+    .nav-profile-pic {
+        background-color: gray;
+        border-radius: 60%;
+        width: 40px;
+        height: 40px;
+    }
+
+    .nav-profile:hover {
+        background-color: lightskyblue;
+        border-radius: 3rem;
+        cursor: pointer;
+
+    }
+
+}

@@ -1,0 +1,15 @@
+.home-filter {
+    display: flex;
+    width: fit-content;
+    height: 3rem;
+    border: 1px solid black;
+    padding: 1rem;
+    gap:1rem;
+}
+
+.filter-name{
+border: 1px solid black;
+width: 40%;
+min-height: 20%;
+
+}
