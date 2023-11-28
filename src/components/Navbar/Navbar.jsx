@@ -35,7 +35,7 @@ const Navbar = () => {
       {/* navbar for desktop view */}
       <div className="nav-desktop">
         <div>
-          <h1>ShareMate</h1>
+          <h1>Cosmos</h1>
         </div>
         <NavLink to="/landing"> <div className="nav-content">
           {" "}

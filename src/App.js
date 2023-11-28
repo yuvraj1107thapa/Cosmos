@@ -12,6 +12,8 @@ import CreatePost from "./components/CreatePost/CreatePost";
 import SignUp from "./pages/Signup/SignUp";
 import Landing from "./pages/LandingPage/Landing";
 import Explore  from "./pages/Explore/Explore";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
@@ -24,6 +26,7 @@ function App() {
         <Route path="/landing" element={<Landing />}></Route>
         <Route path="/explore" element={<Explore />}></Route>
       </Routes>
+      <ToastContainer />
     </div>
   );
 }

@@ -1,11 +1,16 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "./Home.css";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import VisibilityIcon from "@mui/icons-material/Visibility";
-import { NavLink, Navigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import { AuthContext } from "../../contexts/AuthContext";
 
 const Home = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const { loginInput, setLoginInput, loginHandler, loginasGuest } =
+    useContext(AuthContext);
+
+    const creds = { username: "yuvrajthapa", password: "yuvraj123" }
   return (
     <div className="home-main">
       <div className="home-container">
@@ -20,12 +25,24 @@ const Home = () => {
             <h1>Cosmos</h1>
             <div className="login-form">
               <label>username:</label>
-              <input type="text" />
+              <input
+                type="text"
+                value={loginInput.username}
+                placeholder="Enter username"
+                onChange={(e) =>
+                  setLoginInput({ ...loginInput, username: e.target.value })
+                }
+              />
               <div className="password-container">
                 <label htmlFor="">password:</label>
                 <div className="input-pass-div">
                   <input
                     type={showPassword ? "text" : "password"}
+                    value={loginInput.password}
+                    placeholder="Enter password"
+                    onChange={(e) =>
+                      setLoginInput({ ...loginInput, password: e.target.value })
+                    }
                     className="input-password"
                   />{" "}
                   <span
@@ -37,11 +54,16 @@ const Home = () => {
                 </div>
               </div>
               {/* <div className="login-buttons"> */}
-              <button>Login</button>
+              <button onClick={()=>loginHandler(loginInput)}>Login</button>
 
-              <button>
+              <button
+                onClick={() => {
+                  setLoginInput(creds);
+                  loginHandler(creds);
+                }}
+              >
                 {" "}
-                <NavLink to="/landing ">Login as Guest</NavLink>
+                Login as Guest
               </button>
 
               {/* </div> */}

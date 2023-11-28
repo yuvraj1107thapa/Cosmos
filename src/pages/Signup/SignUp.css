@@ -1,3 +1,5 @@
+.body {}
+
 .signup-main {
     /* border:1px solid; */
     display: flex;
@@ -15,12 +17,13 @@
     width: 80%;
     justify-content: space-around;
     gap: 4rem;
+    flex-wrap: wrap;
 
 }
 
-.signup-img {
+/* .signup-img {
     display:none
-}
+} */
 
 .signup-form {
     width: 50%;
@@ -67,6 +70,10 @@
     font-size: 1.2rem;
     padding: 0.5rem 0rem;
     margin-bottom: 1rem;
+}
+
+.signup-btn {
+    cursor: pointer;
 }
 
 @media screen and (min-width:768px) {
@@ -137,5 +144,9 @@
         font-size: 1.2rem;
         padding: 0.5rem 0rem;
         margin-bottom: 1rem;
+    }
+
+    .signup-btn:hover {
+        cursor: pointer;
     }
 }

@@ -12,7 +12,13 @@ const CreatePost = () => {
             alt=""
             className="nav-profile-pic"
           />
-          <textarea name="" id="" cols="30" rows="10" placeholder="What's happening!"></textarea>
+          <textarea
+            name=""
+            id=""
+            cols="30"
+            rows="10"
+            placeholder="What's happening!"
+          ></textarea>
         </div>
         <hr />
         <div className="new-post-media">

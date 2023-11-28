@@ -78,6 +78,7 @@ min-height: 20%;
 
 .input-pass-div input {
     margin: 0rem;
+    width: 80%;
 }
 
 .input-password {
@@ -107,6 +108,7 @@ min-height: 20%;
     font-size: 1.2rem;
     text-align: center;
 }
+
 #login-img {
     display: none;
 }
@@ -116,6 +118,7 @@ min-height: 20%;
     #login-img {
         display: none;
     }
+
 }
 
 @media screen and (min-width:1198px) {
@@ -187,7 +190,7 @@ min-height: 20%;
 
     .input-pass-div input {
         margin: 0rem;
-        width:20%;
+        width: 80%;
     }
 
     .input-password {
