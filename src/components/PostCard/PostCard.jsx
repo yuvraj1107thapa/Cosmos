@@ -18,7 +18,7 @@ const PostCard = () => {
           />
           <div>
             <p>
-              <b>Yuvraj Thapa</b> June 10th 2023
+              <b>Yuvraj Thapa</b> Nov 25, 2023
             </p>
             <p>@username</p>
           </div>

@@ -1,0 +1,21 @@
+.footer-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap:1rem;
+    font-size: 1.2rem;
+}
+
+.footer-links{
+    display: flex;
+    gap:1rem;
+}
+
+.not-link{
+    text-decoration: none;
+    color:black;
+}
+
+.not-link:hover{
+    color:rgb(128, 19, 201);
+}

@@ -6,6 +6,7 @@ import ControlPointIcon from "@mui/icons-material/ControlPoint";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import PersonIcon from "@mui/icons-material/Person";
+import CreatePost from "../CreatePost/CreatePost";
 
 const Navbar = () => {
   return (
@@ -34,7 +35,7 @@ const Navbar = () => {
       {/* navbar for desktop view */}
       <div className="nav-desktop">
         <div>
-          <h1>ShareMate</h1>
+          <h1>Cosmos</h1>
         </div>
         <div className="nav-content">
           {" "}
@@ -83,6 +84,7 @@ const Navbar = () => {
           </div>
         </div>
       </div>
+    
     </div>
   );
 };

@@ -1,0 +1,141 @@
+.signup-main {
+    /* border:1px solid; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    /* background-image: url("https://res.cloudinary.com/dgoldjr3g/image/upload/v1686633811/NegProjects/SocialMedia/undraw_social_life_re_x7t5_pn8g0l.svg");
+    background-repeat: no-repeat;
+    backface-visibility: hidden;
+    z-index: 0.3; */
+}
+
+.signup-container {
+    display: flex;
+    width: 80%;
+    justify-content: space-around;
+    gap: 4rem;
+
+}
+
+.signup-img {
+    display:none
+}
+
+.signup-form {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    font-size: 1.2rem;
+    /* border: 1px solid; */
+    align-items: center;
+    padding: 2rem 0rem;
+    box-shadow: 0 0 0.5rem 0.2rem hsla(260, 11%, 85%, 1);
+    z-index: 0.9;
+}
+
+.signup-input {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    justify-content: flex-start;
+    margin-top: 1rem;
+
+}
+
+.signup-input input {
+    padding: 0.5rem;
+    font-size: 1rem;
+    margin: 0.5rem 0rem;
+}
+
+.pass-label {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.signup-icon {
+    margin-left: auto;
+    position: relative;
+    top: -2.5rem;
+    cursor: pointer;
+}
+
+.signup-btn {
+    font-size: 1.2rem;
+    padding: 0.5rem 0rem;
+    margin-bottom: 1rem;
+}
+
+@media screen and (min-width:768px) {
+    .signup-main {
+        /* border:1px solid; */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .signup-container {
+        display: flex;
+        width: 80%;
+        justify-content: space-around;
+        gap: 4rem;
+
+    }
+
+    .signup-img {
+        display: grid;
+        place-items: center;
+        width: 50%;
+    }
+
+    .signup-form {
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        font-size: 1.2rem;
+        /* border: 1px solid; */
+        align-items: center;
+        padding: 2rem 0rem;
+        box-shadow: 0 0 0.5rem 0.2rem hsla(260, 11%, 85%, 1);
+        ;
+    }
+
+    .signup-input {
+        display: flex;
+        flex-direction: column;
+        width: 60%;
+        justify-content: flex-start;
+        margin-top: 1rem;
+
+    }
+
+    .signup-input input {
+        padding: 0.5rem;
+        font-size: 1rem;
+        margin: 0.5rem 0rem;
+    }
+
+    .pass-label {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .signup-icon {
+        margin-left: auto;
+        position: relative;
+        top: -2.5rem;
+        cursor: pointer;
+    }
+
+    .signup-btn {
+        font-size: 1.2rem;
+        padding: 0.5rem 0rem;
+        margin-bottom: 1rem;
+    }
+}
