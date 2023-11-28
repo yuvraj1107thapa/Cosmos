@@ -37,7 +37,7 @@ const Navbar = () => {
       {/* navbar for desktop view */}
       <div className="nav-desktop">
         <div>
-          <h1>Cosmos</h1>
+          <h1>ShareMate</h1>
         </div>
         <NavLink to="/landing">
           {" "}
@@ -64,12 +64,15 @@ const Navbar = () => {
           </div>
           Liked Posts
         </div>
-        <div className="nav-content">
-          <div className="nav-icons">
-            <BookmarkIcon />
-          </div>{" "}
-          Bookmarks
-        </div>
+        <NavLink to="/bookmark">
+          {" "}
+          <div className="nav-content">
+            <div className="nav-icons">
+              <BookmarkIcon />
+            </div>{" "}
+            Bookmarks
+          </div>
+        </NavLink>
         <div className="nav-content">
           <div className="nav-icons">
             <PersonIcon />
@@ -98,8 +101,8 @@ const Navbar = () => {
             className="nav-profile-pic"
           />
           <div>
-            <h4>Yuvraj Thapa</h4>
-            <span>@yuvrajthapa</span>
+            <h4>Bhumika Singh</h4>
+            <span>@bhumikasingh</span>
           </div>
         </div>
       </div>
