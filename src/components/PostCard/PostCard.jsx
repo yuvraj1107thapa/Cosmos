@@ -62,7 +62,7 @@ const PostCard = ({ data }) => {
           <div className="post-date">
             <p>
               <b>
-                {userData?.firstName} {userData?.lastName}
+                {userData?.firstname} {userData?.lastname}
               </b>{" "}
               {d.toDateString()}
             </p>

@@ -154,7 +154,7 @@ const ProfileModal = ({ open }) => {
               </div>
             </div>
             <label>
-              Name: {userLoginData?.firstName} {userLoginData?.lastName}
+              Name: {userLoginData?.firstname} {userLoginData?.lastname}
             </label>
             <label>Username: {userLoginData?.username}</label>
             <label>

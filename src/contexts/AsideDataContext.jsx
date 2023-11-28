@@ -11,14 +11,9 @@ export const AsideDataContext = createContext();
 export const AsideDataContextProvider = ({ children }) => {
   const [searchUser, setSearchUser] = useState("");
   const [editPost, setEditPost] = useState(false); //to open the dropdow for edit option
-  const [editProfile, setEditProfile] = useState(false)
-  const {
-    encodedToken,
-    dispatch,
-    state,
-    setUserLoginData,
-    setCreatePost,
-  } = useContext(DataContext);
+  const [editProfile, setEditProfile] = useState(false);
+  const { encodedToken, dispatch, state, setUserLoginData, setCreatePost } =
+    useContext(DataContext);
 
   const { editPostId } = useContext(DataContext);
 
@@ -65,12 +60,13 @@ export const AsideDataContextProvider = ({ children }) => {
           },
         }
       );
+      console.log("user", response);
       setUserLoginData(response.data.user);
       dispatch({ type: "GET_FOLLOWING", payload: response.data.followUser });
       dispatch({ type: "USER_TO_FOLLOW" });
       const res = await axios.get("/api/users");
       dispatch({ type: "GET_USERS", payload: res.data.users });
-      console.log("follow", response);
+      console.log("follow", res.data.users);
     } catch (e) {
       console.log(e);
     }
@@ -108,7 +104,8 @@ export const AsideDataContextProvider = ({ children }) => {
         deletePost,
         followUser,
         unfollowUser,
-        editProfile, setEditProfile
+        editProfile,
+        setEditProfile,
       }}
     >
       {children}

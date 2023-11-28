@@ -11,7 +11,7 @@ const sign = require("jwt-encode");
 /**
  * This handler handles user signups.
  * send POST Request at /api/auth/signup
- * body contains {firstName, lastName, username, password}
+ * body contains {firstname, lastname, username, password}
  * */
 
 export const signupHandler = function (schema, request) {

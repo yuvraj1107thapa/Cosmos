@@ -18,6 +18,7 @@ export const DataContextProvider = ({ children }) => {
   const [createPost, setCreatePost] = useState({ text: "", media: "" }); //to create ans post the data
   const editPostId = useRef("");
 
+  console.log("context",userLoginData)
   const likePost = async (postId, value) => {
     if (!value) {
       try {
@@ -90,11 +91,11 @@ export const DataContextProvider = ({ children }) => {
   };
 
   const createPostHandler = async (postData) => {
-    if (!postData.text) {
+    if (postData.text || postData.media) {
       const findPost = state?.posts?.find(
         ({ _id }) => _id === editPostId.current
       );
-      console.log("edit", findPost);
+      // console.log("edit", findPost);
       if (findPost) {
         try {
           const response = await axios.post(
@@ -118,7 +119,12 @@ export const DataContextProvider = ({ children }) => {
         try {
           const response = await axios.post(
             "/api/posts",
-            { postData: { content: postData.text, image: postData.media } }, //{..post} and {post}
+            {
+              postData: {
+                content: postData.text,
+                image: postData.media,
+              },
+            }, //{..post} and {post}
             {
               headers: {
                 authorization: encodedToken,
@@ -160,7 +166,7 @@ export const DataContextProvider = ({ children }) => {
       // const user = userList.data.users?.find(
       //   (usr) => usr.username === userLoggedIn
       // );
-      console.log("gt user", user);
+      // console.log("gt user", user);
       // const response = await axios.get(`/api/users/${user._id}`);
       // console.log("check",response)
       setUserLoginData(user);
@@ -168,6 +174,7 @@ export const DataContextProvider = ({ children }) => {
       console.log(e);
     }
   };
+  console.log("new", state);
 
   return (
     <DataContext.Provider

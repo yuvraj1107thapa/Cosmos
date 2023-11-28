@@ -18,6 +18,7 @@ const CreatePost = () => {
   } = useContext(DataContext);
 
   const { editPost, setEditPost } = useContext(AsideDataContext);
+  
   return (
     <div>
       <div className="new-post-container">
@@ -44,12 +45,14 @@ const CreatePost = () => {
             <input
               type="file"
               id="image"
-              value={createPost?.media}
               style={{ visibility: "hidden" }}
               name="avatar"
               accept="image/png, image/jpeg video/*"
               onChange={(event) =>
-                setCreatePost({ ...createPost, media: event.target.files[0] })
+                setCreatePost({
+                  ...createPost,
+                  media: URL.createObjectURL(event.target.files[0]),
+                })
               }
             />
             <span className={createPost.media && "media-loaded"}>

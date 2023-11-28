@@ -3,7 +3,6 @@ export const initialValue = {
     users: [],
     likedPosts: [],
     bookmarkedPosts: [],
-    userLoggedIn: "",
     filter: "",
     following: [],
     userToFollow: [],
@@ -33,10 +32,6 @@ export const initialValue = {
           ...state,
           bookmarkedPosts: action.payload,
         };
-      }
-  
-      case "SET_USERNAME": {
-        return { ...state, userLoggedIn: action.payload };
       }
   
       case "RESET_ALL": {
@@ -80,8 +75,19 @@ export const initialValue = {
             : userList;
         return { ...state, userToFollow: suggestedUserToFollow };
       }
+  
+      case "UPDATE_USERS": {
+        const findUser = state?.users.map((user) =>
+          user.username === action.payload.username
+            ? { ...user, avatarUrl: action.payload.avatarUrl }
+            : user
+        );
+  
+        return { ...state, users: findUser };
+      }
       default: {
         return state;
       }
     }
   };
+  

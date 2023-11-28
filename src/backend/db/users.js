@@ -8,8 +8,8 @@ import { formatDate } from "../utils/authUtils";
 export const users = [
   {
     _id: uuid(),
-    firstName: "Yuvraj",
-    lastName: "Thapa",
+    firstname: "Yuvraj",
+    lastname: "Thapa",
     username: "yuvrajthapa",
     password: "yuvraj123",
     bio: "Speak truth, feel love, be free.",
@@ -22,8 +22,8 @@ export const users = [
   },
   {
     _id: uuid(),
-    firstName: "Adarsh",
-    lastName: "Negi",
+    firstname: "Adarsh",
+    lastname: "Negi",
     username: "adarshnegi",
     password: "adarsh123",
     bio: "Aspiring Enginneer",
@@ -36,8 +36,8 @@ export const users = [
   },
   {
     _id: uuid(),
-    firstName: "Shaswat",
-    lastName: "Gusain",
+    firstname: "Shaswat",
+    lastname: "Gusain",
     username: "shaswatgusain",
     password: "shaswat123",
     bio: "Aspiring Enginneer",
@@ -50,8 +50,8 @@ export const users = [
   },
   {
     _id: uuid(),
-    firstName: "Vinay",
-    lastName: "Chand Ramola",
+    firstname: "Vinay",
+    lastname: "Chand Ramola",
     username: "vinaychandramola",
     password: "vinay123",
     bio: "Aspiring Enginneer",

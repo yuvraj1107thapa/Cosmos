@@ -12,7 +12,7 @@ import { DataContext } from "../../contexts/DataContext";
 import { AsideDataContext } from "../../contexts/AsideDataContext";
 
 const Landing = () => {
-  const { state, dispatch, getUserLoggedInData, setFilter, userLoggedIn } =
+  const { state, dispatch, userLoginData, setFilter, userLoggedIn } =
     useContext(DataContext);
 
   const landingPost = state?.posts?.filter(
@@ -43,7 +43,7 @@ const Landing = () => {
       }
     })();
   }, []);
-
+  console.log("sign",userLoginData);
   // useEffect(() => {
   //   (async () => {
   //     try {
@@ -63,9 +63,6 @@ const Landing = () => {
     dispatch({ type: "USER_TO_FOLLOW" });
   }, []);
 
-  //all posts of user and following
-
-  console.log("landingPost", landingPost);
   return (
     <div className="landing-container">
       <Navbar />

@@ -12,7 +12,7 @@ const Profile = ({ user }) => {
   const userFollow = state?.userToFollow?.find(
     ({ username }) => username === user?.username
   );
-
+ 
   const userFollowing = state?.following?.find(
     ({ username }) => username === user?.username
   );
@@ -42,8 +42,8 @@ const Profile = ({ user }) => {
       <div className="profile-container">
         <img className="profile-image" src={user?.avatarUrl} alt="" />
         <div className="username">
-          {user?.firstName}
-          {user?.lastName}
+          {user?.firstname} {" "}
+          {user?.lastname}
         </div>
         <span className="user-id">@{user?.username}</span>
         <button className="profile-edit-btn" onClick={clickHandler}>

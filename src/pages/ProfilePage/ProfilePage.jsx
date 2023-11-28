@@ -18,19 +18,18 @@ const ProfilePage = () => {
 
   const { username } = useParams();
 
-  // useEffect(() => {
-  //   (async () => {
-  //     // console.log(userLoggedIn);
-  //     try {
-  //       const response = await axios.get(
-  //         `/api/posts/user/${userLoggedIn}`
-  //       );
-  //       setUserPost(response.data.posts);
-  //     } catch (e) {
-  //       console.log(e);
-  //     }
-  //   })();
-  // }, []);
+  useEffect(() => {
+    (async () => {
+      // console.log(userLoggedIn);
+      try {
+        const response = await axios.get(`/api/posts/user/${username}`);
+        console.log({ response, username });
+        setUserPost(response.data.posts);
+      } catch (e) {
+        console.log(e);
+      }
+    })();
+  }, []);
 
   //to get all the posts of specified user
   const postOfUser = state?.posts?.filter(
@@ -42,6 +41,7 @@ const ProfilePage = () => {
     (user) => user.username.toString() === username
   );
 
+  console.log("user found", userDetail);
   return (
     <div className="landing-container">
       <Navbar />
