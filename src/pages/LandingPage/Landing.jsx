@@ -11,7 +11,7 @@ import { useState } from "react";
 
 const Landing = () => {
   const { state, dispatch, setFilter, userLoggedIn } = useContext(DataContext);
-  
+
   const landingPost = state?.posts?.filter(
     ({ username }) =>
       username === userLoggedIn ||
@@ -51,6 +51,7 @@ const Landing = () => {
 
   return (
     <div className="landing-container">
+     
       {/* <Navbar /> */}
       {/* filter section in landing page */}
       <div className="feed">

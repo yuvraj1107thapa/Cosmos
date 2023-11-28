@@ -13,6 +13,7 @@ import axios from "axios";
 import OutsideClickHandler from "react-outside-click-handler";
 import { AsideDataContext } from "../../contexts/AsideDataContext";
 import Modal from "../../components/Modal/Modal";
+import { NavLink } from "react-router-dom";
 
 const PostCard = ({ data }) => {
   const { state, likePost, bookMarkPost, userLoggedIn } =
@@ -33,8 +34,9 @@ const PostCard = ({ data }) => {
 
   //get user profile pic
   const picOfUser = state?.users?.find(
-    (user) => user.username === userLoggedIn
+    (user) => user.username === data.username
   );
+
   console.log("pc", picOfUser);
 
   useEffect(() => {
@@ -52,53 +54,63 @@ const PostCard = ({ data }) => {
 
   //get the date in format
   const d = new Date(data.createdAt);
-  console.log("photo", userData);
+
   return (
     <div>
       <div className="post-container">
-        <div className="post-title">
-          <img src={userData?.avatarUrl} alt="" className="nav-profile-pic" />
+        <NavLink className="not-a-link" to={`/profilepage/${data?.username}`}>
+          {" "}
+          <div className="post-title">
+            <img
+              src={picOfUser?.avatarUrl}
+              alt=""
+              className="nav-profile-pic"
+            />
 
-          <div className="post-date">
-            <p>
-              <b>
-                {userData?.firstname} {userData?.lastname}
-              </b>{" "}
-              {d.toDateString()}
-            </p>
-            <p>@{data?.username}</p>
-          </div>
-          <div className="three-dots-container">
-            <div id="three-dots" onClick={() => setModifyPost(!modifyPost)}>
-              {data.username === userLoggedIn && <MoreVertIcon />}{" "}
+            <div className="post-date">
+              <p>
+                <b>
+                  {userData?.firstname} {userData?.lastname}
+                </b>{" "}
+                {d.toDateString()}
+              </p>
+              <p>@{data?.username}</p>
             </div>
-            {modifyPost && (
-              <div className="post-popup">
-                <OutsideClickHandler
-                  onOutsideClick={() => setModifyPost(false)}
-                >
-                  <div
-                    className="hover"
-                    onClick={() => {
-                      setEditPost(true);
-                      getPostData(data._id);
-                    }}
-                  >
-                    Edit
-                  </div>
-                  <div className="hover" onClick={() => deletePost(data._id)}>
-                    Delete
-                  </div>
-                </OutsideClickHandler>
+            <div className="three-dots-container">
+              <div id="three-dots" onClick={() => setModifyPost(!modifyPost)}>
+                {data.username === userLoggedIn && <MoreVertIcon />}{" "}
               </div>
+              {modifyPost && (
+                <div className="post-popup">
+                  <OutsideClickHandler
+                    onOutsideClick={() => setModifyPost(false)}
+                  >
+                    <div
+                      className="hover"
+                      onClick={() => {
+                        setEditPost(true);
+                        getPostData(data._id);
+                      }}
+                    >
+                      Edit
+                    </div>
+                    <div className="hover" onClick={() => deletePost(data._id)}>
+                      Delete
+                    </div>
+                  </OutsideClickHandler>
+                </div>
+              )}
+            </div>
+          </div>
+        </NavLink>
+        <NavLink className="not-a-link" to={`/postpage/${data._id}`}>
+          <div className="post-content">
+            {data?.content}
+            {data?.image && (
+              <img className="post-img" src={data?.image} alt="" />
             )}
           </div>
-        </div>
-        <div className="post-content">
-          {data?.content}
-          {data?.image && <img className="post-img" src={data?.image} alt="" />}
-        </div>
-
+        </NavLink>
         <hr />
         <div className="post-actions">
           <div

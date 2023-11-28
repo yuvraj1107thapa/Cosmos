@@ -69,9 +69,16 @@ const Home = () => {
                 </div>
               </div>
               {/* <div className="login-buttons"> */}
-              <button className="btn-primary" onClick={() => loginHandler(loginInput)}>Login</button>
+              <button
+                className="btn-primary"
+                onClick={() => loginHandler(loginInput)}
+              >
+                Login
+              </button>
 
-              <button id="btn-default" className="btn-default"
+              <button
+                id="btn-default"
+                className="btn-default"
                 onClick={() => {
                   setLoginInput(creds);
                   loginHandler(creds);

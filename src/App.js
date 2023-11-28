@@ -27,6 +27,7 @@ import ProfileModal from "./components/Modal/ProfileModal";
 import AuthWrapper from "./components/Authenticate/AuthWrapper";
 import { MoonLoadeer } from "react-spinners";
 import { Discuss, TailSpin } from "react-loader-spinner";
+import SinglePost from "./pages/SinglePost/SinglePost";
 
 function App() {
   const {
@@ -54,7 +55,7 @@ function App() {
       try {
         const response = await axios.get("/api/users");
         dispatch({ type: "GET_USERS", payload: response.data.users });
-        console.log(response.data.users);
+        // console.log(response.data.users);
         // getUserLoggedInData();
       } catch (e) {
         console.log(e);
@@ -143,6 +144,14 @@ function App() {
               element={
                 <AuthWrapper>
                   <ProfilePage />
+                </AuthWrapper>
+              }
+            ></Route>
+            <Route
+              path="/postpage/:postId"
+              element={
+                <AuthWrapper>
+                  <SinglePost />
                 </AuthWrapper>
               }
             ></Route>

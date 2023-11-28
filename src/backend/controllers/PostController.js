@@ -30,7 +30,7 @@ export const getPostHandler = function (schema, request) {
       500,
       {},
       {
-        error,
+        error: error.message,
       }
     );
   }

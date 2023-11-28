@@ -2,6 +2,7 @@
     margin-left: 2rem;
     margin-top: 3rem;
     margin: 3rem 2rem;
+    position: relative;
 }
 
 .search-input {
@@ -9,7 +10,7 @@
     border: 2px solid grey;
     width: 100%;
     border-radius: 0.3rem;
-    
+
 }
 
 .search-input:active {
@@ -42,12 +43,13 @@ input:focus {
 
 .dataResults {
     background-color: white;
-    width: inherit;
+    width: 100%;
     height: fit-content;
     overflow: hidden;
     overflow-y: auto;
     margin-top: 1rem;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    position: absolute;
 }
 
 .dataResults::-webkit-scrollbar {
@@ -70,9 +72,9 @@ a {
     text-decoration: none;
 }
 
-a:hover {
+/* a:hover {
     background-color: var(--clr-off-secondary);
-}
+} */
 
 #clearBtn {
     cursor: pointer;

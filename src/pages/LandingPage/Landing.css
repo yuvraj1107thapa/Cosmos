@@ -29,7 +29,8 @@
 
 .filter:hover {
     cursor: pointer;
-    background-color: aliceblue;
+    /* background-color: aliceblue; */
+    background-color: #FEE2D9;
 }
 
 .filter-content {
