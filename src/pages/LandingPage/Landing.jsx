@@ -11,7 +11,18 @@ import WhatshotIcon from "@mui/icons-material/Whatshot";
 import { DataContext } from "../../contexts/DataContext";
 
 const Landing = () => {
-  const { state, dispatch, getUserLoggedInData } = useContext(DataContext);
+  const { state, dispatch, getUserLoggedInData, setFilter } =
+    useContext(DataContext);
+
+  const data = state.filter
+    ? [...state?.posts].sort((a, b) =>
+        state.filter === "latest"
+          ? new Date(b.createdAt) - new Date(a.createdAt)
+          : b.likes.likeCount - a.likes.likeCount
+      )
+    : [...state.posts];
+
+  console.log(data);
 
   useEffect(() => {
     (async () => {
@@ -47,14 +58,20 @@ const Landing = () => {
         <div className="filter-container">
           <div className="filter-post">
             <div className="filter">
-              <div className="filter-content">
+              <div
+                className="filter-content"
+                onClick={() => setFilter("latest")}
+              >
                 <FiberNewIcon />
                 <p>Latest</p>
               </div>
             </div>
             <div className="filter">
               {" "}
-              <div className="filter-content">
+              <div
+                className="filter-content"
+                onClick={() => setFilter("trending")}
+              >
                 <WhatshotIcon />
                 <p>Trending</p>
               </div>
@@ -63,7 +80,7 @@ const Landing = () => {
           <CreatePost />
         </div>
         {/* <PostCard /> */}
-        {state?.posts?.map((data) => (
+        {data?.map((data) => (
           <div key={data._id}>
             {" "}
             <PostCard data={data} />

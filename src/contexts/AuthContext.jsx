@@ -55,7 +55,7 @@ export const AuthContextProvider = ({ children }) => {
   };
 
   //   const loginasGuest = () => {
-  //     setLoginInput({ username: "bhumika27", password: "bhumi27" });
+  //     setLoginInput({ username: "yuvrajthapa", password: "yuvraj123" });
   //     loginHandler();
   //   };\
 
@@ -81,7 +81,7 @@ export const AuthContextProvider = ({ children }) => {
           // setUserLoggedIn(signupInput.username);
           toastNotify(
             "success",
-            "Welcome to ShareMate! You're successfully signed up!"
+            "Welcome to Cosmos! You're successfully signed up!"
           );
         }
       } catch (e) {

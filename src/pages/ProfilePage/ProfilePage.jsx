@@ -12,6 +12,7 @@ import axios from "axios";
 
 const ProfilePage = () => {
   //   const { userLoggedIn } = useContext(AuthContext);
+const {userLoginData} = useContext(DataContext)
 
   const { userPost, setUserPost, state } = useContext(DataContext);
 
@@ -34,7 +35,7 @@ const ProfilePage = () => {
       <Navbar />
       <div className="profile-page-content">
         <div>
-          <Profile />
+          <Profile user={userLoginData}/>
         </div>
         <div>
           {userPost.map((data) => (

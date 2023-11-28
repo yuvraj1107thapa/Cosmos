@@ -7,7 +7,7 @@ import { useState } from "react";
 
 const CreatePost = () => {
   const { userLoginData, createPostHandler } = useContext(DataContext);
-  const [createPost, setCreatePost] = useState({ text: null, media: "" });
+  const [createPost, setCreatePost] = useState({ text: "", media: "" });
   console.log(createPost);
   return (
     <div>
@@ -42,12 +42,18 @@ const CreatePost = () => {
               onChange={(event) =>
                 setCreatePost({ ...createPost, media: event.target.value })
               }
-            /><span className={createPost.media && "media-loaded"}>{createPost.media}</span>
+            />
+            <span className={createPost.media && "media-loaded"}>
+              {createPost.media}
+            </span>
           </label>
-          
+
           <button
             className="follow-btn post-btn"
-            onClick={() => createPostHandler(createPost)}
+            onClick={() => {
+              createPostHandler(createPost);
+              setCreatePost({ text: "", media: "" });
+            }}
           >
             Post
           </button>

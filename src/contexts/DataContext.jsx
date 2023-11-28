@@ -101,6 +101,10 @@ export const DataContextProvider = ({ children }) => {
       dispatch({ type: "GET_POSTS", payload: response.data.posts });
     } catch (e) {}
   };
+
+  const setFilter = (value) =>{
+    dispatch({type:"SET_FILTER",payload:value})
+  }
   useEffect(() => {
     (async () => {
       try {
@@ -141,6 +145,7 @@ export const DataContextProvider = ({ children }) => {
         userLoginData,
         getUserLoggedInData,
         createPostHandler,
+        setFilter
       }}
     >
       {children}

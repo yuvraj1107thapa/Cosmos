@@ -3,34 +3,36 @@ import "./Profile.css";
 import { useContext } from "react";
 import { DataContext } from "../../contexts/DataContext";
 
-const Profile = () => {
-  
-  const {state} = useContext(DataContext)
-  
+const Profile = ({ user }) => {
+  const { state } = useContext(DataContext);
 
   return (
     <div className="profile-main">
       <div className="profile-container">
-        <img
-          className="profile-image"
-          src="https://res.cloudinary.com/dgoldjr3g/image/upload/v1684393956/NegProjects/E-commerce/Orchids/orch_fwftgt.avif"
-          alt=""
-        />
-        <div className="username">Yuvraj Thapa</div>
-        <span className="user-id">@username</span>
+        <img className="profile-image" src={user.avatarUrl} alt="" />
+        <div className="username">
+          {user.firstName}
+          {user.lastName}
+        </div>
+        <span className="user-id">@{user.username}</span>
         <button className="profile-edit-btn">Edit Profile</button>
 
-        <div className="profile-bio">
-            Speak truth, feel love, be free.
-        </div>
+        <div className="profile-bio">{user.bio}</div>
         <div>
-          <a href="/">a link</a>
+          <a href="/">{user.website}</a>
         </div>
 
         <div className="follow-details">
-          <div> {6} Follower</div>
-          <div> {5} Post</div>
-          <div>{4} following</div>
+          <div> {user?.followers?.length} Follower</div>
+          <div>
+            {" "}
+            {
+              state?.posts?.filter((post) => post.username === user.username)
+                .length
+            }{" "}
+            Post
+          </div>
+          <div>{user?.following?.length} Following</div>
         </div>
       </div>
     </div>

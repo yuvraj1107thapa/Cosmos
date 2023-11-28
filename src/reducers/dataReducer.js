@@ -4,6 +4,7 @@ export const initialValue = {
     likedPosts: [],
     bookmarkedPosts: [],
     userLoggedIn: "",
+    filter: "",
   };
   
   export const reducerFun = (state, action) => {
@@ -40,8 +41,13 @@ export const initialValue = {
         return { ...initialValue };
       }
   
+      case "SET_FILTER": {
+        return { ...state, filter: action.payload };
+      }
+  
       default: {
         return state;
       }
     }
   };
+  
