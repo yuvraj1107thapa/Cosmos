@@ -8,7 +8,8 @@ import { DataContext } from "./DataContext";
 export const AuthContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
-  const {setEncodedToken,dispatch } = useContext(DataContext);
+  const { setEncodedToken, dispatch, userLoggedIn, setUserLoggedIn } =
+    useContext(DataContext);
   const [loginInput, setLoginInput] = useState({
     username: "",
     password: "",
@@ -33,11 +34,10 @@ export const AuthContextProvider = ({ children }) => {
         });
 
         if (status === 200) {
-          
           localStorage.setItem("token", data.encodedToken);
-          localStorage.setItem("loggedUser",data.foundUser.username)
+          localStorage.setItem("loggedUser", data.foundUser.username);
           setEncodedToken(data.encodedToken);
-          dispatch({ type: "SET_USERNAME", payload: creds.username });
+          setUserLoggedIn(data.foundUser.username);
           navigate("/landing");
           toastNotify("success", "You're successfully logged in!");
         }
@@ -55,11 +55,6 @@ export const AuthContextProvider = ({ children }) => {
     }
   };
 
-  //   const loginasGuest = () => {
-  //     setLoginInput({ username: "yuvrajthapa", password: "yuvraj123" });
-  //     loginHandler();
-  //   };\
-
   const signupHandler = async () => {
     if (
       signupInput.firstname &&
@@ -75,12 +70,18 @@ export const AuthContextProvider = ({ children }) => {
           //   lastname: signupInput.lastname,
           ...signupInput,
         });
+        console.log("signup", response);
 
         if (response.status === 201) {
           localStorage.setItem("token", response.data.encodedToken);
+          localStorage.setItem(
+            "loggedUser",
+            response.data.createdUser.username
+          );
           setEncodedToken(response.data.encodedToken);
+          setUserLoggedIn(response.data.createdUser.username);
           navigate("/landing");
-          // setUserLoggedIn(signupInput.username);
+
           toastNotify(
             "success",
             "Welcome to Cosmos! You're successfully signed up!"
@@ -92,22 +93,6 @@ export const AuthContextProvider = ({ children }) => {
       }
     } else {
       toastNotify("error", "Please enter all the fields");
-      //   if (
-      //     !signupInput.firstname &&
-      //     !signupInput.lastname &&
-      //     !signupInput.username &&
-      //     !signupInput.password
-      //   ) {
-      //     toastNotify("error", "Please enter all the fields");
-      //   } else if (!signupInput.firstname) {
-      //     toastNotify("error", "Firstname is empty");
-      //   } else if (!signupInput.lastname) {
-      //     toastNotify("error", "Lastname is empty");
-      //   } else if (!signupInput.username) {
-      //     toastNotify("error", "username is empty");
-      //   } else {
-      //     toastNotify("error", "password is empty");
-      //   }
     }
   };
 

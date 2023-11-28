@@ -15,7 +15,8 @@ import { AsideDataContext } from "../../contexts/AsideDataContext";
 import Modal from "../../components/Modal/Modal";
 
 const PostCard = ({ data }) => {
-  const { state, likePost, bookMarkPost } = useContext(DataContext);
+  const { state, likePost, bookMarkPost, userLoggedIn } =
+    useContext(DataContext);
   const { deletePost, setEditPost, getPostData } = useContext(AsideDataContext);
   const [userData, setUserData] = useState([]); //to show the user details in individual post in landing page
   const [modifyPost, setModifyPost] = useState(false); //to open the dropdow for edit option
@@ -32,15 +33,14 @@ const PostCard = ({ data }) => {
 
   //get user profile pic
   const picOfUser = state?.users?.find(
-    (user) => user.username === localStorage.getItem("loggedUser")
+    (user) => user.username === userLoggedIn
   );
   console.log("pc", picOfUser);
+
   useEffect(() => {
+    const user = state?.users?.find((usr) => usr.username === data.username);
     (async () => {
       try {
-        const user = state?.users?.find(
-          (usr) => usr.username === data.username
-        );
         const response = await axios.get(`/api/users/${user._id}`);
         console.log("post", response);
         setUserData(response.data.user);
@@ -48,7 +48,7 @@ const PostCard = ({ data }) => {
         console.log(e);
       }
     })();
-  }, []);
+  }, [state.users]);
 
   //get the date in format
   const d = new Date(data.createdAt);
@@ -57,7 +57,7 @@ const PostCard = ({ data }) => {
     <div>
       <div className="post-container">
         <div className="post-title">
-          <img src={picOfUser?.avatarUrl} alt="" className="nav-profile-pic" />
+          <img src={userData?.avatarUrl} alt="" className="nav-profile-pic" />
 
           <div className="post-date">
             <p>
@@ -70,7 +70,7 @@ const PostCard = ({ data }) => {
           </div>
           <div className="three-dots-container">
             <div id="three-dots" onClick={() => setModifyPost(!modifyPost)}>
-              {data.username === state.userLoggedIn && <MoreVertIcon />}{" "}
+              {data.username === userLoggedIn && <MoreVertIcon />}{" "}
             </div>
             {modifyPost && (
               <div className="post-popup">

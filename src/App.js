@@ -33,9 +33,11 @@ function App() {
     dispatch,
     openModal,
     setOpenModal,
+    userLoggedIn,
   } = useContext(DataContext);
 
-  const { editPost, setEditPost,editProfile, setEditProfile} = useContext(AsideDataContext);
+  const { editPost, setEditPost, editProfile, setEditProfile } =
+    useContext(AsideDataContext);
 
   useEffect(() => {
     const encodedToken = localStorage.getItem("token");
@@ -47,23 +49,16 @@ function App() {
       try {
         const response = await axios.get("/api/users");
         dispatch({ type: "GET_USERS", payload: response.data.users });
-        const user = localStorage.getItem("loggedUser");
-        dispatch({ type: "SET_USERNAME", payload: user });
-        const value = state.users;
-        getUserLoggedInData();
-        // console.log("users in context", response);
+        // getUserLoggedInData();
       } catch (e) {
         console.log(e);
       }
     })();
   }, []);
 
-  // useEffect(() => {
-  //   const user = localStorage.getItem("loggedUser");
-  //   dispatch({ type: "SET_USERNAME", payload: user });
-  //   const value = state.users;
-  //   getUserLoggedInData();
-  // }, []);
+  useEffect(() => {
+    getUserLoggedInData();
+  }, [userLoggedIn]);
 
   console.log("inside app", state);
 

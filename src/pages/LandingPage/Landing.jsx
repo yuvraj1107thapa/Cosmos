@@ -12,14 +12,14 @@ import { DataContext } from "../../contexts/DataContext";
 import { AsideDataContext } from "../../contexts/AsideDataContext";
 
 const Landing = () => {
-  const { state, dispatch, getUserLoggedInData, setFilter } =
+  const { state, dispatch, getUserLoggedInData, setFilter, userLoggedIn } =
     useContext(DataContext);
 
   const landingPost = state?.posts?.filter(
-      ({ username }) =>
-        username === state.userLoggedIn ||
-        state?.following?.find((user) => user.username === username)
-    );
+    ({ username }) =>
+      username === userLoggedIn ||
+      state?.following?.find((user) => user.username === username)
+  );
 
   // const { editPost, setEditPost } = useContext(AsideDataContext);
   const data = state.filter
@@ -55,17 +55,15 @@ const Landing = () => {
   //   })();
   // }, []);
 
-  useEffect(() => {
-    getUserLoggedInData();
-  }, []);
+  // useEffect(() => {
+  //   getUserLoggedInData();
+  // }, []);
 
   useEffect(() => {
     dispatch({ type: "USER_TO_FOLLOW" });
   }, []);
 
   //all posts of user and following
-
-  
 
   console.log("landingPost", landingPost);
   return (

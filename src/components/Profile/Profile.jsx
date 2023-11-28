@@ -10,11 +10,11 @@ const Profile = ({ user }) => {
     useContext(AsideDataContext);
 
   const userFollow = state?.userToFollow?.find(
-    ({ username }) => username === user.username
+    ({ username }) => username === user?.username
   );
 
   const userFollowing = state?.following?.find(
-    ({ username }) => username === user.username
+    ({ username }) => username === user?.username
   );
 
   const btnText = () => {

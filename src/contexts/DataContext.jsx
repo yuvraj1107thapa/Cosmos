@@ -3,8 +3,6 @@ import { initialValue, reducerFun } from "../reducers/dataReducer";
 import { useState } from "react";
 import axios from "axios";
 import { useEffect } from "react";
-import { useContext } from "react";
-import { AsideDataContext } from "./AsideDataContext";
 import { useRef } from "react";
 import toastNotify from "../utils/toastNotify";
 
@@ -13,6 +11,7 @@ export const DataContext = createContext();
 export const DataContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducerFun, initialValue);
   const [encodedToken, setEncodedToken] = useState(""); //gloabally access the local storage token
+  const [userLoggedIn, setUserLoggedIn] = useState(""); //gloabally access the local storage token
   const [userPost, setUserPost] = useState([]);
   const [userLoginData, setUserLoginData] = useState({});
   const [openModal, setOpenModal] = useState(false); //create post modal
@@ -47,7 +46,6 @@ export const DataContextProvider = ({ children }) => {
             },
           }
         );
-        // console.log(response);
         dispatch({ type: "GET_POSTS", payload: response.data.posts });
         dispatch({ type: "DISLIKE_POST", payload: postId });
       } catch (e) {
@@ -69,7 +67,6 @@ export const DataContextProvider = ({ children }) => {
           }
         );
         dispatch({ type: "BOOKMARK_POST", payload: response.data.bookmarks });
-        // console.log(response);
       } catch (e) {
         console.log(e);
       }
@@ -91,47 +88,52 @@ export const DataContextProvider = ({ children }) => {
       }
     }
   };
+
   const createPostHandler = async (postData) => {
-    const findPost = state?.posts?.find(
-      ({ _id }) => _id === editPostId.current
-    );
-    console.log("edit", findPost);
-    if (findPost) {
-      try {
-        const response = await axios.post(
-          `/api/posts/edit/${editPostId.current}`,
-          {
-            postData: { content: postData.text, image: postData.media },
-          },
-          {
-            headers: {
-              authorization: encodedToken,
+    if (!postData.text) {
+      const findPost = state?.posts?.find(
+        ({ _id }) => _id === editPostId.current
+      );
+      console.log("edit", findPost);
+      if (findPost) {
+        try {
+          const response = await axios.post(
+            `/api/posts/edit/${editPostId.current}`,
+            {
+              postData: { content: postData.text, image: postData.media },
             },
-          }
-        );
-        //update the posts with the edited content
-        dispatch({ type: "GET_POSTS", payload: response.data.posts });
-        toastNotify("success", "Updated successfully!");
-      } catch (e) {
-        console.log(e);
+            {
+              headers: {
+                authorization: encodedToken,
+              },
+            }
+          );
+          //update the posts with the edited content
+          dispatch({ type: "GET_POSTS", payload: response.data.posts });
+          toastNotify("success", "Updated successfully!");
+        } catch (e) {
+          console.log(e);
+        }
+      } else {
+        try {
+          const response = await axios.post(
+            "/api/posts",
+            { postData: { content: postData.text, image: postData.media } }, //{..post} and {post}
+            {
+              headers: {
+                authorization: encodedToken,
+              },
+            }
+          );
+          console.log("new post", response);
+          dispatch({ type: "GET_POSTS", payload: response.data.posts });
+          toastNotify("success", "Posted successfully!");
+        } catch (e) {
+          console.log(e);
+        }
       }
     } else {
-      try {
-        const response = await axios.post(
-          "/api/posts",
-          { postData: { content: postData.text, image: postData.media } }, //{..post} and {post}
-          {
-            headers: {
-              authorization: encodedToken,
-            },
-          }
-        );
-        console.log("new post", response);
-        dispatch({ type: "GET_POSTS", payload: response.data.posts });
-        toastNotify("success", "Posted successfully!");
-      } catch (e) {
-        console.log(e);
-      }
+      toastNotify("error", "Add content to post");
     }
   };
 
@@ -153,13 +155,10 @@ export const DataContextProvider = ({ children }) => {
 
   const getUserLoggedInData = async () => {
     try {
-      const valaue = state.users;
-      const user = state?.users?.find(
-        (usr) => usr.username === state.userLoggedIn
-      );
+      const user = state?.users?.find((usr) => usr.username === userLoggedIn);
       // const userList = await axios.get("/api/users");
       // const user = userList.data.users?.find(
-      //   (usr) => usr.username === state.userLoggedIn
+      //   (usr) => usr.username === userLoggedIn
       // );
       console.log("gt user", user);
       // const response = await axios.get(`/api/users/${user._id}`);
@@ -169,13 +168,7 @@ export const DataContextProvider = ({ children }) => {
       console.log(e);
     }
   };
-  console.log("data", state);
-  console.log("dataContext", userLoginData);
 
-  useEffect(() => {
-    const user = localStorage.getItem("loggedUser");
-    dispatch({ type: "SET_USERNAME", payload: user });
-  }, []);
   return (
     <DataContext.Provider
       value={{
@@ -197,6 +190,8 @@ export const DataContextProvider = ({ children }) => {
         createPost,
         setCreatePost,
         editPostId,
+        userLoggedIn,
+        setUserLoggedIn,
       }}
     >
       {children}

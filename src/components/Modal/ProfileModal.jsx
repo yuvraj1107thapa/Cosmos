@@ -5,8 +5,14 @@ import { useState } from "react";
 import axios from "axios";
 
 const ProfileModal = ({ open }) => {
-  const { userLoginData, encodedToken, setUserLoginData, state, dispatch } =
-    useContext(DataContext);
+  const {
+    userLoginData,
+    encodedToken,
+    setUserLoginData,
+    state,
+    dispatch,
+    userLoggedIn,
+  } = useContext(DataContext);
   const [updateUserData, setUpdateUserData] = useState({
     image: "",
     text: userLoginData?.bio,
@@ -39,9 +45,7 @@ const ProfileModal = ({ open }) => {
       setUserLoginData(response.data.user);
 
       const finduser = state?.users?.map((ele) =>
-        ele.username === localStorage.getItem("loggedUser")
-          ? response.data.user
-          : ele
+        ele.username === userLoggedIn ? response.data.user : ele
       );
       dispatch({ type: "GET_USERS", payload: finduser });
     } catch (e) {

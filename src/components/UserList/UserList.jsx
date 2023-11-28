@@ -10,7 +10,6 @@ const UserList = ({ user }) => {
   const {state,userLoginData} = useContext(DataContext)
 
   // const findFollower = state?.userLoginData.find(({following})=>following.find(({_id})=>_id === user._id))
-console.log("after",state)
   return (
     <div>
       <div>

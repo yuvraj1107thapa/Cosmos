@@ -20,10 +20,10 @@ const ProfilePage = () => {
 
   // useEffect(() => {
   //   (async () => {
-  //     // console.log(state.userLoggedIn);
+  //     // console.log(userLoggedIn);
   //     try {
   //       const response = await axios.get(
-  //         `/api/posts/user/${state.userLoggedIn}`
+  //         `/api/posts/user/${userLoggedIn}`
   //       );
   //       setUserPost(response.data.posts);
   //     } catch (e) {
@@ -54,7 +54,8 @@ const ProfilePage = () => {
             .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
             ?.map((data) => (
               <div key={data._id}>
-              <PostCard data={data} /></div>
+                <PostCard data={data} />
+              </div>
             ))}
         </div>
       </div>
