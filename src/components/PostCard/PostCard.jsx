@@ -12,7 +12,6 @@ import { useEffect } from "react";
 import axios from "axios";
 import OutsideClickHandler from "react-outside-click-handler";
 import { AsideDataContext } from "../../contexts/AsideDataContext";
-import Modal from "../../components/Modal/Modal";
 import { NavLink } from "react-router-dom";
 
 const PostCard = ({ data }) => {
@@ -37,7 +36,6 @@ const PostCard = ({ data }) => {
     (user) => user.username === data.username
   );
 
-  console.log("pc", picOfUser);
 
   useEffect(() => {
     const user = state?.users?.find((usr) => usr.username === data.username);
@@ -58,7 +56,8 @@ const PostCard = ({ data }) => {
   return (
     <div>
       <div className="post-container">
-        <NavLink className="not-a-link" to={`/profilepage/${data?.username}`}>
+        <div>
+          <div className="post-heading"><NavLink className="not-a-link" to={`/profilepage/${data?.username}`}>
           {" "}
           <div className="post-title">
             <img
@@ -76,6 +75,7 @@ const PostCard = ({ data }) => {
               </p>
               <p>@{data?.username}</p>
             </div>
+            </div></NavLink>
             <div className="three-dots-container">
               <div id="three-dots" onClick={() => setModifyPost(!modifyPost)}>
                 {data.username === userLoggedIn && <MoreVertIcon />}{" "}
@@ -102,7 +102,8 @@ const PostCard = ({ data }) => {
               )}
             </div>
           </div>
-        </NavLink>
+        
+        </div>
         <NavLink className="not-a-link" to={`/postpage/${data._id}`}>
           <div className="post-content">
             {data?.content}

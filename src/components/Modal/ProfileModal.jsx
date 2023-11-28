@@ -3,6 +3,8 @@ import { useContext } from "react";
 import { DataContext } from "../../contexts/DataContext";
 import { useState } from "react";
 import axios from "axios";
+import toastNotify from "../../utils/toastNotify";
+import { AsideDataContext } from "../../contexts/AsideDataContext";
 
 const ProfileModal = ({ open }) => {
   const {
@@ -19,37 +21,45 @@ const ProfileModal = ({ open }) => {
     link: userLoginData?.website,
   });
 
+  const { setEditProfile } = useContext(AsideDataContext);
+
   const getImage = (src) => {
     console.log("modal", src);
     setUpdateUserData({ ...updateUserData, image: src });
   };
 
   const updateProfile = async () => {
-    try {
-      const response = await axios.post(
-        "/api/users/edit",
-        {
-          userData: {
-            avatarUrl: updateUserData.image,
-            bio: updateUserData.text,
-            website: updateUserData.link,
+    if (updateUserData.image) {
+      try {
+        const response = await axios.post(
+          "/api/users/edit",
+          {
+            userData: {
+              avatarUrl: updateUserData.image,
+              bio: updateUserData.text,
+              website: updateUserData.link,
+            },
           },
-        },
-        {
-          headers: {
-            authorization: encodedToken,
-          },
-        }
-      );
-      console.log("Update pro", response);
-      setUserLoginData(response.data.user);
+          {
+            headers: {
+              authorization: encodedToken,
+            },
+          }
+        );
 
-      const finduser = state?.users?.map((ele) =>
-        ele.username === userLoggedIn ? response.data.user : ele
-      );
-      dispatch({ type: "GET_USERS", payload: finduser });
-    } catch (e) {
-      console.log(e);
+        setUserLoginData(response.data.user);
+
+        const finduser = state?.users?.map((ele) =>
+          ele.username === userLoggedIn ? response.data.user : ele
+        );
+        dispatch({ type: "GET_USERS", payload: finduser });
+        setEditProfile(false);
+        toastNotify("success", "Profile updated successfully!");
+      } catch (e) {
+        console.log(e);
+      }
+    } else {
+      toastNotify("error", "Please select avatar to update!");
     }
   };
   return (
@@ -154,9 +164,15 @@ const ProfileModal = ({ open }) => {
               </div>
             </div>
             <label>
-              Name: {userLoginData?.firstname} {userLoginData?.lastname}
+              Name:{" "}
+              <b>
+                {userLoginData?.firstname} {userLoginData?.lastname}
+              </b>
             </label>
-            <label>Username: {userLoginData?.username}</label>
+            <label>
+              {" "}
+              Username: <b>{userLoginData?.username}</b>
+            </label>
             <label>
               Bio:{" "}
               <input
@@ -177,8 +193,13 @@ const ProfileModal = ({ open }) => {
                 }
               />
             </label>
-            <div>
-              <button onClick={updateProfile}>Update</button>
+            <div className="update-btn">
+              <button
+                className="btn-primary follow-btn"
+                onClick={updateProfile}
+              >
+                Update
+              </button>
             </div>
           </div>
         </div>

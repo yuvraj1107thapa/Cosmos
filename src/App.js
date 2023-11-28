@@ -28,6 +28,7 @@ import AuthWrapper from "./components/Authenticate/AuthWrapper";
 import { MoonLoadeer } from "react-spinners";
 import { Discuss, TailSpin } from "react-loader-spinner";
 import SinglePost from "./pages/SinglePost/SinglePost";
+import UserModal from "./components/Modal/UserModal";
 
 function App() {
   const {
@@ -41,13 +42,20 @@ function App() {
     encodedToken,
   } = useContext(DataContext);
 
-  const { editPost, setEditPost, editProfile, setEditProfile } =
-    useContext(AsideDataContext);
+  const {
+    editPost,
+    setEditPost,
+    editProfile,
+    setEditProfile,
+    isFollowerModal,
+    seIsFollowerModal,
+    followingModal,
+    setFollowingModal,
+  } = useContext(AsideDataContext);
 
   useEffect(() => {
     const encodedToken = localStorage.getItem("token");
     setEncodedToken(encodedToken ?? "");
-    
   }, []);
 
   useEffect(() => {
@@ -61,7 +69,7 @@ function App() {
         console.log(e);
       }
     })();
-  }, []);
+  }, [encodedToken]);
 
   useEffect(() => {
     (async () => {
@@ -100,6 +108,8 @@ function App() {
       {editPost && <Modal open={setEditPost} />}
       {openModal && <Modal open={setOpenModal} />}
       {editProfile && <ProfileModal open={setEditProfile} />}
+      {isFollowerModal && <UserModal open={seIsFollowerModal} />}
+      {followingModal && <UserModal open={setFollowingModal} />}
       <div className="main">
         {encodedToken && <Navbar />}
         <div className="section">

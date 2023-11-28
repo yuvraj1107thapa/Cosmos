@@ -10,6 +10,7 @@
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
+
 }
 
 html {
@@ -102,7 +103,7 @@ body {
   align-items: center;
 }
 
-.feedLoader{
+.feedLoader {
   display: flex;
   justify-content: center;
   align-items: center;

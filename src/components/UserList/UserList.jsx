@@ -15,7 +15,10 @@ const UserList = ({ user }) => {
       <div>
         <div className="userlist">
           <img src={user.avatarUrl} alt="" className="nav-profile-pic" />
-          <NavLink className="user-detail not-a-link" to={`/profilepage/${user.username}`}>
+          <NavLink
+            className="user-detail not-a-link"
+            to={`/profilepage/${user.username}`}
+          >
             {" "}
             <div>
               <h4>
@@ -24,9 +27,13 @@ const UserList = ({ user }) => {
               <span>@{user.username}</span>
             </div>
           </NavLink>
-          <button className="follow-btn" onClick={() => followUser(user._id)}>
-            + Follow
-          </button>
+          {state?.following.find((ele) => ele.username === user.username) ? (
+            <></>
+          ) : (
+            <button className="follow-btn" onClick={() => followUser(user._id)}>
+              + Follow
+            </button>
+          )}
         </div>
       </div>
     </div>

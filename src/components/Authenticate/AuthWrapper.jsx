@@ -10,8 +10,8 @@ const AuthWrapper = ({ children }) => {
   return localStorage.getItem("token") ? (
     children
   ) : (
-    <Navigate to="/" state={{ from: location }} />
+    <Navigate to="/"  />
   );
 };
-
+// state={{ from: location }}
 export default AuthWrapper;

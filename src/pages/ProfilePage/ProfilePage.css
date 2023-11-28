@@ -1,6 +1,6 @@
-.profile-page-content{
+.profile-page-content {
     display: flex;
     flex-direction: column;
-    padding:2rem 0rem;
-    gap:2rem
+    padding: 1rem 0rem;
+    gap: 1rem
 }

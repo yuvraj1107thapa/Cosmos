@@ -66,7 +66,7 @@ const Explore = () => {
   // console.log("feed", feedData);
 
   return (
-    <div className="landing-container">
+    <div className="landing-container explore">
       {/* <div>
         <Navbar />
       </div> */}

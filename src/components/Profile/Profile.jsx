@@ -3,11 +3,14 @@ import "./Profile.css";
 import { useContext } from "react";
 import { DataContext } from "../../contexts/DataContext";
 import { AsideDataContext } from "../../contexts/AsideDataContext";
+import { useState } from "react";
+import UserList from "../UserList/UserList";
 
 const Profile = ({ user }) => {
   const { state } = useContext(DataContext);
   const { followUser, unfollowUser, setEditProfile } =
     useContext(AsideDataContext);
+  const { seIsFollowerModal, setFollowingModal } = useContext(AsideDataContext);
 
   const userFollow = state?.userToFollow?.find(
     ({ username }) => username === user?.username
@@ -45,7 +48,7 @@ const Profile = ({ user }) => {
           {user?.firstname} {user?.lastname}
         </div>
         <span className="user-id">@{user?.username}</span>
-        <button className="profile-edit-btn" onClick={clickHandler}>
+        <button className="profile-edit-btn btn-primary follow-btn" onClick={clickHandler}>
           {btnText()}
         </button>
 
@@ -55,7 +58,11 @@ const Profile = ({ user }) => {
         </div>
 
         <div className="follow-details">
-          <div> {user?.followers?.length} Follower</div>
+          <div onClick={() => seIsFollowerModal(true)}>
+            {" "}
+            {user?.followers?.length} Follower
+          </div>
+
           <div>
             {" "}
             {
@@ -64,7 +71,9 @@ const Profile = ({ user }) => {
             }{" "}
             Post
           </div>
-          <div>{user?.following?.length} Following</div>
+          <div onClick={() => setFollowingModal(true)}>
+            {user?.following?.length} Following
+          </div>
         </div>
       </div>
     </div>

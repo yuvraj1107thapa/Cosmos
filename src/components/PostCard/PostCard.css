@@ -1,18 +1,26 @@
 .post-container {
     width: 30rem;
-    /* border:1px solid black; */
+    max-height: 50rem;
+    background-color: #FEE2D9;
+
     display: flex;
     flex-direction: column;
     padding: 1rem;
     border-radius: 0.5rem;
     box-shadow: 0 0 0.5rem 0.2rem hsla(260, 11%, 85%, 1);
     position: relative;
+    margin-bottom: 1rem;
 }
 
 .post-title {
     width: 100%;
     display: flex;
     gap: 0.5rem;
+}
+
+.post-heading {
+    display: flex;
+    justify-content: space-between;
 }
 
 .post-content {
@@ -32,6 +40,7 @@
 .post-img {
     margin-top: 0.5rem;
     width: 100%;
+
 }
 
 .post-actions {

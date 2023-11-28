@@ -6,11 +6,29 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthContext";
+import { useEffect } from "react";
+import { DataContext } from "../../contexts/DataContext";
 
 const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false);
   const { signupInput, setSignupInput, signupHandler } =
     useContext(AuthContext);
+  const { setEncodedToken } = useContext(DataContext);
+
+  useEffect(() => {
+    setSignupInput({
+      firstname: "",
+      lastname: "",
+      username: "",
+      password: "",
+    });
+  }, []);
+
+  //the local storage should also be cleared(because we want user to provide data to login)
+  useEffect(() => {
+    localStorage.clear();
+    setEncodedToken("");
+  }, []);
   return (
     <div className="signup-main">
       <div className="signup-container">

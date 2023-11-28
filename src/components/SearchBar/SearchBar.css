@@ -7,14 +7,14 @@
 
 .search-input {
     display: flex;
-    border: 2px solid grey;
+    border: 1px solid grey;
     width: 100%;
     border-radius: 0.3rem;
 
 }
 
-.search-input:active {
-    border: 1px solid black;
+.search-input:focus {
+    border: 2px solid black;
 }
 
 .search-input input {

@@ -7,7 +7,7 @@
     /* padding-bottom: 0rem; */
     border-radius: 0.5rem;
     box-shadow: 0 0.2rem 0.5rem 0.2rem hsla(260, 11%, 85%, 1);
-    ;
+    margin-bottom: 1rem;
 }
 
 .new-post-input {
@@ -65,9 +65,9 @@
     padding: 0.3rem 0.5rem;
 }
 
-.media-loaded{
-    background-color: hsl(246, 31%, 36%) ;
-    color:white;
-    padding:0rem 0.5rem;
+.media-loaded {
+    background-color: hsl(246, 31%, 36%);
+    color: white;
+    padding: 0rem 0.5rem;
     border-radius: 0.5rem;
 }
