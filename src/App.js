@@ -13,9 +13,11 @@ import SignUp from "./pages/Signup/SignUp";
 import Landing from "./pages/LandingPage/Landing";
 import Explore from "./pages/Explore/Explore";
 import Bookmark from "./pages/Bookmark/Bookmark";
-import { ToastContainer} from "react-toastify";
+import { ToastContainer } from "react-toastify";
 
 import "react-toastify/dist/ReactToastify.css";
+import LikePage from "./pages/LikePage/LikePage";
+import ProfilePage from "./pages/ProfilePage/ProfilePage";
 
 function App() {
   return (
@@ -27,7 +29,10 @@ function App() {
         <Route path="/landing" element={<Landing />}></Route>
         <Route path="/explore" element={<Explore />}></Route>
         <Route path="/bookmark" element={<Bookmark />}></Route>
+        <Route path="/likepage" element={<LikePage />}></Route>
+        <Route path="/profilepage" element={<ProfilePage />}></Route>
       </Routes>
+<Footer />
       <ToastContainer />
     </div>
   );

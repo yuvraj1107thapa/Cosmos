@@ -7,18 +7,16 @@ import { makeServer } from "./server";
 import { AuthContextProvider } from "./contexts/AuthContext";
 import { DataContextProvider } from "./contexts/DataContext";
 
-
-
 // Call make Server
 makeServer();
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
     <BrowserRouter>
-      <AuthContextProvider>
-        <DataContextProvider>
-         <App />
-        </DataContextProvider>
-      </AuthContextProvider>
+      <DataContextProvider>
+        <AuthContextProvider>
+          <App />
+        </AuthContextProvider>
+      </DataContextProvider>
     </BrowserRouter>
 );

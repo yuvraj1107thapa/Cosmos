@@ -2,20 +2,30 @@ import { createContext, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import toastNotify from "../utils/toastNotify";
+import { useContext } from "react";
+import { DataContext } from "./DataContext";
+import { useEffect } from "react";
 
 export const AuthContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
+  const { dispatch } = useContext(DataContext);
   const [loginInput, setLoginInput] = useState({
     username: "",
     password: "",
   });
+
+  //set the username when any user logs in
+  // const [userLoggedIn, setUserLoggedIn] = useState("");
+
+  //signup state management
   const [signupInput, setSignupInput] = useState({
     firstname: "",
     lastname: "",
     username: "",
     password: "",
   });
+
   const navigate = useNavigate();
 
   const loginHandler = async (creds) => {
@@ -28,6 +38,7 @@ export const AuthContextProvider = ({ children }) => {
 
         if (status === 200) {
           localStorage.setItem("token", data.encodedToken);
+          dispatch({ type: "SET_USERNAME", payload: creds.username });
           navigate("/landing");
           toastNotify("success", "You're successfully logged in!");
         }
@@ -69,6 +80,7 @@ export const AuthContextProvider = ({ children }) => {
         if (response.status === 201) {
           localStorage.setItem("token", response.data.encodedToken);
           navigate("/landing");
+          // setUserLoggedIn(signupInput.username);
           toastNotify(
             "success",
             "Welcome to Cosmos! You're successfully signed up!"
@@ -79,25 +91,30 @@ export const AuthContextProvider = ({ children }) => {
         toastNotify("error", "User already exists! Please select to login!");
       }
     } else {
-        toastNotify("error", "Please enter all the fields");
-    //   if (
-    //     !signupInput.firstname &&
-    //     !signupInput.lastname &&
-    //     !signupInput.username &&
-    //     !signupInput.password
-    //   ) {
-    //     toastNotify("error", "Please enter all the fields");
-    //   } else if (!signupInput.firstname) {
-    //     toastNotify("error", "Firstname is empty");
-    //   } else if (!signupInput.lastname) {
-    //     toastNotify("error", "Lastname is empty");
-    //   } else if (!signupInput.username) {
-    //     toastNotify("error", "username is empty");
-    //   } else {
-    //     toastNotify("error", "password is empty");
-    //   }
+      toastNotify("error", "Please enter all the fields");
+      //   if (
+      //     !signupInput.firstname &&
+      //     !signupInput.lastname &&
+      //     !signupInput.username &&
+      //     !signupInput.password
+      //   ) {
+      //     toastNotify("error", "Please enter all the fields");
+      //   } else if (!signupInput.firstname) {
+      //     toastNotify("error", "Firstname is empty");
+      //   } else if (!signupInput.lastname) {
+      //     toastNotify("error", "Lastname is empty");
+      //   } else if (!signupInput.username) {
+      //     toastNotify("error", "username is empty");
+      //   } else {
+      //     toastNotify("error", "password is empty");
+      //   }
     }
   };
+
+  // useEffect(() => {
+  //   dispatch({ type: "SET_USERNAME", payload: loginInput.username });
+  // }, [loginInput.username]);
+
   return (
     <AuthContext.Provider
       value={{

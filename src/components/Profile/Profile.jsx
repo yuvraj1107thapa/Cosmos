@@ -1,7 +1,13 @@
 import React from "react";
 import "./Profile.css";
+import { useContext } from "react";
+import { DataContext } from "../../contexts/DataContext";
 
 const Profile = () => {
+  
+  const {state} = useContext(DataContext)
+  
+
   return (
     <div className="profile-main">
       <div className="profile-container">
@@ -15,7 +21,7 @@ const Profile = () => {
         <button className="profile-edit-btn">Edit Profile</button>
 
         <div className="profile-bio">
-          Speak truth, feel love, be free.
+            Speak truth, feel love, be free.
         </div>
         <div>
           <a href="/">a link</a>

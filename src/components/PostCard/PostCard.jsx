@@ -10,15 +10,18 @@ import BookmarkIcon from "@mui/icons-material/Bookmark";
 import { DataContext } from "../../contexts/DataContext";
 
 const PostCard = ({ data }) => {
-  const [isLiked, setIsLiked] = useState(false);
-  const [isBookmarked, setIsBookmarked] = useState(false);
-
   const { state, likePost, bookMarkPost } = useContext(DataContext);
 
   //get like count of a post
   const likedCount = state.posts.find(({ _id }) => _id === data._id).likes
     .likeCount;
-  console.log(likedCount);
+
+  //check if post is already liked and preent in likedPosts Array
+  const postLiked = state?.likedPosts?.find((id) => id === data._id);
+
+  //check if post is already bookmarked
+  const postBookmarked = state?.bookmarkedPosts?.find((id) => id === data._id);
+  
   return (
     <div>
       <div className="post-container">
@@ -49,13 +52,12 @@ const PostCard = ({ data }) => {
           <div
             className="post-icons"
             onClick={() => {
-              likePost(data._id, isLiked);
-              setIsLiked(!isLiked);
+              likePost(data._id, postLiked);
             }}
           >
             <div className="liked-counter-div">
               {" "}
-              {isLiked ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+              {postLiked ? <FavoriteIcon /> : <FavoriteBorderIcon />}
               {likedCount}
             </div>
           </div>
@@ -65,11 +67,10 @@ const PostCard = ({ data }) => {
           <div
             className="post-icons"
             onClick={() => {
-              bookMarkPost(data._id,isBookmarked);
-              setIsBookmarked(!isBookmarked);
+              bookMarkPost(data._id, postBookmarked);
             }}
           >
-            {isBookmarked ? <BookmarkIcon /> : <BookmarkBorderIcon />}
+            {postBookmarked ? <BookmarkIcon /> : <BookmarkBorderIcon />}
           </div>
           <div className="post-icons">
             <ShareIcon />

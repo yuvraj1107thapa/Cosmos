@@ -1,6 +1,6 @@
 .landing-container {
     display: flex;
-    gap: 1rem;
+    gap: 2rem;
     justify-content: space-evenly;
 }
 
@@ -43,16 +43,18 @@
     flex-direction: column;
     gap: 0.1rem
 }
-.user-container{
-    display:flex;
+
+.user-container {
+    display: flex;
     flex-direction: column;
-    gap:1rem;
+    gap: 1rem;
     background-color: aliceblue;
     padding: 1rem;
     z-index: 0.4;
+
 }
 
-.side-search-bar{
+.side-search-bar {
     box-shadow: 0 0 0.5rem 0.2rem hsla(260, 11%, 85%, 1);
     width: fit-content;
     padding-top: 0.5rem;
