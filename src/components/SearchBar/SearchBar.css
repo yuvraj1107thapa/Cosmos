@@ -1,28 +1,34 @@
-.search-main{
+.search-main {
     margin-left: 2rem;
     margin-top: 3rem;
-    margin:3rem 2rem;   
+    margin: 3rem 2rem;
 }
-.search-input{
-    display:flex;
-    border: 2px solid;
-    width: fit-content;
+
+.search-input {
+    display: flex;
+    border: 2px solid grey;
+    width: 100%;
     border-radius: 0.3rem;
-   
+
 }
+
+.search-input:active {
+    border: 1px solid black;
+}
+
 .search-input input {
-     padding: 0rem 0.5rem;
+    padding: 0rem 0.5rem;
     border: 0;
     font-size: 1rem;
     border-radius: 0.3rem;
-  
+
 }
 
-input:focus{
-    outline:none;
+input:focus {
+    outline: none;
 }
 
-.search-icon{    
+.search-icon {
     background-color: white;
     height: 40px;
     width: 40px;

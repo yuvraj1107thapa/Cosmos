@@ -1,12 +1,24 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import "./PostCard.css";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import ShareIcon from "@mui/icons-material/Share";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import BookmarkIcon from "@mui/icons-material/Bookmark";
+import { DataContext } from "../../contexts/DataContext";
 
-const PostCard = () => {
+const PostCard = ({ data }) => {
+  const [isLiked, setIsLiked] = useState(false);
+  const [isBookmarked, setIsBookmarked] = useState(false);
+
+  const { state, likePost, bookMarkPost } = useContext(DataContext);
+
+  //get like count of a post
+  const likedCount = state.posts.find(({ _id }) => _id === data._id).likes
+    .likeCount;
+  console.log(likedCount);
   return (
     <div>
       <div className="post-container">
@@ -16,36 +28,48 @@ const PostCard = () => {
             alt=""
             className="nav-profile-pic"
           />
+
           <div>
             <p>
-              <b>Yuvraj Thapa</b> Nov 25, 2023
+              <b>{data?.username}</b> {data?.createdAt}
             </p>
-            <p>@username</p>
+            <p>@{data?.username}</p>
           </div>
           <div id="three-dots">
             <MoreVertIcon />{" "}
           </div>
         </div>
         <div className="post-content">
-          content of post Browse through the icons below to find the one you
-          need. The search field supports synonyms—for example, try searching
-          for "hamburger" or "logout."
-          <img className="post-img"
-            src="https://res.cloudinary.com/dgoldjr3g/image/upload/v1684393956/NegProjects/E-commerce/Orchids/orch_fwftgt.avif"
-            alt=""
-          />
+          {data?.content}
+          {data?.image && <img className="post-img" src={data?.image} alt="" />}
         </div>
 
         <hr />
         <div className="post-actions">
-          <div className="post-icons">
-            <FavoriteBorderIcon />
+          <div
+            className="post-icons"
+            onClick={() => {
+              likePost(data._id, isLiked);
+              setIsLiked(!isLiked);
+            }}
+          >
+            <div className="liked-counter-div">
+              {" "}
+              {isLiked ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+              {likedCount}
+            </div>
           </div>
           <div className="post-icons">
             <ChatBubbleOutlineIcon />
           </div>
-          <div className="post-icons">
-            <BookmarkBorderIcon />
+          <div
+            className="post-icons"
+            onClick={() => {
+              bookMarkPost(data._id,isBookmarked);
+              setIsBookmarked(!isBookmarked);
+            }}
+          >
+            {isBookmarked ? <BookmarkIcon /> : <BookmarkBorderIcon />}
           </div>
           <div className="post-icons">
             <ShareIcon />

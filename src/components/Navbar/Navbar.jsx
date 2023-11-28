@@ -6,9 +6,11 @@ import ControlPointIcon from "@mui/icons-material/ControlPoint";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import PersonIcon from "@mui/icons-material/Person";
-import { NavLink } from "react-router-dom";
+import LogoutIcon from "@mui/icons-material/Logout";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
+  const navigate = useNavigate();
   return (
     <div className="nav-main">
       <div className="nav-container">
@@ -37,21 +39,24 @@ const Navbar = () => {
         <div>
           <h1>Cosmos</h1>
         </div>
-        <NavLink to="/landing"> <div className="nav-content">
+        <NavLink to="/landing">
           {" "}
-          <div className="nav-icons">
-            <HomeIcon />
+          <div className="nav-content">
+            {" "}
+            <div className="nav-icons">
+              <HomeIcon />
+            </div>
+            Home
           </div>
-          Home
-        </div></NavLink>
-        <NavLink to="/explore"><div className="nav-content">
-         
+        </NavLink>
+        <NavLink to="/explore">
+          <div className="nav-content">
             <div className="nav-icons">
               <ExploreIcon />
             </div>{" "}
             Explore
-          
-        </div></NavLink>
+          </div>
+        </NavLink>
         <div className="nav-content">
           {" "}
           <div className="nav-icons">
@@ -70,6 +75,18 @@ const Navbar = () => {
             <PersonIcon />
           </div>{" "}
           Profile
+        </div>
+        <div
+          className="nav-content"
+          onClick={() => {
+            localStorage.clear();
+            navigate("/");
+          }}
+        >
+          <div className="nav-icons">
+            <LogoutIcon />
+          </div>{" "}
+          Logout
         </div>
 
         <button> New Post</button>

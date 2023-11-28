@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./Home.css";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import VisibilityIcon from "@mui/icons-material/Visibility";
@@ -7,10 +7,14 @@ import { AuthContext } from "../../contexts/AuthContext";
 
 const Home = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const { loginInput, setLoginInput, loginHandler, loginasGuest } =
-    useContext(AuthContext);
+  const { loginInput, setLoginInput, loginHandler } = useContext(AuthContext);
 
-    const creds = { username: "yuvrajthapa", password: "yuvraj123" }
+  const creds = { username: "yuvrajthapa", password: "yuvraj123" };
+
+  useEffect(() => {
+    setLoginInput({ username: "", password: "" });
+  },[]);
+
   return (
     <div className="home-main">
       <div className="home-container">
@@ -54,7 +58,7 @@ const Home = () => {
                 </div>
               </div>
               {/* <div className="login-buttons"> */}
-              <button onClick={()=>loginHandler(loginInput)}>Login</button>
+              <button onClick={() => loginHandler(loginInput)}>Login</button>
 
               <button
                 onClick={() => {

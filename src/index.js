@@ -5,6 +5,9 @@ import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 import { makeServer } from "./server";
 import { AuthContextProvider } from "./contexts/AuthContext";
+import { DataContextProvider } from "./contexts/DataContext";
+
+
 
 // Call make Server
 makeServer();
@@ -13,7 +16,9 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
     <BrowserRouter>
       <AuthContextProvider>
-        <App />
+        <DataContextProvider>
+         <App />
+        </DataContextProvider>
       </AuthContextProvider>
     </BrowserRouter>
 );

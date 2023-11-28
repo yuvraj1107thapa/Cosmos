@@ -38,3 +38,9 @@
 .post-icons {
     cursor: pointer;
 }
+
+.liked-counter-div{
+    display: flex;
+    gap:0.2rem;
+    align-items: center;
+}
