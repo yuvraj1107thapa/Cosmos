@@ -51,6 +51,7 @@ export const AuthContextProvider = ({ children }) => {
         }
       } catch (e) {
         console.log(e);
+        toastNotify("error", e.response.data.errors);
       }
     } else {
       if (!creds.username && !creds.password) {

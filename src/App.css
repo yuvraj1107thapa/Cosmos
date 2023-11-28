@@ -7,6 +7,9 @@
   min-height: 100vh;
   margin: 0;
   padding: 0;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
 }
 
 html {
@@ -19,7 +22,7 @@ body {
   overflow-y: scroll;
   margin: 0;
   padding: 0;
-  height:100vh;
+  height: 100vh;
 }
 
 * {
@@ -28,6 +31,18 @@ body {
   box-sizing: border-box;
 }
 
+.main {
+  display: flex;
+  gap:3rem;
+  justify-content: space-around;
+  margin: 0rem 6rem;
+
+}
+
+.section {
+  width: 100%;
+  /* flex-wrap: wrap */
+}
 
 .App-header {
   background-color: #282c34;

@@ -65,7 +65,7 @@ const Landing = () => {
 
   return (
     <div className="landing-container">
-      <Navbar />
+      {/* <Navbar /> */}
       {/* filter section in landing page */}
       <div className="feed">
         <div className="filter-container">
@@ -109,18 +109,7 @@ const Landing = () => {
             ))}
       </div>
 
-      <div>
-        <div className="side-search-bar">
-          <SearchBar />
-          <div className="user-container">
-            <h2>You might Like</h2>
-            {/* Displaying suggestions to whom user can follow*/}
-            {state?.userToFollow?.map((user) => (
-              <UserList user={user} />
-            ))}
-          </div>
-        </div>
-      </div>
+     
     </div>
   );
 };

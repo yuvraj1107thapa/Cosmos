@@ -23,9 +23,9 @@ const Explore = () => {
   // );
   return (
     <div className="landing-container">
-      <div>
+      {/* <div>
         <Navbar />
-      </div>
+      </div> */}
       <div>
         {/* <PostCard /> */}
         {[...state?.posts]
@@ -34,20 +34,17 @@ const Explore = () => {
             <PostCard data={data} />
           ))}
       </div>
-      <div>
+      {/* <div>
         <div className="side-search-bar">
           <SearchBar />
           <div className="user-container">
             <h2>You might Like</h2>
-            {/* <UserList />
-          <UserList /> */}
-
             {state?.userToFollow?.map((user) => (
               <UserList user={user} />
             ))}
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

@@ -36,6 +36,7 @@ function App() {
     setOpenModal,
     userLoggedIn,
     setUserLoginData,
+    encodedToken,
   } = useContext(DataContext);
 
   const { editPost, setEditPost, editProfile, setEditProfile } =
@@ -53,7 +54,7 @@ function App() {
       try {
         const response = await axios.get("/api/users");
         dispatch({ type: "GET_USERS", payload: response.data.users });
-        console.log(response.data.users)
+        console.log(response.data.users);
         // getUserLoggedInData();
       } catch (e) {
         console.log(e);
@@ -61,64 +62,84 @@ function App() {
     })();
   }, []);
 
-
   // useEffect(() => {
   //   getUserLoggedInData();
   // }, [userLoggedIn]);
 
   // console.log("inside app", state);
-
+  window.onbeforeunload = () => {
+    localStorage.removeItem("token");
+  };
   return (
     <div className="App">
       {editPost && <Modal open={setEditPost} />}
       {openModal && <Modal open={setOpenModal} />}
       {editProfile && <ProfileModal open={setEditProfile} />}
+      <div className="main">
+        {localStorage.getItem("token") && <Navbar />}
+        <div className="section">
+          <Routes>
+            <Route path="/mockman" element={<Mockman />}></Route>
+            <Route path="/signup" element={<SignUp />}></Route>
+            <Route path="/" element={<Home />}></Route>
+            <Route
+              path="/landing"
+              element={
+                <AuthWrapper>
+                  <Landing />
+                </AuthWrapper>
+              }
+            ></Route>
+            <Route
+              path="/explore"
+              element={
+                <AuthWrapper>
+                  <Explore />
+                </AuthWrapper>
+              }
+            ></Route>
+            <Route
+              path="/bookmark"
+              element={
+                <AuthWrapper>
+                  <Bookmark />
+                </AuthWrapper>
+              }
+            ></Route>
+            <Route
+              path="/likepage"
+              element={
+                <AuthWrapper>
+                  <LikePage />
+                </AuthWrapper>
+              }
+            ></Route>
+            <Route
+              path="/profilepage/:username"
+              element={
+                <AuthWrapper>
+                  <ProfilePage />
+                </AuthWrapper>
+              }
+            ></Route>
+          </Routes>
+        </div>
+        {localStorage.getItem("token") && (
+          <div>
+            <div className="side-search-bar">
+              <SearchBar />
+              <div className="user-container">
+                <h2>You might Like</h2>
+                {/* Displaying suggestions to whom user can follow*/}
+                {state?.userToFollow?.map((user) => (
+                  <UserList user={user} />
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
 
-      <Routes>
-        <Route path="/mockman" element={<Mockman />}></Route>
-        <Route path="/signup" element={<SignUp />}></Route>
-        <Route path="/" element={<Home />}></Route>
-        <Route
-          path="/landing"
-          element={
-            <AuthWrapper>
-              <Landing />
-            </AuthWrapper>
-          }
-        ></Route>
-        <Route
-          path="/explore"
-          element={
-            <AuthWrapper>
-              <Explore />
-            </AuthWrapper>
-          }
-        ></Route>
-        <Route
-          path="/bookmark"
-          element={
-            <AuthWrapper>
-              <Bookmark />
-            </AuthWrapper>
-          }
-        ></Route>
-        <Route
-          path="/likepage"
-          element={
-            <AuthWrapper>
-              <LikePage />
-            </AuthWrapper>
-          }
-        ></Route>
-        <Route
-          path="/profilepage/:username"
-          element={
-            <AuthWrapper>
-              <ProfilePage />
-            </AuthWrapper>
-          }
-        ></Route>
-      </Routes>
       <Footer />
       <ToastContainer />
     </div>

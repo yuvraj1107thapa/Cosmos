@@ -44,7 +44,6 @@ const ProfilePage = () => {
   console.log("user found", userDetail);
   return (
     <div className="landing-container">
-      <Navbar />
       <div className="profile-page-content">
         <div>
           <Profile user={userDetail} />
