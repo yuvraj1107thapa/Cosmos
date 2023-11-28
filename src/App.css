@@ -16,7 +16,7 @@ html {
 body {
   font-family: 'Roboto', sans-serif;
   overflow: hidden;
-  /* overflow-y: scroll; */
+  overflow-y: scroll;
   margin: 0;
   padding: 0;
   height:100vh;

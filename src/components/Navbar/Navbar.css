@@ -26,10 +26,10 @@
     .nav-desktop {
         display: flex;
         flex-direction: column;
-        margin-left: 10rem;
+        /* margin-left: 10rem; */
         margin-top: 1rem;
         max-width: 20rem;
-        min-height: 100vh;
+        min-height: 100%;
         border-right: 1px solid lightskyblue;
         gap: 1rem;
         flex-wrap: wrap;
@@ -77,6 +77,12 @@
         gap: 0.5rem;
         padding: 1rem;
         justify-self: flex-end;
+        margin-top: auto;
+        /* margin-bottom: 2rem; */
+    }
+
+    .nav-profile:hover{
+        cursor: pointer;
     }
 
     .nav-profile-pic {

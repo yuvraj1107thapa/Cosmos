@@ -4,6 +4,7 @@ import "../Home/Home.css"
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import { useState } from "react";
+import { NavLink } from "react-router-dom";
 
 
 const SignUp = () => {
@@ -19,6 +20,7 @@ const SignUp = () => {
         </div>
         <div className="signup-form">
             <h1>Cosmos</h1>
+            <h3>Sign Up</h3>
           <div className="signup-input">
             <label>First Name:</label>
             <input type="text" />
@@ -28,12 +30,12 @@ const SignUp = () => {
             <div className="pass-label"><input type={showPassword ? "text" :"password"} /> <div className="signup-icon" onClick={()=>setShowPassword(!showPassword)}>
 {showPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
             </div></div>
-
+           
             <button className="signup-btn">Sign Up</button>
-            <div className="signup-nav">Already have an account? <a href="/"> login here</a>
+            <div className="signup-nav">Already have an account? <NavLink to="/"> login here</NavLink>
             </div>
           </div>
-
+       
         </div>
       </div>
     </div>

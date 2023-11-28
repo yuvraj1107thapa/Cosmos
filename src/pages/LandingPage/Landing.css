@@ -1,0 +1,54 @@
+.landing-container {
+    display: flex;
+    gap: 1rem;
+    justify-content: space-evenly;
+}
+
+.feed {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.filter-post {
+    display: flex;
+    width: 100%;
+    /* border: 1px solid; */
+    border-radius: 0.2rem;
+    margin-top: 1rem;
+    box-shadow: 0 0 0.5rem 0.2rem hsla(260, 11%, 85%, 1);
+}
+
+.filter {
+    /* border: 1px solid gray; */
+    box-shadow: 0 0.4 0.5rem 0.2rem hsla(260, 11%, 85%, 1);
+    padding: 1rem;
+    flex-grow: 1;
+    font-size: 1.5rem;
+}
+
+.filter:hover {
+    cursor: pointer;
+    background-color: aliceblue;
+}
+
+.filter-content {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+}
+
+.filter-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem
+}
+.user-container{
+    display:flex;
+    flex-direction: column;
+    gap:1rem;
+    background-color: aliceblue;
+    padding: 1rem;
+    z-index: 0.4;
+
+}

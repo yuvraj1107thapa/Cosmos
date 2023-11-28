@@ -2,13 +2,15 @@ import React, { useState } from "react";
 import "./Home.css";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import VisibilityIcon from "@mui/icons-material/Visibility";
+import { NavLink, Navigate } from "react-router-dom";
 
 const Home = () => {
   const [showPassword, setShowPassword] = useState(false);
   return (
     <div className="home-main">
       <div className="home-container">
-        <img id="login-img"
+        <img
+          id="login-img"
           src="https://res.cloudinary.com/dgoldjr3g/image/upload/v1686586617/NegProjects/SocialMedia/undraw_social_sharing_re_pvmr_srlnml.svg"
           alt=""
         />
@@ -35,10 +37,18 @@ const Home = () => {
                 </div>
               </div>
               {/* <div className="login-buttons"> */}
-                <button>Login</button>
-                <button>Login as Guest</button>
+              <button>Login</button>
+
+              <button>
+                {" "}
+                <NavLink to="/landing ">Login as Guest</NavLink>
+              </button>
+
               {/* </div> */}
-              <div className="signup-nav">Don't have an account? <a href="/">Sign up here</a></div>
+              <div className="signup-nav">
+                Don't have an account?{" "}
+                <NavLink to="/signup">Sign up here</NavLink>
+              </div>
             </div>
           </div>
         </div>

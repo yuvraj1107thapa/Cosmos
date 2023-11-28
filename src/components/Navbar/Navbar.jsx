@@ -6,7 +6,7 @@ import ControlPointIcon from "@mui/icons-material/ControlPoint";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import PersonIcon from "@mui/icons-material/Person";
-import CreatePost from "../CreatePost/CreatePost";
+import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
   return (
@@ -35,21 +35,23 @@ const Navbar = () => {
       {/* navbar for desktop view */}
       <div className="nav-desktop">
         <div>
-          <h1>Cosmos</h1>
+          <h1>ShareMate</h1>
         </div>
-        <div className="nav-content">
+        <NavLink to="/landing"> <div className="nav-content">
           {" "}
           <div className="nav-icons">
             <HomeIcon />
           </div>
           Home
-        </div>
-        <div className="nav-content">
-          <div className="nav-icons">
-            <ExploreIcon />
-          </div>{" "}
-          Explore
-        </div>
+        </div></NavLink>
+        <NavLink to="/explore"><div className="nav-content">
+         
+            <div className="nav-icons">
+              <ExploreIcon />
+            </div>{" "}
+            Explore
+          
+        </div></NavLink>
         <div className="nav-content">
           {" "}
           <div className="nav-icons">
@@ -70,7 +72,7 @@ const Navbar = () => {
           Profile
         </div>
 
-        <button>Create New Post</button>
+        <button> New Post</button>
 
         <div className="nav-profile">
           <img
@@ -84,7 +86,6 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-    
     </div>
   );
 };

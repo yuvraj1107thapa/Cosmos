@@ -7,7 +7,7 @@ const SearchBar = () => {
     <div className='search-main'>
 
         <div className='search-input'>
-            <input type="text" /><div className='search-icon'> <SearchIcon /></div>
+            <input type="text" placeholder='Search users...'/><div className='search-icon'> <SearchIcon /></div>
         </div>
         {/* {text && (
         <div className="dataResults">
