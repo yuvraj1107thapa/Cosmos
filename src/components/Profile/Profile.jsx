@@ -6,7 +6,8 @@ import { AsideDataContext } from "../../contexts/AsideDataContext";
 
 const Profile = ({ user }) => {
   const { state } = useContext(DataContext);
-  const { followUser, unfollowUser } = useContext(AsideDataContext);
+  const { followUser, unfollowUser, setEditProfile } =
+    useContext(AsideDataContext);
 
   const userFollow = state?.userToFollow?.find(
     ({ username }) => username === user.username
@@ -25,6 +26,7 @@ const Profile = ({ user }) => {
       return "Edit Profile";
     }
   };
+
   const clickHandler = (event) => {
     if (event.target.innerText === "Follow") {
       followUser(user._id);
@@ -32,7 +34,7 @@ const Profile = ({ user }) => {
     } else if (event.target.innerText === "Following") {
       unfollowUser(user._id);
     } else {
-      console.log("Edit Profile");
+      setEditProfile(true);
     }
   };
   return (

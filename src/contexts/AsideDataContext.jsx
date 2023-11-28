@@ -4,14 +4,23 @@ import axios from "axios";
 import { useContext } from "react";
 import { DataContext } from "./DataContext";
 import toastNotify from "../utils/toastNotify";
+import { useRef } from "react";
 
 export const AsideDataContext = createContext();
 
 export const AsideDataContextProvider = ({ children }) => {
   const [searchUser, setSearchUser] = useState("");
   const [editPost, setEditPost] = useState(false); //to open the dropdow for edit option
-  const { encodedToken, dispatch, state, setUserLoginData, userLoginData } =
-    useContext(DataContext);
+  const [editProfile, setEditProfile] = useState(false)
+  const {
+    encodedToken,
+    dispatch,
+    state,
+    setUserLoginData,
+    setCreatePost,
+  } = useContext(DataContext);
+
+  const { editPostId } = useContext(DataContext);
 
   const deletePost = async (postId) => {
     console.log(encodedToken);
@@ -28,7 +37,6 @@ export const AsideDataContextProvider = ({ children }) => {
         },
       });
       //   const data = await response.json();
-      console.log(response);
       dispatch({ type: "GET_POSTS", payload: response.data.posts });
       toastNotify("success", "Post Deleted successfully!");
     } catch (e) {
@@ -39,8 +47,8 @@ export const AsideDataContextProvider = ({ children }) => {
   const getPostData = async (id) => {
     try {
       const { data } = await axios.get(`/api/posts/${id}`);
-      //   setCreatePost({ text: data.post.content, media: data.post.image });
-      console.log(data);
+      setCreatePost({ text: data.post.content, media: data.post.image });
+      editPostId.current = data.post._id;
     } catch (e) {
       console.log(e);
     }
@@ -100,6 +108,7 @@ export const AsideDataContextProvider = ({ children }) => {
         deletePost,
         followUser,
         unfollowUser,
+        editProfile, setEditProfile
       }}
     >
       {children}

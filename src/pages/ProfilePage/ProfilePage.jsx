@@ -18,19 +18,19 @@ const ProfilePage = () => {
 
   const { username } = useParams();
 
-  useEffect(() => {
-    (async () => {
-      // console.log(state.userLoggedIn);
-      try {
-        const response = await axios.get(
-          `/api/posts/user/${state.userLoggedIn}`
-        );
-        setUserPost(response.data.posts);
-      } catch (e) {
-        console.log(e);
-      }
-    })();
-  }, []);
+  // useEffect(() => {
+  //   (async () => {
+  //     // console.log(state.userLoggedIn);
+  //     try {
+  //       const response = await axios.get(
+  //         `/api/posts/user/${state.userLoggedIn}`
+  //       );
+  //       setUserPost(response.data.posts);
+  //     } catch (e) {
+  //       console.log(e);
+  //     }
+  //   })();
+  // }, []);
 
   //to get all the posts of specified user
   const postOfUser = state?.posts?.filter(

@@ -16,7 +16,7 @@ import Modal from "../../components/Modal/Modal";
 
 const PostCard = ({ data }) => {
   const { state, likePost, bookMarkPost } = useContext(DataContext);
-  const { deletePost, setEditPost,getPostData} = useContext(AsideDataContext);
+  const { deletePost, setEditPost, getPostData } = useContext(AsideDataContext);
   const [userData, setUserData] = useState([]); //to show the user details in individual post in landing page
   const [modifyPost, setModifyPost] = useState(false); //to open the dropdow for edit option
 
@@ -31,6 +31,10 @@ const PostCard = ({ data }) => {
   const postBookmarked = state?.bookmarkedPosts?.find((id) => id === data._id);
 
   //get user profile pic
+  const picOfUser = state?.users?.find(
+    (user) => user.username === localStorage.getItem("loggedUser")
+  );
+  console.log("pc", picOfUser);
   useEffect(() => {
     (async () => {
       try {
@@ -48,16 +52,19 @@ const PostCard = ({ data }) => {
 
   //get the date in format
   const d = new Date(data.createdAt);
-console.log("photo",userData)
+  console.log("photo", userData);
   return (
     <div>
       <div className="post-container">
         <div className="post-title">
-          <img src={userData.avatarUrl} alt="" className="nav-profile-pic" />
+          <img src={picOfUser?.avatarUrl} alt="" className="nav-profile-pic" />
 
           <div className="post-date">
             <p>
-              <b>{userData?.firstName} {userData?.lastName}</b> {d.toDateString()}
+              <b>
+                {userData?.firstName} {userData?.lastName}
+              </b>{" "}
+              {d.toDateString()}
             </p>
             <p>@{data?.username}</p>
           </div>
@@ -74,7 +81,7 @@ console.log("photo",userData)
                     className="hover"
                     onClick={() => {
                       setEditPost(true);
-                      getPostData(data._id)
+                      getPostData(data._id);
                     }}
                   >
                     Edit

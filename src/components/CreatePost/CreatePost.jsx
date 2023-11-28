@@ -16,8 +16,8 @@ const CreatePost = () => {
     createPost,
     setCreatePost,
   } = useContext(DataContext);
-  const { setOpenModal } = useContext(DataContext);
 
+  const { editPost, setEditPost } = useContext(AsideDataContext);
   return (
     <div>
       <div className="new-post-container">
@@ -49,7 +49,7 @@ const CreatePost = () => {
               name="avatar"
               accept="image/png, image/jpeg video/*"
               onChange={(event) =>
-                setCreatePost({ ...createPost, media: event.target.value })
+                setCreatePost({ ...createPost, media: event.target.files[0] })
               }
             />
             <span className={createPost.media && "media-loaded"}>
@@ -61,13 +61,12 @@ const CreatePost = () => {
             className="follow-btn post-btn"
             onClick={() => {
               createPostHandler(createPost);
+              setEditPost(false);
               setCreatePost({ text: "", media: "" });
-              setOpenModal(false);
               dispatch({ type: "CLEAR_FILTER" });
-              toastNotify("success", "Posted successfully!");
             }}
           >
-            Post
+            {editPost ? "Update" : "Post"}
           </button>
         </div>
         {/* <div className="image-added">hel</div> */}

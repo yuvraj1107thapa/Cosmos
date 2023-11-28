@@ -1,6 +1,6 @@
 import React from "react";
 import SearchIcon from "@mui/icons-material/Search";
-import ClearIcon from '@mui/icons-material/Clear';
+import ClearIcon from "@mui/icons-material/Clear";
 import "./SearchBar.css";
 import { useContext } from "react";
 import { AsideDataContext } from "../../contexts/AsideDataContext";
@@ -30,32 +30,42 @@ const SearchBar = () => {
         />
         <div className="search-icon">
           {" "}
-         {searchUser ? <div id="clearBtn" onClick={()=>setSearchUser("")}> <ClearIcon /> </div> : <SearchIcon />}
+          {searchUser ? (
+            <div id="clearBtn" onClick={() => setSearchUser("")}>
+              {" "}
+              <ClearIcon />{" "}
+            </div>
+          ) : (
+            <SearchIcon />
+          )}
         </div>
       </div>
       {searchUser && (
         <div className="dataResults">
-          {searchResult.length === 0 ? <h3 className="nav-profile">No results found</h3> :
-          searchResult.map((ele) => {
-            return (
-              <NavLink to={`/profilepage/${ele.username}`}>
-                {/* <p>{ele.username}</p> */}
-                <div className="nav-profile">
-                  <img
-                    src={ele?.avatarUrl}
-                    alt=""
-                    className="nav-profile-pic"
-                  />
-                  <div>
-                    <h4>
-                      {ele.firstName} {ele.lastName}
-                    </h4>
-                    <span>@{ele.username}</span>
+          {searchResult.length === 0 ? (
+            <h3 className="nav-profile">No user found</h3>
+          ) : (
+            searchResult.map((ele) => {
+              return (
+                <NavLink to={`/profilepage/${ele.username}`}>
+                  {/* <p>{ele.username}</p> */}
+                  <div className="nav-profile">
+                    <img
+                      src={ele?.avatarUrl}
+                      alt=""
+                      className="nav-profile-pic"
+                    />
+                    <div>
+                      <h4>
+                        {ele.firstName} {ele.lastName}
+                      </h4>
+                      <span>@{ele.username}</span>
+                    </div>
                   </div>
-                </div>
-              </NavLink>
-            );
-          })}
+                </NavLink>
+              );
+            })
+          )}
           {/* <div className="dataResults">
           {searchResult.length === 0 && <h5>No results found</h5>}
           </div> */}

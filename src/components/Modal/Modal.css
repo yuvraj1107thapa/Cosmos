@@ -44,3 +44,37 @@
 .body {
     flex-grow: 1;
 }
+
+/* profile modal */
+.edit-profile-container {
+    width: 35rem;
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem;
+}
+
+.edit-profile-container label {
+    padding: 0.5rem 0;
+}
+
+.edit-image-list {
+    display: inline;
+    gap: 0.5rem;
+    width: fit-content;
+}
+
+.edit-image {
+    width: 20%;
+    margin-right: 0.5rem;
+}
+
+.edit-image:hover {
+    cursor: pointer;
+    border: 2px solid rgb(96, 89, 89);
+    border-radius: 50%;
+}
+.edit-image:active{
+    border: 2px solid rgb(96, 89, 89);
+    border-radius: 50%;
+
+}

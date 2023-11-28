@@ -73,6 +73,9 @@
         cursor: pointer;
     }
 
+    .nav-profile-container{
+        margin-top: auto;
+    }
     .nav-profile {
         display: flex;
         flex-wrap: wrap;
@@ -80,7 +83,7 @@
         gap: 0.5rem;
         padding: 1rem;
         justify-self: flex-end;
-        margin-top: auto;
+        
         /* margin-bottom: 2rem; */
     }
 

@@ -3,6 +3,10 @@ import { initialValue, reducerFun } from "../reducers/dataReducer";
 import { useState } from "react";
 import axios from "axios";
 import { useEffect } from "react";
+import { useContext } from "react";
+import { AsideDataContext } from "./AsideDataContext";
+import { useRef } from "react";
+import toastNotify from "../utils/toastNotify";
 
 export const DataContext = createContext();
 
@@ -13,6 +17,8 @@ export const DataContextProvider = ({ children }) => {
   const [userLoginData, setUserLoginData] = useState({});
   const [openModal, setOpenModal] = useState(false); //create post modal
   const [createPost, setCreatePost] = useState({ text: "", media: "" }); //to create ans post the data
+  const editPostId = useRef("");
+
   const likePost = async (postId, value) => {
     if (!value) {
       try {
@@ -86,19 +92,47 @@ export const DataContextProvider = ({ children }) => {
     }
   };
   const createPostHandler = async (postData) => {
-    try {
-      const response = await axios.post(
-        "/api/posts",
-        { postData: { content: postData.text, image: postData.media } }, //{..post} and {post}
-        {
-          headers: {
-            authorization: encodedToken,
+    const findPost = state?.posts?.find(
+      ({ _id }) => _id === editPostId.current
+    );
+    console.log("edit", findPost);
+    if (findPost) {
+      try {
+        const response = await axios.post(
+          `/api/posts/edit/${editPostId.current}`,
+          {
+            postData: { content: postData.text, image: postData.media },
           },
-        }
-      );
-      console.log(response);
-      dispatch({ type: "GET_POSTS", payload: response.data.posts });
-    } catch (e) {}
+          {
+            headers: {
+              authorization: encodedToken,
+            },
+          }
+        );
+        //update the posts with the edited content
+        dispatch({ type: "GET_POSTS", payload: response.data.posts });
+        toastNotify("success", "Updated successfully!");
+      } catch (e) {
+        console.log(e);
+      }
+    } else {
+      try {
+        const response = await axios.post(
+          "/api/posts",
+          { postData: { content: postData.text, image: postData.media } }, //{..post} and {post}
+          {
+            headers: {
+              authorization: encodedToken,
+            },
+          }
+        );
+        console.log("new post", response);
+        dispatch({ type: "GET_POSTS", payload: response.data.posts });
+        toastNotify("success", "Posted successfully!");
+      } catch (e) {
+        console.log(e);
+      }
+    }
   };
 
   const setFilter = (value) => {
@@ -162,6 +196,7 @@ export const DataContextProvider = ({ children }) => {
         setEncodedToken,
         createPost,
         setCreatePost,
+        editPostId,
       }}
     >
       {children}

@@ -23,6 +23,7 @@ import { DataContext } from "./contexts/DataContext";
 import Modal from "./components/Modal/Modal";
 import axios from "axios";
 import { AsideDataContext } from "./contexts/AsideDataContext";
+import ProfileModal from "./components/Modal/ProfileModal";
 
 function App() {
   const {
@@ -33,7 +34,8 @@ function App() {
     openModal,
     setOpenModal,
   } = useContext(DataContext);
-  const { editPost, setEditPost } = useContext(AsideDataContext);
+
+  const { editPost, setEditPost,editProfile, setEditProfile} = useContext(AsideDataContext);
 
   useEffect(() => {
     const encodedToken = localStorage.getItem("token");
@@ -69,6 +71,7 @@ function App() {
     <div className="App">
       {editPost && <Modal open={setEditPost} />}
       {openModal && <Modal open={setOpenModal} />}
+      {editProfile && <ProfileModal open={setEditProfile} />}
 
       <Routes>
         <Route path="/mockman" element={<Mockman />}></Route>
