@@ -47,9 +47,13 @@ const Navbar = () => {
       {/* navbar for desktop view */}
       <div className="nav-desktop">
         <div>
-          <h1>Cosmos</h1>
+          <h1>
+            <span className="text-primary">Share</span>
+            <span className="text-secondary-dark">M</span>
+            <span className="text-primary">ate</span>
+          </h1>
         </div>
-        <NavLink to="/landing">
+        <NavLink className="not-a-link" to="/landing">
           {" "}
           <div className="nav-content">
             {" "}
@@ -59,7 +63,7 @@ const Navbar = () => {
             Home
           </div>
         </NavLink>
-        <NavLink to="/explore">
+        <NavLink className="not-a-link" to="/explore">
           <div className="nav-content">
             <div className="nav-icons">
               <ExploreIcon />
@@ -67,7 +71,7 @@ const Navbar = () => {
             Explore
           </div>
         </NavLink>
-        <NavLink to="/likepage">
+        <NavLink className="not-a-link" to="/likepage">
           <div className="nav-content">
             {" "}
             <div className="nav-icons">
@@ -76,7 +80,7 @@ const Navbar = () => {
             Liked Posts
           </div>
         </NavLink>
-        <NavLink to="/bookmark">
+        <NavLink className="not-a-link" to="/bookmark">
           {" "}
           <div className="nav-content">
             <div className="nav-icons">
@@ -85,7 +89,7 @@ const Navbar = () => {
             Bookmarks
           </div>
         </NavLink>
-        <NavLink to={`/profilepage/${userLoggedIn}`}>
+        <NavLink className="not-a-link" to={`/profilepage/${userLoggedIn}`}>
           <div className="nav-content">
             <div className="nav-icons">
               <PersonIcon />
@@ -93,7 +97,7 @@ const Navbar = () => {
             Profile
           </div>
         </NavLink>
-        <div
+        <NavLink to=""> <div
           className="nav-content"
           onClick={() => {
             localStorage.clear();
@@ -101,16 +105,17 @@ const Navbar = () => {
             navigate("/");
           }}
         >
-          <div className="nav-icons">
+         <div className="nav-icons">
             <LogoutIcon />
           </div>{" "}
           Logout
         </div>
+        </NavLink>
 
         <button onClick={() => setOpenModal(true)}> New Post</button>
         <NavLink
           to={`/profilepage/${userLoggedIn}`}
-          className="nav-profile-container"
+          className="nav-profile-container not-a-link"
         >
           <div className="nav-profile">
             <img

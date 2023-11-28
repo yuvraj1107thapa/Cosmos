@@ -15,7 +15,7 @@ const UserList = ({ user }) => {
       <div>
         <div className="userlist">
           <img src={user.avatarUrl} alt="" className="nav-profile-pic" />
-          <NavLink className="user-detail" to={`/profilepage/${user.username}`}>
+          <NavLink className="user-detail not-a-link" to={`/profilepage/${user.username}`}>
             {" "}
             <div>
               <h4>

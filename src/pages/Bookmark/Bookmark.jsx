@@ -16,24 +16,13 @@ const Bookmark = () => {
   useEffect(() => {
     (async () => {
       try {
-        // const response = await axios.get(
-        //   "/api/users/bookmark",
-        //   {},
-        //   {
-        //     headers: {
-        //       authorization: encodedToken,
-        //     },
-        //   }
-        // );
-
-        const response = await fetch("/api/users/bookmark", {
-          method: "GET",
+        const { data } = await axios.get("/api/users/bookmark", {
           headers: {
             authorization: encodedToken,
           },
         });
-        const data = await response.json();
         setBookmarkData(data.bookmarks);
+        console.log("book", data);
       } catch (e) {
         console.log(e);
       }

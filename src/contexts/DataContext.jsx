@@ -2,14 +2,15 @@ import { createContext, useReducer } from "react";
 import { initialValue, reducerFun } from "../reducers/dataReducer";
 import { useState } from "react";
 import axios from "axios";
-import { useEffect } from "react";
 import { useRef } from "react";
 import toastNotify from "../utils/toastNotify";
+import { useEffect } from "react";
 
 export const DataContext = createContext();
 
 export const DataContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducerFun, initialValue);
+  const [loading, setLoading] = useState(false)
   const [encodedToken, setEncodedToken] = useState(""); //gloabally access the local storage token
   const [userLoggedIn, setUserLoggedIn] = useState(""); //gloabally access the local storage token
   const [userPost, setUserPost] = useState([]);
@@ -174,7 +175,8 @@ export const DataContextProvider = ({ children }) => {
       console.log(e);
     }
   };
-  console.log("new", state);
+  
+  
 
   return (
     <DataContext.Provider
@@ -199,6 +201,7 @@ export const DataContextProvider = ({ children }) => {
         editPostId,
         userLoggedIn,
         setUserLoggedIn,
+        loading, setLoading
       }}
     >
       {children}

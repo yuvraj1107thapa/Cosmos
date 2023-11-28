@@ -4,17 +4,23 @@ import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import { NavLink } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthContext";
-
+import { DataContext } from "../../contexts/DataContext";
 
 const Home = () => {
   const [showPassword, setShowPassword] = useState(false);
   const { loginInput, setLoginInput, loginHandler } = useContext(AuthContext);
+  const { setEncodedToken } = useContext(DataContext);
 
-  const creds = { username: "yuvrajthapa", password: "yuvraj123" };
+  const creds = { username: "bhumika27", password: "bhumi27" };
 
   useEffect(() => {
     setLoginInput({ username: "", password: "" });
-  },[]);
+  }, []);
+
+  useEffect(() => {
+    localStorage.clear();
+    setEncodedToken("");
+  }, []);
 
   return (
     <div className="home-main">
@@ -27,7 +33,11 @@ const Home = () => {
 
         <div className="login">
           <div className="login-container">
-            <h1>Cosmos</h1>
+            <h1>
+              <span className="text-primary">Share</span>
+              <span className="text-secondary-dark">M</span>
+              <span className="text-primary">ate</span>
+            </h1>
             <div className="login-form">
               <label>username:</label>
               <input
@@ -59,9 +69,9 @@ const Home = () => {
                 </div>
               </div>
               {/* <div className="login-buttons"> */}
-              <button onClick={() => loginHandler(loginInput)}>Login</button>
+              <button className="btn-primary" onClick={() => loginHandler(loginInput)}>Login</button>
 
-              <button
+              <button id="btn-default" className="btn-default"
                 onClick={() => {
                   setLoginInput(creds);
                   loginHandler(creds);

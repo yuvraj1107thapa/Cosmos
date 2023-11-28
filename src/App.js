@@ -25,17 +25,18 @@ import axios from "axios";
 import { AsideDataContext } from "./contexts/AsideDataContext";
 import ProfileModal from "./components/Modal/ProfileModal";
 import AuthWrapper from "./components/Authenticate/AuthWrapper";
+import { MoonLoadeer } from "react-spinners";
+import { Discuss, TailSpin } from "react-loader-spinner";
 
 function App() {
   const {
     setEncodedToken,
-    getUserLoggedInData,
+    setLoading,
     state,
     dispatch,
     openModal,
     setOpenModal,
-    userLoggedIn,
-    setUserLoginData,
+    loading,
     encodedToken,
   } = useContext(DataContext);
 
@@ -45,8 +46,7 @@ function App() {
   useEffect(() => {
     const encodedToken = localStorage.getItem("token");
     setEncodedToken(encodedToken ?? "");
-    console.log("abcd", localStorage.getItem("userData"));
-    // setUserLoginData();
+    
   }, []);
 
   useEffect(() => {
@@ -62,6 +62,19 @@ function App() {
     })();
   }, []);
 
+  useEffect(() => {
+    (async () => {
+      try {
+        setLoading(true);
+        const response = await axios.get("/api/posts");
+        // console.log(response);
+        dispatch({ type: "GET_POSTS", payload: response.data.posts });
+        setLoading(false);
+      } catch (e) {
+        console.log(e);
+      }
+    })();
+  }, [encodedToken]);
   // useEffect(() => {
   //   getUserLoggedInData();
   // }, [userLoggedIn]);
@@ -72,11 +85,22 @@ function App() {
   };
   return (
     <div className="App">
+      {loading && (
+        <div className="loader">
+          <Discuss
+            height="200"
+            width="200"
+            ariaLabel="tail-spin-loading"
+            radius="1"
+            color="#FF7E95"
+          />
+        </div>
+      )}
       {editPost && <Modal open={setEditPost} />}
       {openModal && <Modal open={setOpenModal} />}
       {editProfile && <ProfileModal open={setEditProfile} />}
       <div className="main">
-        {localStorage.getItem("token") && <Navbar />}
+        {encodedToken && <Navbar />}
         <div className="section">
           <Routes>
             <Route path="/mockman" element={<Mockman />}></Route>

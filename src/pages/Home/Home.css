@@ -92,132 +92,20 @@ min-height: 20%;
 .login-form button {
     margin: 1rem 0rem;
     font-size: 1.2rem;
-    padding: 0.5rem
+    padding: 0.5rem;
+    border: none;
+    border-radius: 0.3rem;
 }
 
 .login-form button:hover {
     cursor: pointer;
+    box-shadow: 0 2px 6px 3px var(--clr-secondary);
 }
-
-/* .login-buttons{
-    display: flex;
-    flex-direction: column;
-} */
-
+#btn-default{
+    border: 1px solid var(--clr-primary-dark);
+    background-color: white;
+}
 .signup-nav {
     font-size: 1.2rem;
     text-align: center;
-}
-
-#login-img {
-    display: none;
-}
-
-
-@media screen and (min-width:768px) {
-    #login-img {
-        display: none;
-    }
-
-}
-
-@media screen and (min-width:1198px) {
-    #login-img {
-        display: block;
-    }
-
-    .home-container {
-        display: flex;
-        justify-content: space-evenly;
-        align-items: center;
-        /* margin-top: 4rem; */
-        height: 100vh;
-        /* margin:auto */
-    }
-
-    .login {
-        width: 40%
-    }
-
-    .login-container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        /* border: 1px solid black; */
-        box-shadow: 0 0 0.5rem 0.2rem hsla(260, 11%, 85%, 1);
-        gap: 2rem;
-        padding: 2rem;
-    }
-
-    .login-form {
-        display: flex;
-        flex-direction: column;
-        /* border: 1px solid; */
-        padding: 1rem;
-        font-size: 1.5rem;
-        width: 80%;
-    }
-
-    .login-form input {
-        /* padding: 1rem; */
-        font-size: 1.3rem;
-        padding: 0.5rem;
-    }
-
-    .login-form input {
-        margin: 1rem 0rem;
-    }
-
-    .password {
-        position: relative;
-    }
-
-    .password-container {
-        display: flex;
-        flex-direction: column;
-        gap: 1rem
-    }
-
-    .input-pass-div {
-        border: 1px solid gray;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding-right: 0.3rem;
-        width: 100%;
-        flex-wrap: wrap;
-    }
-
-    .input-pass-div input {
-        margin: 0rem;
-        width: 80%;
-    }
-
-    .input-password {
-        border: none;
-    }
-
-    #password-eye {
-        cursor: pointer;
-    }
-
-    .login-form button {
-        margin: 1rem 0rem;
-        font-size: 1.2rem;
-        padding: 0.5rem
-    }
-
-    .login-form button:hover {
-        cursor: pointer;
-    }
-
-    /* .login-buttons{
-    display: flex;
-    flex-direction: column;
-} */
-
-    .signup-nav {
-        font-size: 1.2rem;
-        text-align: center;
-    }
 }

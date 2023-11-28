@@ -37,7 +37,7 @@ const ProfilePage = () => {
   );
 
   //to get the user detail of specified user
-  const userDetail = state?.users.find(
+  const userDetail = state?.users?.find(
     (user) => user.username.toString() === username
   );
 

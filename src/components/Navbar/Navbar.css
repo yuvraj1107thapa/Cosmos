@@ -32,7 +32,7 @@
         margin-top: 1rem;
         max-width: 20rem;
         min-height: 100vh;
-        border-right: 1px solid lightskyblue;
+        border-right: 1px solid var(--clr-primary);
         gap: 1rem;
         flex-wrap: wrap;
         padding-right: 0.5rem;
@@ -54,7 +54,7 @@
     }
 
     .nav-content:hover {
-        background-color: lightskyblue;
+        background-color: var(--clr-off-secondary);
         cursor: pointer;
     }
 
@@ -63,7 +63,7 @@
     }
 
     .nav-desktop button {
-        background-color: lightskyblue;
+        background-color: var(--clr-off-secondary);
         width: 80%;
         border-radius: 3rem;
         border: none;
@@ -72,10 +72,13 @@
         font-size: 1.3rem;
         cursor: pointer;
     }
-
-    .nav-profile-container{
+    .nav-desktop button:hover{
+        background-color: var(--clr-secondary);
+    }
+    .nav-profile-container {
         margin-top: auto;
     }
+
     .nav-profile {
         display: flex;
         flex-wrap: wrap;
@@ -83,7 +86,7 @@
         gap: 0.5rem;
         padding: 1rem;
         justify-self: flex-end;
-        
+
         /* margin-bottom: 2rem; */
     }
 
@@ -106,4 +109,8 @@
 
     } */
 
+}
+
+.not-a-link {
+    color: black;
 }

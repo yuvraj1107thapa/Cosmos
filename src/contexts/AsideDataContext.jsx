@@ -20,18 +20,11 @@ export const AsideDataContextProvider = ({ children }) => {
   const deletePost = async (postId) => {
     console.log(encodedToken);
     try {
-      //   const response = await fetch(`/api/posts/${postId}`, {
-      //     method: "DELETE",
-      //     headers: {
-      //       authorization: encodedToken,
-      //     },
-      //   });
       const response = await axios.delete(`/api/posts/${postId}`, {
         headers: {
           authorization: encodedToken,
         },
       });
-      //   const data = await response.json();
       dispatch({ type: "GET_POSTS", payload: response.data.posts });
       toastNotify("success", "Post Deleted successfully!");
     } catch (e) {

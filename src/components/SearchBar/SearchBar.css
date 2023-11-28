@@ -71,7 +71,7 @@ a {
 }
 
 a:hover {
-    background-color: lightgrey;
+    background-color: var(--clr-off-secondary);
 }
 
 #clearBtn {
