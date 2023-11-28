@@ -9,12 +9,13 @@ import { useEffect } from "react";
 export const AuthContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
+  const {setEncodedToken } = useContext(DataContext);
+
   const { dispatch } = useContext(DataContext);
   const [loginInput, setLoginInput] = useState({
     username: "",
     password: "",
   });
-
 
   //signup state management
   const [signupInput, setSignupInput] = useState({
@@ -35,7 +36,10 @@ export const AuthContextProvider = ({ children }) => {
         });
 
         if (status === 200) {
+          
           localStorage.setItem("token", data.encodedToken);
+          localStorage.setItem("loggedUser",data.foundUser.username)
+          setEncodedToken(data.encodedToken);
           dispatch({ type: "SET_USERNAME", payload: creds.username });
           navigate("/landing");
           toastNotify("success", "You're successfully logged in!");
@@ -77,6 +81,7 @@ export const AuthContextProvider = ({ children }) => {
 
         if (response.status === 201) {
           localStorage.setItem("token", response.data.encodedToken);
+          setEncodedToken(response.data.encodedToken);
           navigate("/landing");
           // setUserLoggedIn(signupInput.username);
           toastNotify(

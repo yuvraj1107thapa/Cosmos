@@ -1,17 +1,31 @@
-import React from 'react'
+import React from "react";
 import SearchIcon from "@mui/icons-material/Search";
-import "./SearchBar.css"
+import "./SearchBar.css";
+import { useContext } from "react";
+import { AsideDataContext } from "../../contexts/AsideDataContext";
+import { DataContext } from "../../contexts/DataContext";
 
 const SearchBar = () => {
-  return (
-    <div className='search-main'>
+  const { searchUser, setSearchUser } = useContext(AsideDataContext);
+  const { state } = useContext(DataContext);
 
-        <div className='search-input'>
-            <input type="text" placeholder='Search users...'/><div className='search-icon'> <SearchIcon /></div>
+  return (
+    <div className="search-main">
+      <div className="search-input">
+        <input
+          type="text"
+          value={searchUser}
+          placeholder="Search users..."
+          onChange={(event) => setSearchUser(event.target.value)}
+        />
+        <div className="search-icon">
+          {" "}
+          <SearchIcon />
         </div>
-        {/* {text && (
+      </div>
+      {searchUser && (
         <div className="dataResults">
-          {filterArray.map((ele, key) => {
+          {state.users.map((ele, key) => {
             return (
               <a
                 className="dataItem"
@@ -19,15 +33,15 @@ const SearchBar = () => {
                 target="_blank"
                 rel="noreferrer"
               >
-                <p>{ele.title}</p>
+                <p>{ele.username}</p>
               </a>
             );
           })}
-          {filterArray.length === 0 && <p>No results found</p>}
+          {state.users.length === 0 && <p>No results found</p>}
         </div>
-      )} */}
+      )}
     </div>
-  )
-}
+  );
+};
 
-export default SearchBar
+export default SearchBar;

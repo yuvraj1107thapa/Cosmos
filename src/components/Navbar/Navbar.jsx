@@ -13,10 +13,9 @@ import { useEffect } from "react";
 import axios from "axios";
 
 const Navbar = () => {
-  const { userLoginData,dispatch } = useContext(DataContext);
+  const { userLoginData, dispatch, setOpenModal } = useContext(DataContext);
   const navigate = useNavigate();
 
- 
   return (
     <div className="nav-main">
       <div className="nav-container">
@@ -63,13 +62,14 @@ const Navbar = () => {
             Explore
           </div>
         </NavLink>
-        <NavLink to="/likepage"><div className="nav-content">
-          {" "}
-          <div className="nav-icons">
-            <FavoriteIcon />
+        <NavLink to="/likepage">
+          <div className="nav-content">
+            {" "}
+            <div className="nav-icons">
+              <FavoriteIcon />
+            </div>
+            Liked Posts
           </div>
-          Liked Posts
-        </div>
         </NavLink>
         <NavLink to="/bookmark">
           {" "}
@@ -102,11 +102,10 @@ const Navbar = () => {
           Logout
         </div>
 
-        <button> New Post</button>
-
+        <button onClick={() => setOpenModal(true)}> New Post</button>
         <div className="nav-profile">
           <img
-            src={userLoginData.avatarUrl}
+            src={userLoginData?.avatarUrl}
             alt=""
             className="nav-profile-pic"
           />

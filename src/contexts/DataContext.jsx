@@ -3,14 +3,17 @@ import { initialValue, reducerFun } from "../reducers/dataReducer";
 import axios from "axios";
 import { useEffect } from "react";
 import { useState } from "react";
+import { useContext } from "react";
+import { AuthContext } from "./AuthContext";
 
 export const DataContext = createContext();
 
 export const DataContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducerFun, initialValue);
+  const [encodedToken, setEncodedToken] = useState("");
   const [userPost, setUserPost] = useState([]);
-  const [userLoginData, setUserLoginData] = useState([]);
-  //   const { loginInput } = useContext(AuthContext);
+  const [userLoginData, setUserLoginData] = useState({});
+  const [openModal, setOpenModal] = useState(false); //create post modal
 
   const likePost = async (postId, value) => {
     if (!value) {
@@ -20,7 +23,7 @@ export const DataContextProvider = ({ children }) => {
           {},
           {
             headers: {
-              authorization: localStorage.getItem("token"),
+              authorization: encodedToken,
             },
           }
         );
@@ -36,7 +39,7 @@ export const DataContextProvider = ({ children }) => {
           {},
           {
             headers: {
-              authorization: localStorage.getItem("token"),
+              authorization: encodedToken,
             },
           }
         );
@@ -59,7 +62,7 @@ export const DataContextProvider = ({ children }) => {
           {},
           {
             headers: {
-              authorization: localStorage.getItem("token"),
+              authorization: encodedToken,
             },
           }
         );
@@ -75,7 +78,7 @@ export const DataContextProvider = ({ children }) => {
           {},
           {
             headers: {
-              authorization: localStorage.getItem("token"),
+              authorization: encodedToken,
             },
           }
         );
@@ -90,10 +93,10 @@ export const DataContextProvider = ({ children }) => {
     try {
       const response = await axios.post(
         "/api/posts",
-        { content: postData.text, image: postData.media },  //{..spost} and {post}
+        { postData: { content: postData.text, image: postData.media } }, //{..post} and {post}
         {
           headers: {
-            authorization: localStorage.getItem("token"),
+            authorization: encodedToken,
           },
         }
       );
@@ -102,36 +105,42 @@ export const DataContextProvider = ({ children }) => {
     } catch (e) {}
   };
 
-  const setFilter = (value) =>{
-    dispatch({type:"SET_FILTER",payload:value})
-  }
-  useEffect(() => {
-    (async () => {
-      try {
-        const response = await axios.get("/api/users");
-        dispatch({ type: "GET_USERS", payload: response.data.users });
-        // console.log("users in context", response);
-      } catch (e) {
-        console.log(e);
-      }
-    })();
-  }, []);
+  const setFilter = (value) => {
+    dispatch({ type: "SET_FILTER", payload: value });
+  };
+
+  // useEffect(() => {
+  //   (async () => {
+  //     try {
+  //       const response = await axios.get("/api/users");
+  //       dispatch({ type: "GET_USERS", payload: response.data.users });
+  //       // console.log("users in context", response);
+  //     } catch (e) {
+  //       console.log(e);
+  //     }
+  //   })();
+  // }, []);
 
   const getUserLoggedInData = async () => {
     try {
+      const valaue = state.users
       const user = state?.users?.find(
         (usr) => usr.username === state.userLoggedIn
       );
-      const response = await axios.get(`/api/users/${user._id}`);
-      setUserLoginData(response.data.user);
+      // const userList = await axios.get("/api/users");
+      // const user = userList.data.users?.find(
+      //   (usr) => usr.username === state.userLoggedIn
+      // );
+      console.log("gt user", user);
+      // const response = await axios.get(`/api/users/${user._id}`);
+      // console.log("check",response)
+      setUserLoginData(user);
     } catch (e) {
       console.log(e);
     }
   };
-
-  useEffect(() => {
-    getUserLoggedInData();
-  }, []);
+console.log("data",state)
+  console.log("dataContext", userLoginData);
 
   return (
     <DataContext.Provider
@@ -145,7 +154,11 @@ export const DataContextProvider = ({ children }) => {
         userLoginData,
         getUserLoggedInData,
         createPostHandler,
-        setFilter
+        setFilter,
+        openModal,
+        setOpenModal,
+        encodedToken,
+        setEncodedToken,
       }}
     >
       {children}

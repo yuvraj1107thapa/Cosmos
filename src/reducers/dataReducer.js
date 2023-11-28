@@ -45,9 +45,11 @@ export const initialValue = {
         return { ...state, filter: action.payload };
       }
   
+      case "CLEAR_FILTER": {
+        return { ...state, filter: "" };
+      }
       default: {
         return state;
       }
     }
   };
-  

@@ -1,0 +1,45 @@
+.modalContainer {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(58, 53, 53, 0.516);
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal {
+    background-color: white;
+    height: fit-content;
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0rem 0.3rem 0.1rem hsla(260, 11%, 85%, 1);
+    border-radius: 0.5rem;
+    padding: 1rem 0rem 0rem;
+}
+
+.cacelBtn {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.2rem 0.5rem;
+}
+
+#btnCancel {
+    background-color: rgb(185, 46, 46);
+    color: white;
+    font-weight: bold;
+    border: none;
+    padding: 0rem 0.5rem;
+    border-radius: 0.5rem;
+}
+
+#btnCancel:hover {
+    background-color: rgb(216, 68, 68);
+    cursor: pointer;
+
+}
+
+.body {
+    flex-grow: 1;
+}

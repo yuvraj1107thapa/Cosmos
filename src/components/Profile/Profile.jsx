@@ -9,17 +9,17 @@ const Profile = ({ user }) => {
   return (
     <div className="profile-main">
       <div className="profile-container">
-        <img className="profile-image" src={user.avatarUrl} alt="" />
+        <img className="profile-image" src={user?.avatarUrl} alt="" />
         <div className="username">
-          {user.firstName}
-          {user.lastName}
+          {user?.firstName}
+          {user?.lastName}
         </div>
-        <span className="user-id">@{user.username}</span>
+        <span className="user-id">@{user?.username}</span>
         <button className="profile-edit-btn">Edit Profile</button>
 
-        <div className="profile-bio">{user.bio}</div>
+        <div className="profile-bio">{user?.bio}</div>
         <div>
-          <a href="/">{user.website}</a>
+          <a href="/">{user?.website}</a>
         </div>
 
         <div className="follow-details">

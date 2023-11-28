@@ -12,7 +12,7 @@ import axios from "axios";
 
 const ProfilePage = () => {
   //   const { userLoggedIn } = useContext(AuthContext);
-const {userLoginData} = useContext(DataContext)
+  const { userLoginData } = useContext(DataContext);
 
   const { userPost, setUserPost, state } = useContext(DataContext);
 
@@ -35,12 +35,14 @@ const {userLoginData} = useContext(DataContext)
       <Navbar />
       <div className="profile-page-content">
         <div>
-          <Profile user={userLoginData}/>
+          <Profile user={userLoginData} />
         </div>
         <div>
-          {userPost.map((data) => (
-            <PostCard data={data} />
-          ))}
+          {[...userPost]
+            .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+            ?.map((data) => (
+              <PostCard data={data} />
+            ))}
         </div>
       </div>
     </div>

@@ -9,10 +9,17 @@ import UserList from "../../components/UserList/UserList";
 import FiberNewIcon from "@mui/icons-material/FiberNew";
 import WhatshotIcon from "@mui/icons-material/Whatshot";
 import { DataContext } from "../../contexts/DataContext";
+import Modal from "../../components/Modal/Modal";
 
 const Landing = () => {
-  const { state, dispatch, getUserLoggedInData, setFilter } =
-    useContext(DataContext);
+  const {
+    state,
+    dispatch,
+    getUserLoggedInData,
+    setFilter,
+    openModal,
+    setOpenModal,
+  } = useContext(DataContext);
 
   const data = state.filter
     ? [...state?.posts].sort((a, b) =>
@@ -22,13 +29,13 @@ const Landing = () => {
       )
     : [...state.posts];
 
-  console.log(data);
+  // console.log(data);
 
   useEffect(() => {
     (async () => {
       try {
         const response = await axios.get("/api/posts");
-        console.log(response);
+        // console.log(response);
         dispatch({ type: "GET_POSTS", payload: response.data.posts });
       } catch (e) {
         console.log(e);
@@ -54,6 +61,7 @@ const Landing = () => {
   return (
     <div className="landing-container">
       <Navbar />
+      {openModal && <Modal open={setOpenModal} />}
       <div className="feed">
         <div className="filter-container">
           <div className="filter-post">
@@ -80,12 +88,19 @@ const Landing = () => {
           <CreatePost />
         </div>
         {/* <PostCard /> */}
-        {data?.map((data) => (
-          <div key={data._id}>
-            {" "}
-            <PostCard data={data} />
-          </div>
-        ))}
+        {state.filter
+          ? data?.map((data) => (
+              <div key={data._id}>
+                {" "}
+                <PostCard data={data} />
+              </div>
+            ))
+          : data.reverse()?.map((data) => (
+              <div key={data._id}>
+                {" "}
+                <PostCard data={data} />
+              </div>
+            ))}
       </div>
 
       <div>

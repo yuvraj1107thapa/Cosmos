@@ -9,7 +9,7 @@
     border: 2px solid grey;
     width: 100%;
     border-radius: 0.3rem;
-
+    
 }
 
 .search-input:active {
@@ -21,6 +21,7 @@
     border: 0;
     font-size: 1rem;
     border-radius: 0.3rem;
+    flex-grow: 1;
 
 }
 
@@ -39,10 +40,10 @@ input:focus {
 }
 
 
-/* .dataResults {
+.dataResults {
     background-color: white;
-    width: 310px;
-    height: 200px;
+    width: inherit;
+    height: fit-content;
     overflow: hidden;
     overflow-y: auto;
     margin-top: 1rem;
@@ -75,4 +76,4 @@ a:hover {
 
 #clearBtn {
     cursor: pointer;
-}  */
+}

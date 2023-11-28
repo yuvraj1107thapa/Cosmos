@@ -5,6 +5,7 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import { NavLink } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthContext";
 
+
 const Home = () => {
   const [showPassword, setShowPassword] = useState(false);
   const { loginInput, setLoginInput, loginHandler } = useContext(AuthContext);

@@ -6,9 +6,11 @@ import Navbar from "../../components/Navbar/Navbar";
 import "./Bookmark.css";
 import UserList from "../../components/UserList/UserList";
 import SearchBar from "../../components/SearchBar/SearchBar";
+import { AuthContext } from "../../contexts/AuthContext";
 
 const Bookmark = () => {
   const [bookmarkData, setBookmarkData] = useState([]);
+  const { encodedToken } = useContext(DataContext);
   const { state } = useContext(DataContext);
 
   useEffect(() => {
@@ -19,7 +21,7 @@ const Bookmark = () => {
         //   {},
         //   {
         //     headers: {
-        //       authorization: localStorage.getItem("token"),
+        //       authorization: encodedToken,
         //     },
         //   }
         // );
@@ -27,7 +29,7 @@ const Bookmark = () => {
         const response = await fetch("/api/users/bookmark", {
           method: "GET",
           headers: {
-            authorization: localStorage.getItem("token"),
+            authorization: encodedToken,
           },
         });
         const data = await response.json();
