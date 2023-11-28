@@ -11,7 +11,7 @@ import WhatshotIcon from "@mui/icons-material/Whatshot";
 import { DataContext } from "../../contexts/DataContext";
 
 const Landing = () => {
-  const { state, dispatch } = useContext(DataContext);
+  const { state, dispatch, getUserLoggedInData } = useContext(DataContext);
 
   useEffect(() => {
     (async () => {
@@ -24,16 +24,20 @@ const Landing = () => {
       }
     })();
   }, []);
-  
+
+  // useEffect(() => {
+  //   (async () => {
+  //     try {
+  //       const response = await axios.get("/api/users");
+  //       dispatch({type:"GET_USERS",payload:response.data.users})
+  //     } catch (e) {
+  //       console.log(e);
+  //     }
+  //   })();
+  // }, []);
+
   useEffect(() => {
-    (async () => {
-      try {
-        const response = await axios.get("/api/users");
-        dispatch({type:"GET_USERS",payload:response.data.users})
-      } catch (e) {
-        console.log(e);
-      }
-    })();
+    getUserLoggedInData();
   }, []);
 
   return (

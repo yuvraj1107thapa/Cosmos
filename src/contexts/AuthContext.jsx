@@ -15,8 +15,6 @@ export const AuthContextProvider = ({ children }) => {
     password: "",
   });
 
-  //set the username when any user logs in
-  // const [userLoggedIn, setUserLoggedIn] = useState("");
 
   //signup state management
   const [signupInput, setSignupInput] = useState({
@@ -57,7 +55,7 @@ export const AuthContextProvider = ({ children }) => {
   };
 
   //   const loginasGuest = () => {
-  //     setLoginInput({ username: "yuvrajthapa", password: "yuvraj123" });
+  //     setLoginInput({ username: "bhumika27", password: "bhumi27" });
   //     loginHandler();
   //   };\
 
@@ -83,7 +81,7 @@ export const AuthContextProvider = ({ children }) => {
           // setUserLoggedIn(signupInput.username);
           toastNotify(
             "success",
-            "Welcome to Cosmos! You're successfully signed up!"
+            "Welcome to ShareMate! You're successfully signed up!"
           );
         }
       } catch (e) {

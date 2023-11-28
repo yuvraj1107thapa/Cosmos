@@ -8,9 +8,12 @@ import ShareIcon from "@mui/icons-material/Share";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 import { DataContext } from "../../contexts/DataContext";
+import { useEffect } from "react";
+import axios from "axios";
 
 const PostCard = ({ data }) => {
   const { state, likePost, bookMarkPost } = useContext(DataContext);
+  const [userData, setUserData] = useState([]); //to show the user details in individual post in landing page
 
   //get like count of a post
   const likedCount = state.posts.find(({ _id }) => _id === data._id).likes
@@ -21,20 +24,35 @@ const PostCard = ({ data }) => {
 
   //check if post is already bookmarked
   const postBookmarked = state?.bookmarkedPosts?.find((id) => id === data._id);
-  
+
+  //get user profile pic
+  useEffect(() => {
+    (async () => {
+      try {
+        const user = state?.users?.find(
+          (usr) => usr.username === data.username
+        );
+        const response = await axios.get(`/api/users/${user._id}`);
+        console.log("post", response);
+        setUserData(response.data.user);
+      } catch (e) {
+        console.log(e);
+      }
+    })();
+  }, []);
+
+  //get the date in format
+  const d = new Date(data.createdAt);
+
   return (
     <div>
       <div className="post-container">
         <div className="post-title">
-          <img
-            src="https://res.cloudinary.com/dgoldjr3g/image/upload/v1685259140/NegProjects/E-commerce/logo1_pskkes.jpg"
-            alt=""
-            className="nav-profile-pic"
-          />
+          <img src={userData.avatarUrl} alt="" className="nav-profile-pic" />
 
           <div>
             <p>
-              <b>{data?.username}</b> {data?.createdAt}
+              <b>{data?.username}</b> {d.toDateString()}
             </p>
             <p>@{data?.username}</p>
           </div>

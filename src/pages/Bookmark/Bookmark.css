@@ -1,0 +1,20 @@
+.bookmark-main {
+    display: flex;
+    gap: 2rem;
+    justify-content: space-evenly;
+}
+
+.bookmark-post {
+    padding: 2rem;
+    min-width: 30%;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.bookmark-nav {
+    height: 100vh;
+    position: sticky;
+    top: 0;
+    left: 0;
+}

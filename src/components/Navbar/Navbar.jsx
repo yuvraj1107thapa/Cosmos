@@ -9,10 +9,14 @@ import PersonIcon from "@mui/icons-material/Person";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { NavLink, useNavigate } from "react-router-dom";
 import { DataContext } from "../../contexts/DataContext";
+import { useEffect } from "react";
+import axios from "axios";
 
 const Navbar = () => {
-  const { dispatch } = useContext(DataContext);
+  const { userLoginData,dispatch } = useContext(DataContext);
   const navigate = useNavigate();
+
+ 
   return (
     <div className="nav-main">
       <div className="nav-container">
@@ -59,13 +63,14 @@ const Navbar = () => {
             Explore
           </div>
         </NavLink>
-        <div className="nav-content">
+        <NavLink to="/likepage"><div className="nav-content">
           {" "}
           <div className="nav-icons">
             <FavoriteIcon />
           </div>
           Liked Posts
         </div>
+        </NavLink>
         <NavLink to="/bookmark">
           {" "}
           <div className="nav-content">
@@ -101,7 +106,7 @@ const Navbar = () => {
 
         <div className="nav-profile">
           <img
-            src="https://res.cloudinary.com/dgoldjr3g/image/upload/v1685259140/NegProjects/E-commerce/logo1_pskkes.jpg"
+            src={userLoginData.avatarUrl}
             alt=""
             className="nav-profile-pic"
           />

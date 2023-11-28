@@ -26,14 +26,17 @@
     .nav-desktop {
         display: flex;
         flex-direction: column;
-        /* margin-left: 10rem; */
+        position: sticky;
+        top: 0;
+        right: 0;
         margin-top: 1rem;
         max-width: 20rem;
-        min-height: 100%;
+        min-height: 100vh;
         border-right: 1px solid lightskyblue;
         gap: 1rem;
         flex-wrap: wrap;
         padding-right: 0.5rem;
+        /* box-shadow: 0 0 0.5rem 0.2rem hsla(260, 11%, 85%, 1); */
 
     }
 
@@ -81,7 +84,7 @@
         /* margin-bottom: 2rem; */
     }
 
-    .nav-profile:hover{
+    .nav-profile:hover {
         cursor: pointer;
     }
 
