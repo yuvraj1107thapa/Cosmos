@@ -195,7 +195,7 @@ const ProfileModal = ({ open }) => {
             </label>
             <div className="update-btn">
               <button
-                className="btn-primary follow-btn"
+                className="btn-primary cta-btn post-btn"
                 onClick={updateProfile}
               >
                 Update

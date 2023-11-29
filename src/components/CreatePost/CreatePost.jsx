@@ -4,9 +4,7 @@ import ImageIcon from "@mui/icons-material/Image";
 import { DataContext } from "../../contexts/DataContext";
 import { useContext } from "react";
 import { useState } from "react";
-import toastNotify from "../../utils/toastNotify";
 import { AsideDataContext } from "../../contexts/AsideDataContext";
-import { useEffect } from "react";
 
 const CreatePost = () => {
   const {
@@ -15,10 +13,37 @@ const CreatePost = () => {
     dispatch,
     createPost,
     setCreatePost,
+    postType,
   } = useContext(DataContext);
 
   const { editPost, setEditPost } = useContext(AsideDataContext);
-  
+  const [image, setImage] = useState("");
+  const [video, setvideo] = useState("");
+
+  // const uploadImage = async (event) => {
+  //   console.log("hello");
+  //   const formData = new FormData();
+  //   formData.append("files", event.target.files[0]);
+  //   formData.append("upload_preset", "dltykvje");
+
+  //   const response = await axios.post(
+  //     "https://api.cloudinary.com/v1_1/dgoldjr3g/image/upload",
+  //     formData
+  //   );
+  //   console.log(response);
+  // };
+
+  const uploadImage = (event) => {
+    const mediaUrl = URL.createObjectURL(event.target.files[0]);
+    if (event.target.files[0].type === "video/mp4") {
+      setvideo(mediaUrl);
+      postType.current = "video";
+      console.log("first");
+    } else {
+      setImage(mediaUrl);
+    }
+  };
+
   return (
     <div>
       <div className="new-post-container">
@@ -37,6 +62,23 @@ const CreatePost = () => {
               setCreatePost({ ...createPost, text: event.target.value })
             }
           ></textarea>
+          <span className="image-span">
+            {image && (
+              <img
+                src={image}
+                alt="postImg"
+                id="image-post"
+              />
+            )}
+            {video && (
+              <video width="320" height="240" controls>
+                <source
+                  src={video}
+                  alt="media/mp4"
+                ></source>
+              </video>
+            )}
+          </span>
         </div>
         <hr />
         <div className="new-post-media">
@@ -47,26 +89,27 @@ const CreatePost = () => {
               id="image"
               style={{ visibility: "hidden" }}
               name="avatar"
-              accept="image/png, image/jpeg video/*"
-              onChange={(event) =>
+              accept="image/png, image/jpeg, video/*"
+              onChange={(event) => {
                 setCreatePost({
                   ...createPost,
                   media: URL.createObjectURL(event.target.files[0]),
-                })
-              }
+                });
+                uploadImage(event);
+              }}
             />
-            <span className={createPost.media && "media-loaded"}>
-              {createPost.media}
-            </span>
+            {/* <span className={createPost.media && "media-loaded"}></span> */}
           </label>
 
           <button
-            className="follow-btn post-btn"
+            className="post-btn cta-btn"
             onClick={() => {
               createPostHandler(createPost);
               setEditPost(false);
               setCreatePost({ text: "", media: "" });
               dispatch({ type: "CLEAR_FILTER" });
+              setImage("");
+              setvideo("");
             }}
           >
             {editPost ? "Update" : "Post"}

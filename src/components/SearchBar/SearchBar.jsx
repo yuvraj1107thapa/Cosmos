@@ -47,7 +47,10 @@ const SearchBar = () => {
           ) : (
             searchResult.map((ele) => {
               return (
-                <NavLink to={`/profilepage/${ele.username}`}>
+                <NavLink
+                  to={`/profilepage/${ele.username}`}
+                  className="not-a-link"
+                >
                   {/* <p>{ele.username}</p> */}
                   <div className="nav-profile">
                     <img
@@ -57,7 +60,7 @@ const SearchBar = () => {
                     />
                     <div>
                       <h4>
-                        {ele.firstName} {ele.lastName}
+                        {ele.firstname} {ele.lastname}
                       </h4>
                       <span>@{ele.username}</span>
                     </div>

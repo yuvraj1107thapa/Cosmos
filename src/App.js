@@ -4,11 +4,8 @@ import Mockman from "mockman-js";
 import Navbar from "./components/Navbar/Navbar";
 import Home from "./pages/Home/Home";
 import UserList from "./components/UserList/UserList";
-import PostCard from "./components/PostCard/PostCard";
-import Profile from "./components/Profile/Profile";
 import SearchBar from "./components/SearchBar/SearchBar";
 import Footer from "./components/Footer/Footer";
-
 import SignUp from "./pages/Signup/SignUp";
 import Landing from "./pages/LandingPage/Landing";
 import Explore from "./pages/Explore/Explore";
@@ -25,8 +22,7 @@ import axios from "axios";
 import { AsideDataContext } from "./contexts/AsideDataContext";
 import ProfileModal from "./components/Modal/ProfileModal";
 import AuthWrapper from "./components/Authenticate/AuthWrapper";
-import { MoonLoadeer } from "react-spinners";
-import { Discuss, TailSpin } from "react-loader-spinner";
+import { Discuss } from "react-loader-spinner";
 import SinglePost from "./pages/SinglePost/SinglePost";
 import UserModal from "./components/Modal/UserModal";
 
@@ -47,8 +43,8 @@ function App() {
     setEditPost,
     editProfile,
     setEditProfile,
-    isFollowerModal,
-    seIsFollowerModal,
+    userModal,
+    setUserModal,
     followingModal,
     setFollowingModal,
   } = useContext(AsideDataContext);
@@ -63,8 +59,6 @@ function App() {
       try {
         const response = await axios.get("/api/users");
         dispatch({ type: "GET_USERS", payload: response.data.users });
-        // console.log(response.data.users);
-        // getUserLoggedInData();
       } catch (e) {
         console.log(e);
       }
@@ -84,11 +78,7 @@ function App() {
       }
     })();
   }, [encodedToken]);
-  // useEffect(() => {
-  //   getUserLoggedInData();
-  // }, [userLoggedIn]);
 
-  // console.log("inside app", state);
   window.onbeforeunload = () => {
     localStorage.removeItem("token");
   };
@@ -108,8 +98,8 @@ function App() {
       {editPost && <Modal open={setEditPost} />}
       {openModal && <Modal open={setOpenModal} />}
       {editProfile && <ProfileModal open={setEditProfile} />}
-      {isFollowerModal && <UserModal open={seIsFollowerModal} />}
-      {followingModal && <UserModal open={setFollowingModal} />}
+      {userModal.show && <UserModal open={setUserModal} />}
+      {/* {followingModal && <UserModal open={setFollowingModal} />} */}
       <div className="main">
         {encodedToken && <Navbar />}
         <div className="section">
@@ -167,7 +157,7 @@ function App() {
             ></Route>
           </Routes>
         </div>
-        {localStorage.getItem("token") && (
+        {encodedToken && (
           <div>
             <div className="side-search-bar">
               <SearchBar />

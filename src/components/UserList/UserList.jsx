@@ -6,7 +6,7 @@ import { DataContext } from "../../contexts/DataContext";
 import { NavLink } from "react-router-dom";
 
 const UserList = ({ user }) => {
-  const { followUser } = useContext(AsideDataContext);
+  const { followUser, userModal } = useContext(AsideDataContext);
   const { state, userLoginData } = useContext(DataContext);
 
   // const findFollower = state?.userLoginData.find(({following})=>following.find(({_id})=>_id === user._id))
@@ -21,13 +21,14 @@ const UserList = ({ user }) => {
           >
             {" "}
             <div>
-              <h4>
+              <div className="post-user-details">
                 {user.firstname} {user.lastname}
-              </h4>
+              </div>
               <span>@{user.username}</span>
             </div>
           </NavLink>
-          {state?.following.find((ele) => ele.username === user.username) ? (
+          {state?.following.find((ele) => ele.username === user.username) ||
+          user.username === localStorage.getItem("loggedUser") ? (
             <></>
           ) : (
             <button className="follow-btn" onClick={() => followUser(user._id)}>

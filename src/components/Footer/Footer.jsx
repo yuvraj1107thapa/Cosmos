@@ -5,15 +5,16 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn";
 
 import "./Footer.css";
 
+//condition location
+
 const Footer = () => {
   return (
-    <div>
-      <hr />
-      <div className="footer-container">
+    <div className="footer-main">
+      <div className="footer-container"> 
         <div>
           Made by{" "}
           <a
-            // todo: href="netlify.app/"
+            // todo: href="https://netlify.app/"
             target="_blank"
             rel="noreferrer"
             className="not-link"
@@ -26,7 +27,7 @@ const Footer = () => {
           <div>
             <a
              className="not-link"
-            //   todo: href="https://github.com"
+              // todo: href="https://github.com/"
               target="_blank"
               rel="noreferrer"
             >
@@ -36,7 +37,7 @@ const Footer = () => {
           <div>
             <a
             className="not-link"
-            //   todo href="https://twitter.com"
+              // todo: href="https://twitter.com/"
               target="_blank"
               rel="noreferrer"
             >
@@ -46,7 +47,7 @@ const Footer = () => {
           <div>
             <a
              className="not-link"
-            //   todo href="https://www.linkedin.com/"
+              // todo href="https://www.linkedin.com/in/"
               target="_blank"
               rel="noreferrer"
             >
@@ -57,9 +58,6 @@ const Footer = () => {
         </div>
         <div>&#169; 2023 | Cosmos</div>
       </div>
-      {/* <label for="avatar">Choose a profile:</label> */}
-
-
     </div>
   );
 };

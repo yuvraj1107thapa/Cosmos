@@ -17,7 +17,7 @@
     flex-direction: column;
     box-shadow: 0 0rem 0.3rem 0.1rem hsla(260, 11%, 85%, 1);
     border-radius: 0.5rem;
-    padding: 1rem 0rem 0rem;
+    padding: 1rem;
 }
 
 .cancelBtn {
@@ -93,4 +93,9 @@
     margin-left: auto;
     margin-bottom: 0.5rem;
     margin-right: 0.5rem;
+}
+
+.modal-userlist {
+    margin: 0.5rem 0rem;
+    width: 20rem;
 }

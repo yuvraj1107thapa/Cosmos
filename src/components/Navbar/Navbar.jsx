@@ -12,45 +12,36 @@ import { DataContext } from "../../contexts/DataContext";
 import { useEffect } from "react";
 
 const Navbar = () => {
-  const { userLoginData, dispatch, setOpenModal, userLoggedIn } =
-    useContext(DataContext);
+  const {
+    userLoginData,
+    dispatch,
+    setOpenModal,
+    userLoggedIn,
+    setEncodedToken,
+  } = useContext(DataContext);
   const navigate = useNavigate();
 
   // console.log("insideNav", localStorage.getItem("userData"));
   // useEffect(() => {
   //   setUserLoginData(JSON.parse(localStorage.getItem("userData")));
   // }, []);
-  console.log("nav", userLoginData);
+
   return (
-    <div className="nav-main">
-      <div className="nav-container">
-        <div className="navbar">
-          <div className="nav-icons">
-            <HomeIcon />
-          </div>
-
-          <div className="nav-icons">
-            <ExploreIcon />
-          </div>
-          <div className="nav-icons">
-            <ControlPointIcon />
-          </div>
-          <div className="nav-icons">
-            <FavoriteIcon />
-          </div>
-          <div className="nav-icons">
-            <BookmarkIcon />
-          </div>
-        </div>
-      </div>
-
+    <div>
       {/* navbar for desktop view */}
-      <div className="nav-desktop">
-        <div>
+      {/* <div>
           <h1>
             <span className="text-primary">Share</span>
             <span className="text-secondary-dark">M</span>
             <span className="text-primary">ate</span>
+          </h1>
+        </div> */}
+      <div className="nav-desktop">
+        <div>
+          <h1>
+            <span className="text-primary">Cos</span>
+            {/* <span className="text-secondary-dark"></span> */}
+            <span className="text-primary">mos</span>
           </h1>
         </div>
         <NavLink className="not-a-link" to="/landing">
@@ -97,22 +88,28 @@ const Navbar = () => {
             Profile
           </div>
         </NavLink>
-        <NavLink to=""> <div
-          className="nav-content"
-          onClick={() => {
-            localStorage.clear();
-            dispatch({ type: "RESET_ALL" });
-            navigate("/");
-          }}
-        >
-         <div className="nav-icons">
-            <LogoutIcon />
-          </div>{" "}
-          Logout
-        </div>
+        <NavLink className="not-a-link">
+          {" "}
+          <div
+            className="nav-content"
+            onClick={() => {
+              localStorage.clear();
+              setEncodedToken("");
+              dispatch({ type: "RESET_ALL" });
+              navigate("/");
+            }}
+          >
+            <div className="nav-icons">
+              <LogoutIcon />
+            </div>{" "}
+            Logout
+          </div>
         </NavLink>
 
-        <button onClick={() => setOpenModal(true)}> New Post</button>
+        <button className="cta-btn" onClick={() => setOpenModal(true)}>
+          {" "}
+          New Post
+        </button>
         <NavLink
           to={`/profilepage/${userLoggedIn}`}
           className="nav-profile-container not-a-link"

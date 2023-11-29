@@ -1,15 +1,16 @@
 import React, { useContext, useEffect } from "react";
 import "./Landing.css";
-import axios from "axios";
 import Navbar from "../../components/Navbar/Navbar";
 import CreatePost from "../../components/CreatePost/CreatePost";
 import PostCard from "../../components/PostCard/PostCard";
 import FiberNewIcon from "@mui/icons-material/FiberNew";
 import WhatshotIcon from "@mui/icons-material/Whatshot";
 import { DataContext } from "../../contexts/DataContext";
+import { AsideDataContext } from "../../contexts/AsideDataContext";
 
 const Landing = () => {
   const { state, dispatch, setFilter, userLoggedIn } = useContext(DataContext);
+  const { scrollToTop } = useContext(AsideDataContext);
 
   const landingPost = state?.posts?.filter(
     ({ username }) =>
@@ -25,14 +26,13 @@ const Landing = () => {
       )
     : [...landingPost];
 
-  console.log(state);
   // console.log(data);
 
   // useEffect(() => {
   //   (async () => {
   //     try {
   //       const response = await axios.get(`/api/posts/user/${userLoggedIn}`);
-  //       setUserPostData(response.data.posts);
+  // setUserPostData(response.data.posts);
   //       // dispatch({ type: "GET_USERS", payload: response.data.users });
   //     } catch (e) {
   //       console.log(e);
@@ -40,12 +40,12 @@ const Landing = () => {
   //   })();
   // }, []);
 
-  // useEffect(() => {
-  //   getUserLoggedInData();
-  // }, []);
-
   useEffect(() => {
     dispatch({ type: "USER_TO_FOLLOW" });
+  }, []);
+
+  useEffect(() => {
+    scrollToTop();
   }, []);
 
   return (
@@ -92,7 +92,9 @@ const Landing = () => {
                 <PostCard data={data} />
               </div>
             ))}
-        {data.length === 0 && <p className="new-user-post">You have't posted anything yet!</p>}
+        {data.length === 0 && (
+          <p className="new-user-post">You have't posted anything yet!</p>
+        )}
       </div>
     </div>
   );

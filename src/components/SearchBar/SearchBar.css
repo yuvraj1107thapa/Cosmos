@@ -79,3 +79,7 @@ a {
 #clearBtn {
     cursor: pointer;
 }
+
+.nav-profile:hover {
+    background-color: var(--clr-secondary-hover);
+}

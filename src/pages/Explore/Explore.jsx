@@ -9,9 +9,11 @@ import { useEffect } from "react";
 import axios from "axios";
 import { useState } from "react";
 import { ColorRing } from "react-loader-spinner";
+import { AsideDataContext } from "../../contexts/AsideDataContext";
 
 const Explore = () => {
   const { state, dispatch } = useContext(DataContext);
+  const {scrollToTop} = useContext(AsideDataContext)
   const [feedData, setFeedData] = useState([]);
   const [page, setPage] = useState(1);
   const [feedLoading, setFeedLoading] = useState(false);
@@ -19,6 +21,11 @@ const Explore = () => {
   useEffect(() => {
     dispatch({ type: "USER_TO_FOLLOW" });
   }, []);
+
+  useEffect(() => {
+    scrollToTop();
+  }, []);
+
 
   // const posts = [...(state?.posts)].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
   // console.log("sorted",posts)

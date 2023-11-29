@@ -14,8 +14,12 @@ export const AsideDataContextProvider = ({ children }) => {
   const [editProfile, setEditProfile] = useState(false);
   const { encodedToken, dispatch, state, setUserLoginData, setCreatePost } =
     useContext(DataContext);
-    const [isFollowerModal, seIsFollowerModal] = useState(false);
-    const [followingModal, setFollowingModal] = useState(false);
+  const [userModal, setUserModal] = useState({
+    show: false,
+    type: 0,
+    userData: {},
+  });
+  // const [followingModal, setFollowingModal] = useState(false);
 
   const { editPostId } = useContext(DataContext);
 
@@ -88,6 +92,10 @@ export const AsideDataContextProvider = ({ children }) => {
     }
   };
 
+  function scrollToTop() {
+    window.scroll(0, 0);
+  }
+
   return (
     <AsideDataContext.Provider
       value={{
@@ -101,8 +109,9 @@ export const AsideDataContextProvider = ({ children }) => {
         unfollowUser,
         editProfile,
         setEditProfile,
-        isFollowerModal, seIsFollowerModal,
-        followingModal, setFollowingModal
+        userModal, setUserModal,
+        scrollToTop
+       
       }}
     >
       {children}

@@ -7,11 +7,12 @@ import "./Bookmark.css";
 import UserList from "../../components/UserList/UserList";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import { AuthContext } from "../../contexts/AuthContext";
+import { AsideDataContext } from "../../contexts/AsideDataContext";
 
 const Bookmark = () => {
   const [bookmarkData, setBookmarkData] = useState([]);
-  const { encodedToken } = useContext(DataContext);
-  const { state } = useContext(DataContext);
+  const { encodedToken,state } = useContext(DataContext);
+  const { scrollToTop } = useContext(AsideDataContext);
 
   useEffect(() => {
     (async () => {
@@ -29,6 +30,10 @@ const Bookmark = () => {
     })();
   }, [state.bookmarkedPosts]);
 
+  useEffect(() => {
+    scrollToTop();
+  }, []);
+  
   return (
     <div className="bookmark-main">
       {/* <div className="bookmark-nav">

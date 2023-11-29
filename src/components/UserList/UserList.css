@@ -3,20 +3,18 @@
     padding: .5rem 1rem;
     margin-left: 0.5rem;
     font-size: 1rem;
-
-    border: none
+    /* border: 3px solid var(--clr-secondary-hover); */
+    border: none;
+    font-weight: 600;
 }
 
 .follow-btn:hover {
     cursor: pointer;
-    background-color: var(--clr-primary-dark);
-    color: white;
+
     box-shadow: 0 0 0.1rem 0.2rem hsla(260, 11%, 85%, 1);
 }
 
 .userlist {
-
-    /* border: 1px solid; */
     display: flex;
     gap: 0.5rem;
     box-shadow: 0 0 0.5rem 0.2rem hsla(260, 11%, 85%, 1);
@@ -28,7 +26,7 @@
 
 .userlist:hover {
     cursor: pointer;
-    background-color: inherit;
+    background-color: var(--clr-secondary-hover);
 
 }
 

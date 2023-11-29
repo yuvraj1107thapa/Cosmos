@@ -5,37 +5,50 @@ import { DataContext } from "../../contexts/DataContext";
 import UserList from "../UserList/UserList";
 
 const UserModal = ({ open }) => {
-  const { isFollowerModal } = useContext(AsideDataContext);
+  const { userModal } = useContext(AsideDataContext);
   const { state } = useContext(DataContext);
+  console.log(userModal, "modal");
+
   return (
     <div>
       <div className="modalContainer">
         <div className="modal">
           <div className="cancelBtn">
-            <button id="btnCancel" onClick={() => open(false)}>
+            <h3>User list</h3>
+            <button
+              id="btnCancel"
+              onClick={() => open({ ...userModal, show: false })}
+            >
               {" "}
               X{" "}
             </button>
           </div>
-          {isFollowerModal ? (
-            state?.userToFollow.length ? (
-              state?.userToFollow.map((user) => (
-                <div>
+          {userModal.type === 0 &&
+            (userModal.show && userModal?.userData?.following?.length !== 0 ? (
+              userModal?.userData?.following?.map((user) => (
+                <div
+                  className="modal-userlist"
+                  onClick={() => open({ ...userModal, show: false })}
+                >
                   <UserList user={user} />
                 </div>
               ))
             ) : (
-              <p> No one follows you</p>
-            )
-          ) : state?.following ? (
-            state?.following.map((user) => (
-              <div>
-                <UserList user={user} />
-              </div>
-            ))
-          ) : (
-            <p>You don't follow anyone</p>
-          )}
+              <p>You don't follow anyone</p>
+            ))}
+          {userModal.type === 1 &&
+            (userModal.show && userModal?.userData?.followers?.length !== 0 ? (
+              userModal?.userData?.followers?.map((user) => (
+                <div
+                  className="modal-userlist"
+                  onClick={() => open({ ...userModal, show: false })}
+                >
+                  <UserList user={user} />
+                </div>
+              ))
+            ) : (
+              <p>You don't have any follower yet!</p>
+            ))}
         </div>
       </div>
     </div>

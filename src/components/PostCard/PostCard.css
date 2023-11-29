@@ -1,8 +1,5 @@
 .post-container {
     width: 30rem;
-    max-height: 50rem;
-    background-color: #FEE2D9;
-
     display: flex;
     flex-direction: column;
     padding: 1rem;
@@ -27,6 +24,14 @@
     border: none;
     padding: 1rem;
     margin: 0;
+}
+
+.post-user-details {
+    font-weight: bold;
+}
+
+.post-user-details:hover {
+    text-decoration: underline;
 }
 
 #three-dots {
@@ -88,8 +93,8 @@
     width: 100%;
 }
 
-.hover:hover {
-    background-color: lightgray;
+.post-dropdown:hover {
+    background-color: var(--clr-secondary-hover);
     cursor: pointer;
 }
 
@@ -98,4 +103,10 @@
     flex-direction: column;
     align-items: flex-end;
 
+}
+
+@media (max-width:450px) {
+    .post-container {
+        width: 100%;
+    }
 }

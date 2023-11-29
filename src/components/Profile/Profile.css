@@ -17,7 +17,7 @@
     align-items: center;
     gap: 0.3rem;
     /* border:1px solid; */
-    box-shadow: 0rem 0rem 1rem 0.2rem var(--clr-secondary);
+    box-shadow: 0rem 0rem 1rem 0.2rem var(--clr-secondary-hover);
     border-radius: 1rem;
     padding: 1rem;
 }
@@ -39,10 +39,9 @@
 }
 
 .profile-edit-btn {
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
+
     margin-top: 1rem;
-    /* border-radius: 0.5rem; */
+
 }
 
 .profile-edit-btn:hover {

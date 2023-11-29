@@ -9,17 +9,21 @@ import { useEffect } from "react";
 export const DataContext = createContext();
 
 export const DataContextProvider = ({ children }) => {
+  const localData = localStorage.getItem("token");
+  console.log(localData, "local");
   const [state, dispatch] = useReducer(reducerFun, initialValue);
-  const [loading, setLoading] = useState(false)
-  const [encodedToken, setEncodedToken] = useState(""); //gloabally access the local storage token
+  const [loading, setLoading] = useState(false);
+  const [encodedToken, setEncodedToken] = useState(localData); //gloabally access the local storage token
   const [userLoggedIn, setUserLoggedIn] = useState(""); //gloabally access the local storage token
   const [userPost, setUserPost] = useState([]);
   const [userLoginData, setUserLoginData] = useState({});
   const [openModal, setOpenModal] = useState(false); //create post modal
   const [createPost, setCreatePost] = useState({ text: "", media: "" }); //to create ans post the data
   const editPostId = useRef("");
+  const postType = useRef("")
 
-  console.log("context",userLoginData)
+  console.log("context refresh", encodedToken);
+
   const likePost = async (postId, value) => {
     if (!value) {
       try {
@@ -32,7 +36,7 @@ export const DataContextProvider = ({ children }) => {
             },
           }
         );
-        dispatch({ type: "GET_POSTS", payload: response.data.posts });
+        dispatch({ type: "GET_POSTS", payload: response.data.posts });//render all post
         dispatch({ type: "LIKED_POST", payload: postId });
       } catch (e) {
         console.log(e);
@@ -125,7 +129,7 @@ export const DataContextProvider = ({ children }) => {
                 content: postData.text,
                 image: postData.media,
               },
-            }, //{..post} and {post}
+            }, 
             {
               headers: {
                 authorization: encodedToken,
@@ -160,24 +164,6 @@ export const DataContextProvider = ({ children }) => {
   //   })();
   // }, []);
 
-  const getUserLoggedInData = async () => {
-    try {
-      const user = state?.users?.find((usr) => usr.username === userLoggedIn);
-      // const userList = await axios.get("/api/users");
-      // const user = userList.data.users?.find(
-      //   (usr) => usr.username === userLoggedIn
-      // );
-      // console.log("gt user", user);
-      // const response = await axios.get(`/api/users/${user._id}`);
-      // console.log("check",response)
-      setUserLoginData(user);
-    } catch (e) {
-      console.log(e);
-    }
-  };
-  
-  
-
   return (
     <DataContext.Provider
       value={{
@@ -189,7 +175,6 @@ export const DataContextProvider = ({ children }) => {
         setUserPost,
         userLoginData,
         setUserLoginData,
-        getUserLoggedInData,
         createPostHandler,
         setFilter,
         openModal,
@@ -201,7 +186,9 @@ export const DataContextProvider = ({ children }) => {
         editPostId,
         userLoggedIn,
         setUserLoggedIn,
-        loading, setLoading
+        loading,
+        setLoading,
+        postType
       }}
     >
       {children}

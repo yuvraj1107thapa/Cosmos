@@ -7,12 +7,11 @@ import "./ProfilePage.css";
 import { useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import { AsideDataContext } from "../../contexts/AsideDataContext";
 
 const ProfilePage = () => {
-  //   const { userLoggedIn } = useContext(AuthContext);
-  const { userLoginData } = useContext(DataContext);
+  const { scrollToTop } = useContext(AsideDataContext);
   const { setUserPost, state, dispatch } = useContext(DataContext);
-
   const { username } = useParams();
 
   const userId = state?.users.find(
@@ -36,13 +35,12 @@ const ProfilePage = () => {
       try {
         const response = await axios.get("/api/users");
         dispatch({ type: "GET_USERS", payload: response.data.users });
-        // console.log(response.data.users);
-        // getUserLoggedInData();
       } catch (e) {
         console.log(e);
       }
     })();
   }, []);
+
   //to get all the posts of specified user
   const postOfUser = state?.posts?.filter(
     (post) => post.username.toString() === username
@@ -52,6 +50,12 @@ const ProfilePage = () => {
   const userDetail = state?.users?.find(
     (user) => user.username.toString() === username
   );
+
+  //set the scroll bar to top whenever the page loads
+  useEffect(() => {
+    scrollToTop();
+  }, []);
+
   return (
     <div className="landing-container">
       <div className="profile-page-content">

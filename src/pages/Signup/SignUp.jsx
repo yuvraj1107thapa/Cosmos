@@ -8,12 +8,14 @@ import { NavLink } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthContext";
 import { useEffect } from "react";
 import { DataContext } from "../../contexts/DataContext";
+import { AsideDataContext } from "../../contexts/AsideDataContext";
 
 const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false);
   const { signupInput, setSignupInput, signupHandler } =
     useContext(AuthContext);
   const { setEncodedToken } = useContext(DataContext);
+  const { scrollToTop } = useContext(AsideDataContext);
 
   useEffect(() => {
     setSignupInput({
@@ -28,7 +30,9 @@ const SignUp = () => {
   useEffect(() => {
     localStorage.clear();
     setEncodedToken("");
+    scrollToTop();
   }, []);
+
   return (
     <div className="signup-main">
       <div className="signup-container">
@@ -39,12 +43,20 @@ const SignUp = () => {
           />
         </div>
         <div className="signup-form">
-          <h1>Cosmos</h1>
-          <h3>Sign Up</h3>
+          <h1>
+            <span className="text-primary">Cos</span>
+            {/* <span className="text-secondary-dark"></span> */}
+            <span className="text-primary">mos</span>
+          </h1>
+          <div>
+            <i>Share anything and everything</i>
+          </div>
+          {/* <h3>Sign Up</h3> */}
           <div className="signup-input">
             <label>First Name:</label>
             <input
               type="text"
+              placeholder="Enter firstname"
               value={signupInput.firstname}
               onChange={(e) =>
                 setSignupInput({ ...signupInput, firstname: e.target.value })
@@ -53,6 +65,7 @@ const SignUp = () => {
             <label>Last Name:</label>
             <input
               type="text"
+              placeholder="Enter lastname"
               value={signupInput.lastname}
               onChange={(e) =>
                 setSignupInput({ ...signupInput, lastname: e.target.value })
@@ -61,6 +74,7 @@ const SignUp = () => {
             <label>Username:</label>
             <input
               type="text"
+              placeholder="Enter username"
               value={signupInput.username}
               onChange={(e) =>
                 setSignupInput({ ...signupInput, username: e.target.value })
@@ -69,6 +83,7 @@ const SignUp = () => {
             <label>Password:</label>
             <div className="pass-label">
               <input
+                placeholder="Enter password"
                 type={showPassword ? "text" : "password"}
                 value={signupInput.password}
                 onChange={(e) =>
@@ -83,7 +98,7 @@ const SignUp = () => {
               </div>
             </div>
 
-            <button className="signup-btn" onClick={signupHandler}>
+            <button className="signup-btn cta-btn" onClick={signupHandler}>
               Sign Up
             </button>
             <div className="signup-nav">
