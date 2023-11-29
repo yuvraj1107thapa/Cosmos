@@ -21,7 +21,6 @@ export const AsideDataContextProvider = ({ children }) => {
     userData: {},
   });
 
-  console.log(addComment)
   
   const { editPostId } = useContext(DataContext);
 

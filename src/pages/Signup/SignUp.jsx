@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import "./SignUp.css";
+import "./Signup.css";
 import "../Home/Home.css";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import VisibilityIcon from "@mui/icons-material/Visibility";
@@ -45,7 +45,7 @@ const SignUp = () => {
         <div className="signup-form">
           <h1>
             <span className="text-primary">Cos</span>
-            {/* <span className="text-secondary-dark"></span> */}
+            {/* <span className="text-secondary-dark">M</span> */}
             <span className="text-primary">mos</span>
           </h1>
           <div>

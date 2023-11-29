@@ -7,6 +7,7 @@ import BookmarkIcon from "@mui/icons-material/Bookmark";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import PersonIcon from "@mui/icons-material/Person";
 import LogoutIcon from "@mui/icons-material/Logout";
+import PersonSearchSharpIcon from '@mui/icons-material/PersonSearchSharp';
 import { NavLink, useNavigate } from "react-router-dom";
 import { DataContext } from "../../contexts/DataContext";
 import { useEffect } from "react";
@@ -17,8 +18,9 @@ const Navbar = () => {
     dispatch,
     setOpenModal,
     userLoggedIn,
-    setEncodedToken,
+    setEncodedToken,searchDisplay,setSearchDisplay
   } = useContext(DataContext);
+
   const navigate = useNavigate();
 
   // console.log("insideNav", localStorage.getItem("userData"));
@@ -28,6 +30,42 @@ const Navbar = () => {
 
   return (
     <div>
+      <div className="mobile-nav">
+        <NavLink className="not-a-link" to="/landing">
+          {" "}
+          <div className="nav-icons">
+            <HomeIcon />
+          </div>
+        </NavLink>
+        <div>
+        <NavLink className="not-a-link"  to="/search"><div className="nav-icons">
+        <PersonSearchSharpIcon />
+        </div></NavLink>
+        </div>
+        <NavLink className="not-a-link" to="/explore">
+          <div className="nav-icons">
+            <ExploreIcon />
+          </div>{" "}
+        </NavLink>
+        <NavLink className="not-a-link" to="/likepage">
+          {" "}
+          <div className="nav-icons">
+            <FavoriteIcon />
+          </div>{" "}
+        </NavLink>
+        <NavLink className="not-a-link" to="/bookmark">
+          {" "}
+          <div className="nav-icons">
+            <BookmarkIcon />
+          </div>
+        </NavLink>
+        <NavLink className="not-a-link" to={`/profilepage/${userLoggedIn}`}>
+          <div className="nav-icons">
+            <PersonIcon />
+          </div>{" "}
+        </NavLink>
+      </div>
+
       {/* navbar for desktop view */}
       <div className="nav-desktop">
         <div>

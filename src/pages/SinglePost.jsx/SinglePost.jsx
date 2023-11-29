@@ -7,33 +7,21 @@ import CommentCard from "../../components/CommentCard/CommentCard";
 import { DataContext } from "../../contexts/DataContext";
 
 const SinglePost = () => {
-  // const [singlePost, setSinglePost] = useState([]);
   const { state } = useContext(DataContext);
   const { postId } = useParams();
-
-  // useEffect(() => {
-  //   (async () => {
-  //     try {
-  //       const response = await axios.get(`/api/posts/${postId}`);
-  //       console.log(response.data);
-  //       setSinglePost(response.data.post);
-  //     } catch (e) {
-  //       console.log(e);
-  //     }
-  //   })();
-  // }, []);
-
   const singlePost = state?.posts.find(({ _id }) => _id.toString() === postId);
 
   return (
     <div>
       <div>
-        <div>
+        <div style={{ marginTop: "2rem" }}>
           <PostCard data={singlePost} />
-          {singlePost?.comment?.map((ele) => (
-            <CommentCard data={ele} />
+          {singlePost?.comment?.map((ele, index) => (
+            <div key={index}>
+              {" "}
+              <CommentCard data={ele} />
+            </div>
           ))}
-          {console.log("link", window.location.href)}
         </div>
       </div>
     </div>

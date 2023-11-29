@@ -1,7 +1,7 @@
 .search-main {
     margin-left: 2rem;
-    margin-top: 3rem;
-    margin: 3rem 2rem;
+    margin-top: 1rem;
+    margin-right: 2rem;
     position: relative;
 }
 
@@ -10,7 +10,6 @@
     border: 1px solid grey;
     width: 100%;
     border-radius: 0.3rem;
-
 }
 
 .search-input:focus {
@@ -64,17 +63,10 @@ input:focus {
     color: black;
 }
 
-/* .dataItem span,h2 {
-    margin-left: 10px;
-} */
 
 a {
     text-decoration: none;
 }
-
-/* a:hover {
-    background-color: var(--clr-off-secondary);
-} */
 
 #clearBtn {
     cursor: pointer;
@@ -82,4 +74,10 @@ a {
 
 .nav-profile:hover {
     background-color: var(--clr-secondary-hover);
+}
+
+@media (max-width:450px) {
+    /* .search-main {
+        display: none;
+    } */
 }

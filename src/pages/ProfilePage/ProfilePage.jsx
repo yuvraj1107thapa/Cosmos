@@ -59,7 +59,7 @@ const ProfilePage = () => {
   return (
     <div className="landing-container">
       <div className="profile-page-content">
-        <div>
+        <div className="profile-card">
           <Profile user={userDetail} />
         </div>
         <div>

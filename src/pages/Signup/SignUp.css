@@ -76,3 +76,13 @@
 .signup-btn:hover {
     cursor: pointer;
 }
+
+@media (max-width:450px) {
+    .signup-img {
+        display: none;
+    }
+
+    .signup-form {
+        width: 100%
+    }
+}

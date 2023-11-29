@@ -25,7 +25,6 @@ const Home = () => {
     localStorage.clear();
     setEncodedToken("");
     scrollToTop();
-  
   }, []);
 
   return (

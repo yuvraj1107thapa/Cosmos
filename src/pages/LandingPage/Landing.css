@@ -70,8 +70,12 @@
     text-align: center;
 }
 
-@media (max-width:450px){
-    .filter-container{
+@media (max-width:450px) {
+    .filter-container {
         width: 100%;
+    }
+
+    .side-search-bar {
+        width: 100%
     }
 }

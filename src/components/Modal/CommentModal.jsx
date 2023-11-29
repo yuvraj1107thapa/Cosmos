@@ -13,8 +13,8 @@ const CommentModal = ({open}) => {
         </button>
       </div>
       <Comment />
-
-
+     
+   
     </div>
   </div></div>
   )

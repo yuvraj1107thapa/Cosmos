@@ -9,12 +9,12 @@ import "./Footer.css";
 
 const Footer = () => {
   return (
-    <div className="footer-main">
+    <div>
       <div className="footer-container"> 
         <div>
           Made by{" "}
           <a
-            // todo: href="https://netlify.app/"
+            // Todo: href="https://website.netlify.app/"
             target="_blank"
             rel="noreferrer"
             className="not-link"
@@ -27,7 +27,7 @@ const Footer = () => {
           <div>
             <a
              className="not-link"
-              // todo: href="https://github.com/"
+              // Todo: href="https://github.com/"
               target="_blank"
               rel="noreferrer"
             >
@@ -37,7 +37,7 @@ const Footer = () => {
           <div>
             <a
             className="not-link"
-              // todo: href="https://twitter.com/"
+              // Todo: href="https://twitter.com/"
               target="_blank"
               rel="noreferrer"
             >
@@ -47,7 +47,7 @@ const Footer = () => {
           <div>
             <a
              className="not-link"
-              // todo href="https://www.linkedin.com/in/"
+              // Todo: href="https://www.linkedin.com/in/"
               target="_blank"
               rel="noreferrer"
             >

@@ -81,7 +81,7 @@ export const AuthContextProvider = ({ children }) => {
           avatarUrl:
             "https://res.cloudinary.com/dgoldjr3g/image/upload/v1687433601/NegProjects/SocialMedia/man_2_hjk6pd.png",
         });
-        console.log("signup", response);
+        
         if (response.status === 201) {
           localStorage.setItem("token", response.data.encodedToken);
           localStorage.setItem(
@@ -117,10 +117,6 @@ export const AuthContextProvider = ({ children }) => {
       toastNotify("error", "Please enter all the fields");
     }
   };
-
-  useEffect(() => {
-    console.log("json", userLoginData);
-  }, [userLoginData]);
 
   return (
     <AuthContext.Provider

@@ -45,13 +45,13 @@ const SearchBar = () => {
           {searchResult.length === 0 ? (
             <h3 className="nav-profile">No user found</h3>
           ) : (
-            searchResult.map((ele) => {
+            searchResult.map((ele, index) => {
               return (
                 <NavLink
+                  key={index}
                   to={`/profilepage/${ele.username}`}
                   className="not-a-link"
                 >
-                  {/* <p>{ele.username}</p> */}
                   <div className="nav-profile">
                     <img
                       src={ele?.avatarUrl}
@@ -69,9 +69,6 @@ const SearchBar = () => {
               );
             })
           )}
-          {/* <div className="dataResults">
-          {searchResult.length === 0 && <h5>No results found</h5>}
-          </div> */}
         </div>
       )}
     </div>

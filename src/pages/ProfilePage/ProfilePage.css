@@ -5,3 +5,9 @@
     gap: 1rem;
     align-items: center;
 }
+
+@media (max-width:450px) {
+    .profile-card {
+        width: 100%
+    }
+}

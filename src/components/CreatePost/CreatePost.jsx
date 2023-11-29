@@ -16,7 +16,7 @@ const CreatePost = () => {
     postType,
   } = useContext(DataContext);
 
-  const { editPost, setEditPost, addComment } = useContext(AsideDataContext);
+  const { editPost, setEditPost } = useContext(AsideDataContext);
   const [image, setImage] = useState("");
   const [video, setvideo] = useState("");
 
@@ -73,7 +73,7 @@ const CreatePost = () => {
         </div>
         <hr />
         <div className="new-post-media">
-          <label for="image">
+          <label>
             <ImageIcon />
             <input
               type="file"

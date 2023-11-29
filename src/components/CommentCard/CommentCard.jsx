@@ -8,22 +8,8 @@ const CommentCard = ({ data }) => {
     useContext(DataContext);
   const [userData, setUserData] = useState([]); //to show the user details in individual post in landing page
 
-  console.log("comment", { data });
   //get user profile pic
-  const picOfUser = state?.users?.find(
-    (user) => user.username === data.username
-  );
-  useEffect(() => {
-    const user = state?.users?.find((usr) => usr.username === data.username);
-    (async () => {
-      try {
-        const response = await axios.get(`/api/users/${user._id}`);
-        setUserData(response.data.user);
-      } catch (e) {
-        console.log(e);
-      }
-    })();
-  }, [state.users]);
+  const userInfo = state?.users?.find((user) => user.username === userLoggedIn);
 
   return (
     <div>
@@ -33,7 +19,7 @@ const CommentCard = ({ data }) => {
             {" "}
             <div className="post-title">
               <img
-                src={picOfUser?.avatarUrl}
+                src={userInfo?.avatarUrl}
                 alt=""
                 className="nav-profile-pic"
               />
@@ -41,15 +27,15 @@ const CommentCard = ({ data }) => {
               <div className="post-date">
                 <p>
                   <span className="post-user-details">
-                    {userData?.firstname} {userData?.lastname}
+                    {userInfo?.firstname} {userInfo?.lastname}
                   </span>{" "}
                 </p>
-                <p>@{data?.username}</p>
+                <p>@{userInfo?.username}</p>
               </div>
             </div>
           </NavLink>
         </div>
-        <div>{data}</div>
+        <div className="post-content">{data}</div>
       </div>
     </div>
   );

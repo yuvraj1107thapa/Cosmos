@@ -13,8 +13,9 @@ const ProfileModal = ({ open }) => {
     setUserLoginData,
     state,
     dispatch,
-    userLoggedIn,
+    userLoggedIn
   } = useContext(DataContext);
+
   const [updateUserData, setUpdateUserData] = useState({
     image: "",
     text: userLoginData?.bio,
@@ -24,7 +25,6 @@ const ProfileModal = ({ open }) => {
   const { setEditProfile } = useContext(AsideDataContext);
 
   const getImage = (src) => {
-    console.log("modal", src);
     setUpdateUserData({ ...updateUserData, image: src });
   };
 

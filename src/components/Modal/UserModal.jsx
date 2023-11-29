@@ -6,9 +6,6 @@ import UserList from "../UserList/UserList";
 
 const UserModal = ({ open }) => {
   const { userModal } = useContext(AsideDataContext);
-  const { state } = useContext(DataContext);
-  console.log(userModal, "modal");
-
   return (
     <div>
       <div className="modalContainer">

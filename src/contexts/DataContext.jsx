@@ -18,8 +18,7 @@ export const DataContextProvider = ({ children }) => {
   const [openModal, setOpenModal] = useState(false); //create post modal
   const [createPost, setCreatePost] = useState({ text: "", media: "" }); //to create ans post the data
   const editPostId = useRef("");
-  const postType = useRef("")
-
+  const postType = useRef("");
 
   const likePost = async (postId, value) => {
     if (!value) {
@@ -33,7 +32,7 @@ export const DataContextProvider = ({ children }) => {
             },
           }
         );
-        dispatch({ type: "GET_POSTS", payload: response.data.posts });//render all post
+        dispatch({ type: "GET_POSTS", payload: response.data.posts }); //render all post
         dispatch({ type: "LIKED_POST", payload: postId });
       } catch (e) {
         console.log(e);
@@ -85,7 +84,6 @@ export const DataContextProvider = ({ children }) => {
           }
         );
         dispatch({ type: "BOOKMARK_POST", payload: response.data.bookmarks });
-        // console.log(response);
       } catch (e) {
         console.log(e);
       }
@@ -97,7 +95,7 @@ export const DataContextProvider = ({ children }) => {
       const findPost = state?.posts?.find(
         ({ _id }) => _id === editPostId.current
       );
-      // console.log("edit", findPost);
+
       if (findPost) {
         try {
           const response = await axios.post(
@@ -126,14 +124,13 @@ export const DataContextProvider = ({ children }) => {
                 content: postData.text,
                 image: postData.media,
               },
-            }, 
+            },
             {
               headers: {
                 authorization: encodedToken,
               },
             }
           );
-          console.log("new post", response);
           dispatch({ type: "GET_POSTS", payload: response.data.posts });
           toastNotify("success", "Posted successfully!");
         } catch (e) {
@@ -148,18 +145,6 @@ export const DataContextProvider = ({ children }) => {
   const setFilter = (value) => {
     dispatch({ type: "SET_FILTER", payload: value });
   };
-
-  // useEffect(() => {
-  //   (async () => {
-  //     try {
-  //       const response = await axios.get("/api/users");
-  //       dispatch({ type: "GET_USERS", payload: response.data.users });
-  //       // console.log("users in context", response);
-  //     } catch (e) {
-  //       console.log(e);
-  //     }
-  //   })();
-  // }, []);
 
   return (
     <DataContext.Provider
@@ -185,7 +170,7 @@ export const DataContextProvider = ({ children }) => {
         setUserLoggedIn,
         loading,
         setLoading,
-        postType
+        postType,
       }}
     >
       {children}
