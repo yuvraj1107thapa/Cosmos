@@ -16,6 +16,7 @@ export const posts = [
       likedBy: [],
       dislikedBy: [],
     },
+    comment: ["awesome"],
     username: "adarshnegi",
     createdAt: formatDate(),
     updatedAt: formatDate(),
@@ -29,6 +30,7 @@ export const posts = [
       likedBy: [],
       dislikedBy: [],
     },
+    comment: ["awesome"],
     username: "shaswatgusain",
     createdAt: formatDate(),
     updatedAt: formatDate(),
@@ -40,6 +42,7 @@ export const posts = [
       "https://res.cloudinary.com/dgoldjr3g/image/upload/v1684393728/NegProjects/E-commerce/Orchids/or9_a9gsdi.avif",
     likes: {
       likeCount: 5,
+      comment: ["awesome"],
       likedBy: [],
       dislikedBy: [],
     },

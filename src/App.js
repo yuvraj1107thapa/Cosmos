@@ -25,6 +25,7 @@ import AuthWrapper from "./components/Authenticate/AuthWrapper";
 import { Discuss } from "react-loader-spinner";
 import SinglePost from "./pages/SinglePost/SinglePost";
 import UserModal from "./components/Modal/UserModal";
+import CommentModal from "./components/Modal/CommentModal";
 
 function App() {
   const {
@@ -45,8 +46,8 @@ function App() {
     setEditProfile,
     userModal,
     setUserModal,
-    followingModal,
-    setFollowingModal,
+    addComment,
+    setAddComment,
   } = useContext(AsideDataContext);
 
   useEffect(() => {
@@ -99,6 +100,7 @@ function App() {
       {openModal && <Modal open={setOpenModal} />}
       {editProfile && <ProfileModal open={setEditProfile} />}
       {userModal.show && <UserModal open={setUserModal} />}
+      {addComment.show && <CommentModal open={setAddComment} />}
       {/* {followingModal && <UserModal open={setFollowingModal} />} */}
       <div className="main">
         {encodedToken && <Navbar />}

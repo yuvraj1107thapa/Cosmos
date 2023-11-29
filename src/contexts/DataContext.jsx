@@ -4,13 +4,11 @@ import { useState } from "react";
 import axios from "axios";
 import { useRef } from "react";
 import toastNotify from "../utils/toastNotify";
-import { useEffect } from "react";
 
 export const DataContext = createContext();
 
 export const DataContextProvider = ({ children }) => {
   const localData = localStorage.getItem("token");
-  console.log(localData, "local");
   const [state, dispatch] = useReducer(reducerFun, initialValue);
   const [loading, setLoading] = useState(false);
   const [encodedToken, setEncodedToken] = useState(localData); //gloabally access the local storage token
@@ -22,7 +20,6 @@ export const DataContextProvider = ({ children }) => {
   const editPostId = useRef("");
   const postType = useRef("")
 
-  console.log("context refresh", encodedToken);
 
   const likePost = async (postId, value) => {
     if (!value) {

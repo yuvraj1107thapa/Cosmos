@@ -24,8 +24,12 @@
     border: none;
     padding: 1rem;
     margin: 0;
+    width: 100%;
 }
 
+#posted-img{
+    width:100%
+}
 .post-user-details {
     font-weight: bold;
 }

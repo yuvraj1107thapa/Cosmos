@@ -29,13 +29,6 @@ const Navbar = () => {
   return (
     <div>
       {/* navbar for desktop view */}
-      {/* <div>
-          <h1>
-            <span className="text-primary">Share</span>
-            <span className="text-secondary-dark">M</span>
-            <span className="text-primary">ate</span>
-          </h1>
-        </div> */}
       <div className="nav-desktop">
         <div>
           <h1>

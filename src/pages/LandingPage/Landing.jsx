@@ -18,7 +18,7 @@ const Landing = () => {
       state?.following?.find((user) => user.username === username)
   );
 
-  const data = state.filter
+  const data = state?.filter
     ? [...landingPost].sort((a, b) =>
         state.filter === "latest"
           ? new Date(b.createdAt) - new Date(a.createdAt)

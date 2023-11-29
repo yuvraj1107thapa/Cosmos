@@ -1,0 +1,12 @@
+.comment {
+    width: 20rem;
+
+}
+
+.comment input{
+    height:10rem
+}
+
+.left {
+    margin-left: auto;
+}

@@ -16,7 +16,7 @@ const CreatePost = () => {
     postType,
   } = useContext(DataContext);
 
-  const { editPost, setEditPost } = useContext(AsideDataContext);
+  const { editPost, setEditPost, addComment } = useContext(AsideDataContext);
   const [image, setImage] = useState("");
   const [video, setvideo] = useState("");
 
@@ -63,19 +63,10 @@ const CreatePost = () => {
             }
           ></textarea>
           <span className="image-span">
-            {image && (
-              <img
-                src={image}
-                alt="postImg"
-                id="image-post"
-              />
-            )}
+            {image && <img src={image} alt="postImg" id="image-post" />}
             {video && (
               <video width="320" height="240" controls>
-                <source
-                  src={video}
-                  alt="media/mp4"
-                ></source>
+                <source src={video} alt="media/mp4"></source>
               </video>
             )}
           </span>
@@ -113,6 +104,7 @@ const CreatePost = () => {
             }}
           >
             {editPost ? "Update" : "Post"}
+            
           </button>
         </div>
         {/* <div className="image-added">hel</div> */}

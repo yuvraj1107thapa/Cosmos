@@ -12,6 +12,7 @@ export const AsideDataContextProvider = ({ children }) => {
   const [searchUser, setSearchUser] = useState("");
   const [editPost, setEditPost] = useState(false); //to open the dropdow for edit option
   const [editProfile, setEditProfile] = useState(false);
+  const [addComment, setAddComment] = useState({show:false, post:{}}); // if user clicked on comment icons
   const { encodedToken, dispatch, state, setUserLoginData, setCreatePost } =
     useContext(DataContext);
   const [userModal, setUserModal] = useState({
@@ -19,12 +20,12 @@ export const AsideDataContextProvider = ({ children }) => {
     type: 0,
     userData: {},
   });
-  // const [followingModal, setFollowingModal] = useState(false);
 
+  console.log(addComment)
+  
   const { editPostId } = useContext(DataContext);
 
   const deletePost = async (postId) => {
-    console.log(encodedToken);
     try {
       const response = await axios.delete(`/api/posts/${postId}`, {
         headers: {
@@ -59,13 +60,11 @@ export const AsideDataContextProvider = ({ children }) => {
           },
         }
       );
-      console.log("user", response);
       setUserLoginData(response.data.user);
       dispatch({ type: "GET_FOLLOWING", payload: response.data.followUser });
       dispatch({ type: "USER_TO_FOLLOW" });
       const res = await axios.get("/api/users");
       dispatch({ type: "GET_USERS", payload: res.data.users });
-      console.log("follow", res.data.users);
     } catch (e) {
       console.log(e);
     }
@@ -109,9 +108,11 @@ export const AsideDataContextProvider = ({ children }) => {
         unfollowUser,
         editProfile,
         setEditProfile,
-        userModal, setUserModal,
-        scrollToTop
-       
+        userModal,
+        setUserModal,
+        scrollToTop,
+        addComment,
+        setAddComment,
       }}
     >
       {children}

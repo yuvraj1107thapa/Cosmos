@@ -17,7 +17,8 @@ import { NavLink } from "react-router-dom";
 const PostCard = ({ data }) => {
   const { state, likePost, bookMarkPost, userLoggedIn, postType } =
     useContext(DataContext);
-  const { deletePost, setEditPost, getPostData } = useContext(AsideDataContext);
+  const { deletePost, setEditPost, getPostData, setAddComment, addComment } =
+    useContext(AsideDataContext);
   const [userData, setUserData] = useState([]); //to show the user details in individual post in landing page
   const [modifyPost, setModifyPost] = useState(false); //to open the dropdow for edit option
 
@@ -41,7 +42,6 @@ const PostCard = ({ data }) => {
     (async () => {
       try {
         const response = await axios.get(`/api/users/${user._id}`);
-        console.log("post", response);
         setUserData(response.data.user);
       } catch (e) {
         console.log(e);
@@ -114,7 +114,12 @@ const PostCard = ({ data }) => {
           <div className="post-content">
             {data?.content}
             {data?.image && (
-              <img className="post-img" src={data?.image} alt="" />
+              <img
+                className="post-img"
+                src={data?.image}
+                alt=""
+                id="posted-img"
+              />
             )}
             {postType.current && data?.image && (
               <video width="320" height="240" controls autoplay muted>
@@ -137,8 +142,19 @@ const PostCard = ({ data }) => {
               {likedCount}
             </div>
           </div>
-          <div className="post-icons">
-            <ChatBubbleOutlineIcon />
+          <div
+            className="post-icons"
+            onClick={() =>
+              setAddComment({ ...addComment, show: true, post: data })
+            }
+          >
+            <div className="liked-counter-div">
+              <ChatBubbleOutlineIcon />{" "}
+              {
+                state?.posts.find(({ _id }) => _id === data._id)?.comment
+                  ?.length
+              }
+            </div>
           </div>
           <div
             className="post-icons"
