@@ -22,7 +22,7 @@ import { AsideDataContext } from "./contexts/AsideDataContext";
 import ProfileModal from "./components/Modal/ProfileModal";
 import AuthWrapper from "./components/Authenticate/AuthWrapper";
 import { Discuss } from "react-loader-spinner";
-import SinglePost from "./pages/SinglePost.jsx/SinglePost";
+import SinglePost from "./pages/SinglePost/SinglePost";
 import UserModal from "./components/Modal/UserModal";
 import CommentModal from "./components/Modal/CommentModal";
 import SearchPage from "./pages/SearchPage/SearchPage";
