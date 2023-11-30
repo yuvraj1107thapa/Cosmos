@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import "./Signup.css";
+import "./SignUp.css";
 import "../Home/Home.css";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import VisibilityIcon from "@mui/icons-material/Visibility";
