@@ -1,9 +1,9 @@
- import { Products } from './components/products';
- import contents from './content';
+import { Products } from './products';
+import contents from './content';
 
- export default function App() {
+ export default function Game() {
      return(
-            <div className='App'>
+            <div className='Game'>
                 {contents.map(contents => (
                     <Products 
                         key={contents.id}

@@ -10,7 +10,7 @@ html{
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.App{
+.Game{
   display: grid;
   grid-template-columns: 350px 350px 350px;
   justify-content: center;

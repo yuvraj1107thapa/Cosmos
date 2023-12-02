@@ -26,7 +26,7 @@ import SinglePost from "./pages/SinglePost/SinglePost";
 import UserModal from "./components/Modal/UserModal";
 import CommentModal from "./components/Modal/CommentModal";
 import SearchPage from "./pages/SearchPage/SearchPage";
-
+import Game from "./pages/Game/Game";
 // const UserModal = lazy(() => import("./components/Modal/UserModal"));
 // const LikePage = lazy(() => import("./pages/LikePage/LikePage"));
 // const Bookmark = lazy(() => import("./pages/Bookmark/Bookmark"));
@@ -191,6 +191,14 @@ function App() {
                 <AuthWrapper>
                   <SearchPage />
                 </AuthWrapper>
+              }
+            ></Route>
+            <Route
+              path="/game"
+              element={
+                // <AuthWrapper>
+                  < Game/>
+                // </AuthWrapper>
               }
             ></Route>
           </Routes>
