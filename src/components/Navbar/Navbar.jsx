@@ -74,8 +74,8 @@ const Navbar = () => {
         <div>
           <h1>
             <span className="text-primary">Cos</span>
-            <span className="text-secondary-dark">M</span>
-            <span className="text-primary">os</span>
+{/*             <span className="text-secondary-dark">M</span> */}
+            <span className="text-primary">mos</span>
           </h1>
         </div>
         <NavLink className="not-a-link" to="/landing">
