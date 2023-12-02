@@ -7,6 +7,9 @@ import BookmarkIcon from "@mui/icons-material/Bookmark";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import PersonIcon from "@mui/icons-material/Person";
 import LogoutIcon from "@mui/icons-material/Logout";
+import VideogameAssetIcon from '@mui/icons-material/VideogameAsset';
+import CastConnectedIcon from '@mui/icons-material/CastConnected';
+import FeedIcon from '@mui/icons-material/Feed';
 import PersonSearchSharpIcon from '@mui/icons-material/PersonSearchSharp';
 import { NavLink, useNavigate } from "react-router-dom";
 import { DataContext } from "../../contexts/DataContext";
@@ -71,8 +74,8 @@ const Navbar = () => {
         <div>
           <h1>
             <span className="text-primary">Cos</span>
-            {/* <span className="text-secondary-dark"></span> */}
-            <span className="text-primary">mos</span>
+            <span className="text-secondary-dark">M</span>
+            <span className="text-primary">os</span>
           </h1>
         </div>
         <NavLink className="not-a-link" to="/landing">
@@ -119,6 +122,31 @@ const Navbar = () => {
             Profile
           </div>
         </NavLink>
+        <NavLink className="not-a-link" to={`https://my-project-iota-opal.vercel.app/`}>
+          <div className="nav-content">
+            <div className="nav-icons">
+              <CastConnectedIcon />
+            </div>{" "}
+            Streaming
+          </div>
+        </NavLink>
+        <NavLink className="not-a-link" to={`https://cosmos-pearl.vercel.app/`}>
+          <div className="nav-content">
+            <div className="nav-icons">
+              <FeedIcon />
+            </div>{" "}
+            News
+          </div>
+        </NavLink>
+        <NavLink className="not-a-link" to={`/game`}>
+          <div className="nav-content">
+            <div className="nav-icons">
+              <VideogameAssetIcon />
+            </div>{" "}
+            Games
+          </div>
+        </NavLink>
+
         <NavLink className="not-a-link">
           {" "}
           <div
