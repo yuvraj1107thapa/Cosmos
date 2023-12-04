@@ -2,6 +2,12 @@
 
 ### A Social Media App to connect with people
 
+To get started and run the app:
+
+- Clone the project.
+- Run npm install to install the corresponding node packages
+- Run npm start to run the app on http://localhost:3000
+
 Features of the application:
 
 - Signup and Login to the application
@@ -20,17 +26,19 @@ Features of the application:
 Snapshots of the project 👇
 
 ![Alt Text](snaps/1.png?raw=true "Title")
-![Alt Text](snaps/2.png?raw=true "Title")
+
 ![Alt Text](snaps/3.png?raw=true "Title")
-![Alt Text](snaps/4.png?raw=true "Title")
+
 ![Alt Text](snaps/5.png?raw=true "Title")
-![Alt Text](snaps/6.png?raw=true "Title")
-![Alt Text](snaps/7.png?raw=true "Title")
-![Alt Text](snaps/8.png?raw=true "Title")
+
 ![Alt Text](snaps/9.png?raw=true "Title")
+
 ![Alt Text](snaps/10.png?raw=true "Title")
-![Alt Text](snaps/11.png?raw=true "Title")
-![Alt Text](snaps/12.png?raw=true "Title")
+
 ![Alt Text](snaps/13.png?raw=true "Title")
+
 ![Alt Text](snaps/14.png?raw=true "Title")
+
 ![Alt Text](snaps/15.png?raw=true "Title")
+
+![Alt Text](snaps/16.jpg?raw=true "Title")
